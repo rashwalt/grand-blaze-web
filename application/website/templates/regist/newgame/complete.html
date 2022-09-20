@@ -1,0 +1,33 @@
+{% extends 'base/regist_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}新規登録仮登録 | Grand Blaze{% endblock %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/regist.css?{{publish_date}}" rel="stylesheet" type="text/css">
+<link href="{{ MEDIA_URL }}/css/form.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb "新規登録仮登録" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>新規登録仮登録</h1>
+
+<section>
+	<h2>新規登録の仮登録が完了しました</h2>
+	<p><span class="caution">現時点では、まだ登録が完了していません！！</span><br />
+       登録されたアカウントのメールアドレス宛てに、仮登録完了のお知らせが送付されます。</p>
+     <p>仮登録完了のお知らせに記載されているアドレスにアクセスし、本登録を行ってください。<br />
+     	ご登録のメールアドレスによっては、「迷惑メール」扱いになっている可能性があります。<br />
+     	メールが届かない場合には、「迷惑メール」に入っていないかもご確認下さい！
+	</p>
+</section>
+
+{% endblock %}
+

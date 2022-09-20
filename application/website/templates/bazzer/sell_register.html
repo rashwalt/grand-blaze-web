@@ -1,0 +1,109 @@
+{% extends 'base/regist_base.html' %}
+{% load breadcrumbs register_extras %}
+
+{% block title %}バザーへの出品 | Grand Blaze{% endblock %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/regist.css?{{publish_date}}" rel="stylesheet" type="text/css">
+<link href="{{ MEDIA_URL }}/css/form.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "各種登録" regist_index %}
+{% breadcrumb_url "バザー" bazzer_list %}
+{% breadcrumb "バザーへの出品" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>バザーへの出品</h1>
+
+{% if messages %}
+<section>
+	<p class="ui-state-highlight ui-corner-all ui-inline-icon ui-wiget-p">
+		{% for message in messages %}
+		<span class="ui-icon ui-icon-info"></span>
+		<strong>バザーへの出品:</strong>
+		{{message}}
+		{% endfor %}
+	</p>
+</section>
+{% endif %}
+
+<section>
+    <form action="{% url bazzer_sell_register %}" method="POST">
+        {% csrf_token %}     
+        <h2>出品</h2>
+        <div class="form-widget">
+            <div>
+                <div class="key">
+                    <label for="id_seller_having_no">
+                        売却品
+                    </label>
+                </div>
+                <div class="value integer">
+                    {{ form.seller_having_no }}
+                    <input type="button" class="dialog-open" data-dialog="having_item" data-return_id="id_seller_having_no" data-return_value="id_seller_having_no-name" value="選択" />
+                    <span id="id_seller_having_no-name">{% if form.instance.get_item %}{{ form.instance.get_item.name }}{% endif %}</span>
+                    {{ form.seller_having_no.errors }}
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_price">
+                        価格
+                    </label>
+                </div>
+                <div class="value integer">
+                    {{ form.price }}
+                    {{ form.price.errors }}
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-widget">
+	        <div>
+	            <div class="value value-only">
+	                <input type="submit" value="出品する" />
+	            </div>
+	        </div>
+	    </div>
+    </form>
+</section>
+
+<section class="dialog-base" id="dialog-having_item" title="所持しているアイテム" style="display: none;">
+	<form>
+		<input type="hidden" name="ret_id" class="ret_id" value="" />
+		<input type="hidden" name="ret_value" class="ret_value" value="" />
+	</form>
+    <div id="pagination">
+        
+    </div>
+    <table class="regist-list">
+            <tr>
+                <th>所持No.</th>
+                <th>アイテム名</th>
+                <th>価値</th>
+                <th>所持数</th>
+            </tr>
+        {% for item_data in having_item_list %}      
+        <tr>
+            <td rowspan="2">{{ item_data.have_no }}</td>
+            <td>
+                <a href="javascript:void(0);" class="apply-link" data-dialog="having_item" data-id_value="{{ item_data.have_no }}" data-name_value="{{ item_data.item.name }}">{{ item_data.item.name }}</a>
+            </td>
+            <td>{{ item_data.item.it_seller|sub_money }}</td>
+            <td>{{ item_data.it_box_count }}</td>
+        </tr>
+        <tr>
+            <td colspan="3">{{ item_data.item.it_comment|safe }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</section>
+
+{% endblock %}
+

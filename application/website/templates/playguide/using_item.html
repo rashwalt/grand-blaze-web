@@ -1,0 +1,76 @@
+{% extends 'base/playguide_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}アイテムの使用 | Grand Blaze{% endblock %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/playguide.css?{{publish_date}}" rel="stylesheet" type="text/css">
+<link href="{{ MEDIA_URL }}/css/result.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "プレイガイド" playguide_index %}
+{% breadcrumb "アイテムの使用" %}
+
+{% endblock %}
+
+{% block maincontents %}
+<h1>アイテムの使用</h1>
+
+<section>
+    <h2>概要</h2>
+    <p>食物やスクロールといったアイテムは、使わなければ意味がありません。これらのアイテムを使うことで、様々な効果を得ることができます。<br />
+    アイテムを使う時は、所持しているアイテム番号を指定します。指定した所持アイテム番号のアイテムが使用可能なアイテムであれば、そのアイテムを一つだけ使用します。<br />
+    ※複数個使いたい場合は、３つあるスロットすべてに同じ番号を指定する必要があります。<br />
+    <br />
+    アイテムを使うことができるかどうかは、キャラクターのプライベート結果のアイテムリスト上で「<span class="used">青字</span>」で表示されていれば使うことができるアイテムと判断できます。<br />
+    <br />
+    すべてのアイテムの使用効果を解説することは不可能であるため、代表的なアイテムについて解説します。</p>
+    <p class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 登録はどこで行う？</strong><br />
+        アイテムの使用は、<strong>継続登録</strong>で行います。
+    </p>
+    <div class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! アイテムを使う場合の例</strong><br />
+        所持アイテム番号 8番のアイテムを使いたい場合、次のように記入します。 <br />
+        <form>
+			1.所持アイテムNo.
+			<input name="use_item_no_1" type="text" class="no_box validate-digits" id="use_item_no_1" value="8" size="5" maxlength="5" />
+			<input type="button" name="select" value="選択" />
+			ヒールポーション
+			を使う。<br />
+			2.所持アイテムNo.
+			<input name="use_item_no_2" type="text" class="no_box validate-digits" id="use_item_no_2" size="5" maxlength="5" />
+			<input type="button" name="select" value="選択" />
+			を使う。<br />
+			3.所持アイテムNo.
+			<input name="use_item_no_3" type="text" class="no_box validate-digits" id="use_item_no_3" size="5" maxlength="5" />
+			<input type="button" name="select" value="選択" />
+			を使う。
+        </form>
+    </div>
+</section>
+
+<section>
+    <h2>スキルを習得する[スクロールの使用]</h2>
+    <p>新たなスキルを習得するために「スクロール」と呼ばれるアイテムを使うことがあります。スクロールは一度使用すると消失してしまいますが、そのスクロールに記載されているスキルを自分のものにできます。</p>
+</section>
+
+<section>
+    <h2>道具を使う[道具の使用]</h2>
+    <p>道具の中には使うことで特殊な効果を発揮するものが存在します。代表的なものは、HPを回復する「ヒールポーション」です。<br />
+    一度使用すると消失してしまいます。</p>
+    <p class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 使用できる道具の例</strong><br />
+        道具「ヒールポーション」を使用すると、HPが回復します。<br />
+        即効性があるため、いざというときの回復アイテムとして持っておくと安心して冒険できるでしょう。
+    </p>
+</section>
+
+{% endblock %}

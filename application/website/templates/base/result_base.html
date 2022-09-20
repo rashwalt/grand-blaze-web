@@ -1,0 +1,16 @@
+{% extends 'base/one_base.html' %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/result.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{%block page_type%}adventure-result{%endblock%}
+
+{% block sidemenu %}
+
+{# --------- メニュー --------- #}
+
+{% include 'sidemenu/result_side.html' %}
+
+
+{% endblock %}

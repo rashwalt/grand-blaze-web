@@ -1,0 +1,13 @@
+{% load register_extras %}
+
+■セリフ設定
+
+◇セリフ設定{% for data in datas %}
+	・No.{{data.word_no}}
+	　シチュエーション：
+		{% partymember_user data.situation.name user data.situation.id|add:-66 as situation_name %}{{situation_name}}{% if data.perks_id %}
+	　スキル：
+		{{data.perks_id|default:''}} {{data.skill.name}}{% endif %}
+	　セリフ内容：
+		{{data.serif_text}}
+{% endfor %}

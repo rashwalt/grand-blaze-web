@@ -1,0 +1,25 @@
+
+
+■戦闘準備登録 (登録日時:{{data.updated_at|date:"Y/m/d H:i:s"}})
+
+◇クラス
+    ・メイン
+        {% if data.install > 0 %}{{data.main_install.name}}{% else %}変更しない{% endif %}{% if data.secondary_install > 0 %}
+    ・サブ
+        {% if data.secondary_install > 0 %}{{data.sub_install.name}}{% else %}変更しない{% endif %}{% endif %}{% if data.equip_main or data.equip_sub or  data.equip_head or data.equip_body or data.equip_acce1 %}
+
+◇アイテム装備{% if data.equip_main %}
+    ・メイン
+        {% if data.is_equip_main > 0 %}No.{{data.equip_main|default:''}} {{data.equip_main_it.item.name}}{% endif %}{% if data.is_equip_main < 0 %}装備を外す{% endif %}{% endif %}{% if data.equip_sub %}
+    ・サブ
+        {% if data.is_equip_sub > 0 %}No.{{data.equip_sub|default:''}} {{data.equip_sub_it.item.name}}{% endif %}{% if data.is_equip_sub < 0 %}装備を外す{% endif %}{% endif %}{% if data.equip_head %}
+    ・頭部
+        {% if data.is_equip_head > 0 %}No.{{data.equip_head|default:''}} {{data.equip_head_it.item.name}}{% endif %}{% if data.is_equip_head < 0 %}装備を外す{% endif %}{% endif %}{% if data.equip_body %}
+    ・身体
+        {% if data.is_equip_body > 0 %}No.{{data.equip_body|default:''}} {{data.equip_body_it.item.name}}{% endif %}{% if data.is_equip_body < 0 %}装備を外す{% endif %}{% endif %}{% if data.equip_acce1 %}
+    ・装飾
+        {% if data.is_equip_acce1 > 0 %}No.{{data.equip_acce1|default:''}} {{data.equip_acce1_it.item.name}}{% endif %}{% if data.is_equip_acce1 < 0 %}装備を外す{% endif %}{% endif %}{% endif %}
+
+◇隊列
+    ・隊列変更
+        {{data.get_formation_display}}

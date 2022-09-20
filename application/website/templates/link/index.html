@@ -1,0 +1,54 @@
+{% extends 'base/forum_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}関連サイトリンク | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "フォーラム" forum_index %}
+{% breadcrumb "関連サイトリンク" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>コミュニティ</h1>
+
+<section>
+	{% for link_site in link_list %}
+    <h2>{{link_site.category_name}}</h2>
+    <dl class="forum-index">
+    	{% for site in link_site.data %}
+        <dt class="ui-inline-icon">
+            <a href="{{site.url}}">{{site.name}}</a>
+        </dt>
+        <dd>
+            {{site.comment}}
+            <br />
+            <small>オーナー:{{site.owner}}</small>
+        </dd>
+        {% endfor %}
+        
+	    {% if not link_site.data %}
+	    <p>紹介可能なリンクサイトはありません。</p>
+	    {% endif %}
+    </dl>
+    {% endfor %}
+    {% if not link_list %}
+    <p>紹介可能なリンクサイトはありません。</p>
+    {% endif %}
+</section>
+
+<section>
+    <dl class="forum-index">
+        <dt class="ui-inline-icon">
+            <a href="{% url link_register %}"><span class="ui-icon ui-icon-refresh"></span>サイト申請・変更</a>
+        </dt>
+        <dd>
+            Grand Blazeの関連サイトの申請を行うことが出来ます。<br />
+        </dd>
+    </dl>
+</section>
+
+{% endblock %}

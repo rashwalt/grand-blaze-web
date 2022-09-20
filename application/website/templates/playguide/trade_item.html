@@ -1,0 +1,157 @@
+{% extends 'base/playguide_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}トレード | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "プレイガイド" playguide_index %}
+{% breadcrumb "トレード" %}
+
+{% endblock %}
+
+{% block maincontents %}
+<h1>トレード</h1>
+
+<section>
+    <h2>アイテムのトレード</h2>
+    <p>Grand Blazeでは、アイテムやお金をプレイヤー同士で受け渡しすることを「トレード」と言います。所持しているアイテムを他のキャラクターに受け渡すためには、取引登録の「アイテムのトレード」で設定する必要があります。<br />
+    <br />
+    送る相手を間違うと相手に迷惑がかかったり、貴重なアイテムが戻ってこない場合がありますので、トレードは慎重に行いましょう。<br />
+	なお、いたずらにアイテムを特定の相手に送り続けたり、取引での詐欺行為などは規約違反となりますのでご注意下さい。<br />
+	※[Quest]属性や[Bind]属性がついているアイテムはトレードできません。初期装備のアイテムなどが該当します。</p>
+    <p class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 登録はどこで行う？</strong><br />
+        アイテムの受け渡しは、<strong>取引登録</strong>で行います。
+    </p>
+    <div class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! アイテムをトレードする場合の例</strong><br />
+        所持しているアイテム番号2番のアイテムを5つ、エントリー番号9番の人に渡したい場合、次のように記入します。<br />
+        <form>
+            1. E-No.
+            <input name="trade_item_entry_1" type="text" class="no_box validate-digits" id="trade_item_entry_1" value="9" size="5" maxlength="5" />
+			に
+			<input name="trade_item_no_1" type="text" class="no_box validate-digits" id="trade_item_no_1" value="2" size="5" maxlength="5" />
+			<input type="button" name="select" value="選択" />
+			ヒールポーション
+			を
+			<input name="trade_item_number_1" type="text" class="no_box validate-digits" id="trade_item_number_1" value="5" size="5" maxlength="2" />
+			/ 10 個送る。<br />
+			メッセージ：
+			<input name="trade_item_mess_1" type="text" class="name_box" id="trade_item_mess_1" size="50" maxlength="120" />
+			<br />
+			2. E-No.
+			<input name="trade_item_entry_2" type="text" class="no_box validate-digits" id="trade_item_entry_2" size="5" maxlength="5" />
+			に
+			<input name="trade_item_no_2" type="text" class="no_box validate-digits" id="trade_item_no_2" size="5" maxlength="5" />
+			<input type="button" name="select" value="選択" />
+			を
+			<input name="trade_item_number_2" type="text" class="no_box validate-digits" id="trade_item_number_2" size="5" maxlength="2" />
+			個送る。<br />
+			メッセージ：
+			<input name="trade_item_mess_2" type="text" class="name_box" id="trade_item_mess_2" size="50" maxlength="120" />
+			<br />
+			3. E-No.
+			<input name="trade_item_entry_3" type="text" class="no_box validate-digits" id="trade_item_entry_3" size="5" maxlength="5" />
+			に
+			<input name="trade_item_no_3" type="text" class="no_box validate-digits" id="trade_item_no_3" size="5" maxlength="5" />
+			<input type="button" name="select" value="選択" />
+			を
+			<input name="trade_item_number_3" type="text" class="no_box validate-digits" id="trade_item_number_3" size="5" maxlength="2" />
+			個送る。<br />
+			メッセージ：
+			<input name="trade_item_mess_3" type="text" class="name_box" id="trade_item_mess_3" size="50" maxlength="120" />
+			<br />
+			4. E-No.
+			<input name="trade_item_entry_4" type="text" class="no_box validate-digits" id="trade_item_entry_4" size="5" maxlength="5" />
+			に
+			<input name="trade_item_no_4" type="text" class="no_box validate-digits" id="trade_item_no_4" size="5" maxlength="5" />
+			<input type="button" name="select" value="選択" />
+			を
+			<input name="trade_item_number_4" type="text" class="no_box validate-digits" id="trade_item_number_4" size="5" maxlength="2" />
+			個送る。<br />
+			メッセージ：
+			<input name="trade_item_mess_4" type="text" class="name_box" id="trade_item_mess_4" size="50" maxlength="120" />
+			<br />
+			5. E-No.
+			<input name="trade_item_entry_5" type="text" class="no_box validate-digits" id="trade_item_entry_5" size="5" maxlength="5" />
+			に
+			<input name="trade_item_no_52" type="text" class="no_box validate-digits" id="trade_item_no_52" size="5" maxlength="5" />
+			<input type="button" name="select" value="選択" />
+			を
+			<input name="trade_item_number_5" type="text" class="no_box validate-digits" id="trade_item_number_5" size="5" maxlength="2" />
+			個送る。<br />
+			メッセージ：
+			<input name="trade_item_mess_5" type="text" class="name_box" id="trade_item_mess_5" size="50" maxlength="120" />
+        </form>
+    </div>
+</section>
+
+<section>
+    <h2>お金のトレード</h2>
+    <p>Grand Blazeでは、アイテムやお金をプレイヤー同士で受け渡しすることを「トレード」と言います。所持しているお金（ギムル）を他のキャラクターに受け渡すためには、取引登録の「マネーのトレード」で設定する必要があります。<br />
+    <br />
+    送る相手を間違うと相手に迷惑がかかったり、お金が戻ってこない場合がありますので、トレードは慎重に行いましょう。<br />
+    なお、いたずらにアイテムを特定の相手に送り続けたり、取引での詐欺行為などは規約違反となりますのでご注意下さい。</p>
+    <p class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 登録はどこで行う？</strong><br />
+        お金の受け渡しは、<strong>取引登録</strong>で行います。
+    </p>
+    <div class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! お金をトレードする場合の例</strong><br />
+        200ギムルをエントリー番号18番の人に渡したい場合、次のように記入します。<br />
+        <form>
+            1. E-No.
+            <input name="trade_money_entry_1" type="text" class="no_box validate-digits" id="trade_money_entry_1" value="18" size="5" maxlength="5" />
+			に
+			<input name="trade_money_count_1" type="text" class="longno_box" id="trade_money_count_1" value="200" size="10" maxlength="8" />
+			ギムル送る。<br />
+			メッセージ：
+			<input name="trade_money_mess_1" type="text" class="name_box" id="trade_money_mess_1" size="50" maxlength="120" />
+			<br />
+			2. E-No.
+			<input name="trade_money_entry_2" type="text" class="no_box validate-digits" id="trade_money_entry_2" size="5" maxlength="5" />
+			に
+			<input name="trade_money_count_2" type="text" class="longno_box" id="trade_money_count_2" size="10" maxlength="8" />
+			ギムル送る。<br />
+			メッセージ：
+			<input name="trade_money_mess_2" type="text" class="name_box" id="trade_money_mess_2" size="50" maxlength="120" />
+			<br />
+			3. E-No.
+			<input name="trade_money_entry_3" type="text" class="no_box validate-digits" id="trade_money_entry_3" size="5" maxlength="5" />
+			に
+			<input name="trade_money_count_3" type="text" class="longno_box" id="trade_money_count_3" size="10" maxlength="8" />
+			ギムル送る。<br />
+			メッセージ：
+			<input name="trade_money_mess_3" type="text" class="name_box" id="trade_money_mess_3" size="50" maxlength="120" />
+			<br />
+			4. E-No.
+			<input name="trade_money_entry_4" type="text" class="no_box validate-digits" id="trade_money_entry_4" size="5" maxlength="5" />
+			に
+			<input name="trade_money_count_4" type="text" class="longno_box" id="trade_money_count_4" size="10" maxlength="8" />
+			ギムル送る。<br />
+			メッセージ：
+			<input name="trade_money_mess_4" type="text" class="name_box" id="trade_money_mess_4" size="50" maxlength="120" />
+			<br />
+			5. E-No.
+			<input name="trade_money_entry_5" type="text" class="no_box validate-digits" id="trade_money_entry_5" size="5" maxlength="5" />
+			に
+			<input name="trade_money_count_5" type="text" class="longno_box" id="trade_money_count_5" size="10" maxlength="8" />
+			ギムル送る。<br />
+			メッセージ：
+			<input name="trade_money_mess_5" type="text" class="name_box" id="trade_money_mess_5" size="50" maxlength="120" />
+         </form>
+    </div>
+</section>
+
+<section>
+    <h2>メッセージを一緒に送る</h2>
+    <p>アイテムやお金をトレードする時、相手に「メッセージ」も一緒に送ることができます。ここで送るメッセージは通常の<a href="{% url playguide_message %}">リザルトメッセージ</a>と同じです。</p>
+</section>
+
+{% endblock %}

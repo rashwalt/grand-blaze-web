@@ -1,0 +1,504 @@
+{% extends 'base/regist_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}新規登録 | Grand Blaze{% endblock %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/regist.css?{{publish_date}}" rel="stylesheet" type="text/css">
+<link href="{{ MEDIA_URL }}/css/form.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb "新規登録" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>新規登録</h1>
+
+<section>
+	<h2>登録上の注意</h2>
+	<p>入力内容にHTMLタグは使用できません。<br />
+		登録前にプレイガイドを良くお読みください。<br />
+		半角カナや機種依存文字（例：①など）は使用しないでください。<br />
+		キャラクター個人情報、能力情報、及びアカウント情報は入力必須です。<br />
+		<strong>アカウント情報のメール、パスワード、名前は登録後に変更できます。</strong><br />
+		<strong>キャラクターの情報のうち、愛称、年齢、身長、体重、大切なものは登録後に変更できます。</strong><br />
+		<span class="required-guide">*</span>印は必須項目です。
+	</p>
+</section>
+
+<section>
+    <form action="{% url newgame_index %}" method="POST">
+        {% csrf_token %}        
+        <h2>アカウント情報</h2>
+        <div class="form-widget">
+            <div>
+            	<div class="key">
+	                <label for="id_email">
+	                    メール<span class="required-guide">*</span>
+	                </label>
+	                <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="email">
+	                	<span class="ui-icon ui-icon-help"></span>
+	                </a>
+            	</div>
+            	<div class="value">
+            		{{ form.email }}
+                    {{ form.email.errors }}
+            	</div>
+            	<div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-email">
+            		<span class="ui-icon ui-icon-info"></span><strong>メール</strong>
+            		登録されたメールアドレスには、登録内容が送信される他、Grand Blazeに関する案内が送信されます。<br />
+            		登録後に変更できます。
+            	</div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_password">
+                        パスワード<span class="required-guide">*</span>
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="password">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value">
+                    {{ form.password }}
+                    {{ form.password.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-password">
+                    <span class="ui-icon ui-icon-info"></span><strong>パスワード</strong>
+                    半角英数字、8文字以上のパスワードを設定してください。<br />
+                    パスワードは推測されにくいものをつけてください。<br />
+                    登録後に変更できます。
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_password_conf">
+                        パスワード（確認）<span class="required-guide">*</span>
+                    </label>
+                </div>
+                <div class="value">
+                    {{ form.password_conf }}
+                    {{ form.password_conf.errors }}
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_name">
+                        名前<span class="required-guide">*</span>
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="name">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value">
+                    {{ form.name }}
+                    {{ form.name.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-name">
+                    <span class="ui-icon ui-icon-info"></span><strong>名前</strong>
+                    プレイヤーの名前です。フォーラムなどで表示されます。<br />
+                    登録後に変更できます。
+                </div>
+            </div>
+        </div>
+        <h2>キャラクターの情報</h2>
+        <div class="form-widget">
+            <div>
+                <div class="key">
+                    <label for="id_character_name">
+                        キャラクター名<span class="required-guide">*</span>
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="character_name">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value">
+                    {{ form.character_name }}
+                    {{ form.character_name.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-character_name">
+                    <span class="ui-icon ui-icon-info"></span><strong>キャラクター名</strong>
+                    冒険を行うキャラクターの名前です。<br />
+                    登録後に変更できません！（何らかの理由がある場合のみ、お問い合わせから対応します）
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_nick_name">
+                        愛称<span class="required-guide">*</span>
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="nick_name">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value">
+                    {{ form.nick_name }}
+                    {{ form.nick_name.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-nick_name">
+                    <span class="ui-icon ui-icon-info"></span><strong>愛称</strong>
+                    冒険を行うキャラクターの愛称です。<br />
+                    登録後に変更できます。
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_sex">
+                        性別<span class="required-guide">*</span>
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="sex">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value">
+                    {{ form.sex }}
+                    {{ form.sex.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-sex">
+                    <span class="ui-icon ui-icon-info"></span><strong>性別</strong>
+                    冒険を行うキャラクターの性別です。<br />
+                    登録後に変更できません。<br />
+                    装備可能な装備品に影響します。
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_age">
+                        年齢<span class="required-guide">*</span>
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="age">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value integer">
+                    {{ form.age }}歳
+                    {{ form.age.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-age">
+                    <span class="ui-icon ui-icon-info"></span><strong>年齢</strong>
+                    冒険を行うキャラクターの年齢です。<br />
+                    種族による差はないため、人間換算で入力してください。<br />
+                    登録後に変更できます。
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_height">
+                        身長<span class="required-guide">*</span>
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="height">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value integer">
+                    {{ form.height }}cm
+                    {{ form.height.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-height">
+                    <span class="ui-icon ui-icon-info"></span><strong>身長</strong>
+                    冒険を行うキャラクターの身長です。<br />
+                    登録後に変更できます。
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_weight">
+                        体重<span class="required-guide">*</span>
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="weight">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value integer">
+                    {{ form.weight }}kg
+                    {{ form.weight.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-weight">
+                    <span class="ui-icon ui-icon-info"></span><strong>体重</strong>
+                    冒険を行うキャラクターの体重です。<br />
+                    登録後に変更できます。
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_nation_id">
+                        所属国<span class="required-guide">*</span>
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="nation_id">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value">
+                    {{ form.nation_id }}
+                    {{ form.nation_id.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-nation_id">
+                    <span class="ui-icon ui-icon-info"></span><strong>所属国</strong>
+                    冒険を行うキャラクターが所属する国家です。
+                    登録後には特定のイベントでのみ、変更できます。
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_unique_name">
+                        大切なもの<span class="required-guide">*</span>
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="unique_name">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value">
+                    {{ form.unique_name }}
+                    {{ form.unique_name.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-unique_name">
+                    <span class="ui-icon ui-icon-info"></span><strong>大切なもの</strong>
+                    キャラクター本人が大切に思っていること、好きな言葉などを入力してください（愛や勇気、魅力など）。<br />
+                    登録後に変更できます。<br />
+                    能力値の名前になります。
+                </div>
+            </div>
+        </div>
+        
+        <h2>キャラクターの画像</h2>
+        <div class="form-widget">
+            <div>
+                <div class="key">
+                    <label for="id_image_url">
+                        イメージURL
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="image_url">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value">
+                    {{ form.image_url }}
+                    {{ form.image_url.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-image_url">
+                    <span class="ui-icon ui-icon-info"></span><strong>イメージURL</strong>
+                    キャラクターの画像イメージが置かれている場所（URL）を入力してください。<br />
+                    最大サイズは横250px、縦300px以下です。<br />
+                    イメージを登録するには「イメージURL」、「横幅」、「縦幅」、「イメージ権利表記」が必須となります。
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_image_width">
+                        横幅
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="image_width">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value integer">
+                    {{ form.image_width }}px
+                    {{ form.image_width.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-image_width">
+                    <span class="ui-icon ui-icon-info"></span><strong>横幅</strong>
+                    キャラクターの画像イメージの横のサイズ（ピクセル）を入力してください。<br />
+                    最大サイズは横250pxです。
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_image_height">
+                        縦幅
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="image_height">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value integer">
+                    {{ form.image_height }}px
+                    {{ form.image_height.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-image_height">
+                    <span class="ui-icon ui-icon-info"></span><strong>縦幅</strong>
+                    キャラクターの画像イメージの縦のサイズ（ピクセル）を入力してください。<br />
+                    最大サイズは縦300px以下です。
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_image_copyright">
+                        イメージ権利表記
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="image_copyright">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value">
+                    {{ form.image_copyright }}
+                    {{ form.image_copyright.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-image_copyright">
+                    <span class="ui-icon ui-icon-info"></span><strong>イメージ権利表記</strong>
+                    キャラクターの画像イメージの権利表記を入力してください。
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_image_link_url">
+                        イメージリンクURL
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="image_link_url">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value">
+                    {{ form.image_link_url }}
+                    {{ form.image_link_url.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-image_link_url">
+                    <span class="ui-icon ui-icon-info"></span><strong>イメージリンクURL</strong>
+                    キャラクターの画像イメージからリンクするURLを入力してください。
+                </div>
+            </div>
+        </div>
+        
+        <h2>キャラクターの能力</h2>
+        <div class="form-widget">
+            <div>
+                <div class="key">
+                    <label for="id_install_class_id">
+                        クラス<span class="required-guide">*</span>
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="install_class_id">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value">
+                    {{ form.install_class_id }}
+                    {{ form.install_class_id.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-install_class_id">
+                    <span class="ui-icon ui-icon-info"></span><strong>クラス</strong>
+                    キャラクターの初期クラスを選択してください。<br />
+                    選択されたクラスと現在のレベルによって、能力が変化します。<br />
+                    登録後に変更できます。
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_race_id">
+                        種族<span class="required-guide">*</span>
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="race_id">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value">
+                    {{ form.race_id }}
+                    {{ form.race_id.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-race_id">
+                    <span class="ui-icon ui-icon-info"></span><strong>種族</strong>
+                    キャラクターの種族を選択してください。<br />
+                    装備可能な武具に影響します。<br />
+                    初期能力には影響しません。
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_guardian_id">
+                        守護者<span class="required-guide">*</span>
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="guardian_id">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value">
+                    {{ form.guardian_id }}
+                    {{ form.guardian_id.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-guardian_id">
+                    <span class="ui-icon ui-icon-info"></span><strong>守護者</strong>
+                    キャラクターの守護者を選択してください。<br />
+                    選択された守護者によって、初期装備が変化します。<br />
+                    初期能力には影響しません。
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_weapon_id">
+                        初期装備武器<span class="required-guide">*</span>
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="weapon_id">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value">
+                    {{ form.weapon_id }}
+                    {{ form.weapon_id.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-weapon_id">
+                    <span class="ui-icon ui-icon-info"></span><strong>初期装備武器</strong>
+                    キャラクターの初期装備武器を選択してください。<br />
+                    初期能力には影響しません。
+                </div>
+            </div>
+        </div>
+        
+        <h2>Grand Blaze 会員規約</h2>
+        <div class="term">
+			<h3>はじめに</h3>
+			<p>Grand Blazeはブラウザ上で動作する定期更新型ネットワークゲームです。<br />
+			  以下の文章をお読み頂き、同意の上テストプレイを行ってください。<br />
+			  なお、同意されない場合は参加を放棄してください。<br />
+			  また、ご登録された場合は、同意されたものとします。</p>
+			<h3>第１条　定義</h3>
+			<ol class="cont_ol">
+		      <li>「Grand Blaze」とは、当サイトが提供する、本規約の対象となる定期更新型オンラインゲームを言うものとします。</li>
+		      <li>「会員」とは、Grand Blazeのテストプレイを行うテストプレイヤーを言うものとします。</li>
+		      <li>「当方」とは、管理者、及びＧＭ（ゲームマスター）を言うものとします。</li>
+		      <li>「本サイト」とは、Grand Blaze公式サイトを言うものとします。</li>
+		      <li>「本規約」とは、会員の厳守すべき規定である、Grand Blaze会員規約を言うものとします。</li>
+		      <li>「他者」とは、国内外を問わず、当該会員及び当方以外の第三者（他の会員を含む）を言うものとします。</li>
+		      <li>「プレイヤーデータ」とは、会員がGrand Blazeのテストプレイを行うことで蓄積されるデータを言うものとします。</li>
+			</ol>
+			<h3>第２条　本規約の範囲</h3>
+			<p>当方が、本規約の他に、本サイト内にて規定する、Grand Blazeに関する決まり等も、その名目の如何に関わらず、本規約の一部を構成するものとします。</p>
+			<h3>第３条　本規約の適用</h3>
+			<p>会員が、Grand Blazeを利用する一切については、本規約が適用されます。</p>
+			<h3>第４条　本規約の遵守</h3>
+			<p>会員は、Grand Blazeの利用にあたっては、本規約を遵守するものとします。</p>
+			<h3>第５条　プレイヤーデータの消失</h3>
+			<p>会員の行為、他者の行為又は天災地変、火災、停電その他の不可抗力により、プレイヤーデータの全部又は一部が消失した場合について、当方は何ら責任を負うものではありません。<br />
+      			また、当方の判断により、プレイヤーデータの全部又は一部を消失させた場合でも、当方は何ら責任を負うものではありません。</p>
+			<h3>第６条　会員の報告行為</h3>
+			<p>会員は、発生したバグについて何かしら報告を行うことができます。<br />
+      			また、不正を行っているプレイヤーの情報をGM宛てにメールにて知らせることができます。</p>
+			<h3>第７条　禁止行為</h3>
+			<ol class="cont_ol">
+			  <li>会員は、Grand Blazeで取得したゲーム上の通貨ギムル（Giml）をもとにして、現実世界で流通する通貨をやり取りしたり、インターネットオークション等でキャラクターやアイテム等を売買しないものとします。</li>
+      			<li>会員は、賭博等の犯罪行為又はその準備のためにGrand Blazeを利用しないものとします。</li>
+			  </ol>
+			<h3>第８条　免責事項</h3>
+			<p>会員は、他の会員との間に争い、紛争等が生じた場合には、自己の責任と費用をもって処理解決するものとし、当方は一切の責任義務を負わないものとします。</p>
+			<p>附則</p>
+			<p>本規約は2007年5月1日に実施するものとします。<br />
+		    本規約は2011年1月23日に改訂しました。<br />
+		      本規約は随時更新されるものとします。<br />
+		      最新情報は、随時本サイトのトップページ上に掲載し、会員が参照できるものとします。</p>
+        </div>
+        <p>Grand Blaze会員規約に同意いただける場合のみ、「同意して登録する」をクリックしてください。</p>
+        
+        <div class="form-widget">
+            <div>
+                <div class="value value-only">
+                    <input type="submit" value="同意して登録する" />
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+
+{% endblock %}
+

@@ -1,0 +1,56 @@
+{% extends 'base/playguide_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}冒険(処理)の流れ | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "プレイガイド" playguide_index %}
+{% breadcrumb "冒険(処理)の流れ" %}
+
+{% endblock %}
+
+{% block maincontents %}
+<h1>冒険(処理)の流れ</h1>
+
+<section>
+    <h2>概要</h2>
+    <p>冒険結果は、次のように処理されていきます。この処理の流れを把握すれば、より効率よく冒険を進めることが可能になるでしょう。</p>
+</section>
+
+<section>
+    <h2>フローチャート</h2>
+    <ol class="flow">
+        <li>パーティ編成</li>
+        <li>プライベートスキル習得</li>
+        <li>アイコン設定</li>
+        <li>個人宛てメッセージ処理</li>
+	    <li>バザーへの出品</li>
+	    <li>テンポラリボックスにあるアイテムをカバンへ移動</li>
+	    <li>アイテム装備解除</li>
+	    <li>アイテム売却</li>
+	    <li>マネートレード</li>
+	    <li>アイテム購入</li>
+	    <li>バザーアイテムの購入</li>
+	    <li>移動先の決定</li>
+	    <li>クラスのインストール</li>
+	    <li>アイテムトレード</li>
+	    <li>バザーの購入結果に基づいた売上金を出品者へ送付</li>
+	    <li>アイテム装備</li>
+	    <li>アイテム使用</li>
+	    <li>戦術変更</li>
+	    <li>隊列変更</li>
+	    <li>セリフ変更</li>
+	    <li>プロフィール設定</li>
+	    <li>アカウント設定</li>
+	    <li>パーティメッセージ処理</li>
+	    <li>パーティアクション</li>
+	    <li>バトル</li>
+	    <li>バトル終了</li>
+	    <li>キャラクターステータスの表示</li>
+	    <li>リストメッセージ処理</li>
+   </ol>
+</section>
+
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'base/forum_base.html' %}
+{% load breadcrumbs pager %}
+
+{% block title %}{{forum.name}} | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "フォーラム" forum_index %}
+{% breadcrumb forum.name %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>{{forum.name}}</h1>
+
+{% pager pager 'forum_list' forum.id %}
+
+<section>
+	{% if forum.is_not_auth and not request.user.is_authenticated %}
+	<p>
+		<a href="{% url forum_thread_create_notauth forum.id %}" id="message-create" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button" aria-disabled="false"><span class="ui-button-icon-primary ui-icon ui-icon-pencil"></span><span class="ui-button-text">スレッド作成</span></a>
+	</p>
+	{% else %}
+	<p>
+		<a href="{% url forum_thread_create forum.id %}" id="message-create" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button" aria-disabled="false"><span class="ui-button-icon-primary ui-icon ui-icon-pencil"></span><span class="ui-button-text">スレッド作成</span></a>
+	</p>
+	{% endif %}
+	{% if forum_list %}
+	<table class="forum-list">
+		<tr>
+			<th>スレッド件名(返信数)</th>
+			<th>閲覧数</th>
+            <th>状態</th>
+            <th>作成者</th>
+            <th>最終投稿日時</th>
+		</tr>
+		{% for thread in forum_list %}
+		<tr>
+			<td class="ui-inline-icon">
+				{% if not thread.is_rock %}
+				<span class="ui-icon ui-icon-mail-open"></span>
+				<a href="{% url forum_thread_detail forum.id thread.id %}" class="strong">{{thread.title}}&nbsp;({{thread.get_article_count}})</a>
+				{% else %}
+				<span class="ui-icon ui-icon-mail-closed"></span>
+				<a href="{% url forum_thread_detail forum.id thread.id %}">{{thread.title}}&nbsp;({{thread.get_article_count}})</a>
+				{% endif %}
+			</td>
+			<td>
+				{{thread.view_count}}
+			</td>
+            <td>
+                {{thread.get_forum_status_name}}
+            </td>
+            <td>
+                {{thread.get_create_user_name}}
+            </td>
+			<td>
+				{{thread.last_article_update_at|date:"Y/m/d H:i"}}
+			</td>
+		</tr>
+		{% endfor %}
+	</table>
+	{% else %}
+	<p>作成されたスレッドはありません。</p>
+	{% endif %}
+</section>
+
+{% pager pager 'forum_list' forum.id %}
+
+{% endblock %}

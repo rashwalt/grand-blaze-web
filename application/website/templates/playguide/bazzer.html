@@ -1,0 +1,114 @@
+{% extends 'base/playguide_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}バザー | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "プレイガイド" playguide_index %}
+{% breadcrumb "バザー" %}
+
+{% endblock %}
+
+{% block maincontents %}
+<h1>バザー</h1>
+
+<section>
+    <h2>概要</h2>
+    <p>所持している、トレードが可能なアイテムは、システム側で用意された「バザー」を利用して、プレイヤー間取引を行うことが可能です。<br />
+    バザーに参加するために、特別な条件はありません。<br />
+    トレードすることが可能なアイテム（[Quest]属性や[Bind]属性がついていないアイテム。装備中のアイテムは自動的に装備解除した上で出品されます）があれば、誰でも気軽に参加することが可能です。<br />
+    バザーでは、出品者が提示した金額で購入しても構わない場合にのみ、取引が成立します。</p>
+</section>
+
+<section>
+    <h2>アイテムを出品する</h2>
+    <p>アイテムを出品するためには、「各種登録」の「バザー出品」から出品するアイテムと希望価格を入力して、登録を行います（個数は必ず１個です。類似取引の比較を行いやすいよう１個ずつの出品となっています）。<br />
+    バザー出品では、他の登録と異なり、リアルタイムで処理が行われます（実際のアイテムの受け渡し処理は直近の定期更新時に行われます）。<br />
+    バザーに出品したアイテムの価格によっては、別途出品手数料がかかる場合があります。</p>
+    <div class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! アイテムを出品する場合の例</strong><br />
+        所持しているアイテム番号6番のアイテム（ブロンズソード）を300Gで出品したい場合、次のように記入します。<br />
+        <form>
+			売却品：<br />
+			<input name="have_no" class="no_box" maxlength="5" type="text" value="6">
+			<button type="button">選択</button>
+			ブロンズソード<br />
+			価格：<br />
+			<input name="price" class="longno_box" maxlength="8" value="300" type="text">
+        </form>
+    </div>
+    <p class="ui-state-highlight ui-corner-all ui-inline-icon" style="margin-top: 10px;">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! アイテムの出品を取り消したい場合</strong><br />
+        すでに出品しているアイテムの出品を取り消したい場合、その出品の詳細画面を表示し、「この出品をキャンセル」で出品のキャンセルを行います。ただし、すでに落札されているアイテムは取り消しできません。
+    </p>
+</section>
+
+<section>
+    <h2>出品手数料</h2>
+    <p>出品するアイテムの売却価格、または出品金額のどちらか高い方（以降、出品価格）の値段が一定額以上になると出品手数料が出品者に対してかかります。<br />
+    	手数料は以下の計算式で算出されます。
+    </p>
+    <table class="guide-list" summary="出品手数料のリストです。" style="width:95%">
+        <tr>
+            <th>出品価格</th>
+            <th>手数料</th>
+        </tr>
+        <tr>
+            <td>200G未満</td>
+            <td>0(無料)</td>
+        </tr>
+        <tr>
+            <td>1,000G未満</td>
+            <td>出品金額×1%+1G</td>
+        </tr>
+        <tr>
+            <td>10,000G未満</td>
+            <td>出品金額×1%+50G</td>
+        </tr>
+        <tr>
+            <td>10,000G以上</td>
+            <td>出品金額×1%+100G</td>
+        </tr>
+    </table>
+    <p class="ui-state-highlight ui-corner-all ui-inline-icon" style="margin-top: 10px;">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! プライベートスキルの「トレーダー」</strong><br />
+        プライベートスキルの「トレーダー」を持っている場合、上記の手数料の区分が一段階引き下げられ、1000G未満なら無料、といった形になります。<br />
+        ただし、50,000G以上になると、最上位の「出品金額×1%+100G」になります。
+    </p>
+</section>
+
+<section>
+    <h2>アイテムを落札する</h2>
+    <form>
+	    <p>出品されているアイテムを落札（購入）するためには、「各種登録」の「バザー購入」で、購入したいアイテムを検索・選択し、出品詳細画面から
+	    <input type="button" name="button" id="button" value="購入する" />
+	    ボタンをクリックして、購入を行います。<br />
+	    出品詳細画面では、類似品の取引履歴も確認することが出来ます。<br />
+	    内容をよく確認し、「購入」してください。</p>
+    </form>
+    <p>※お金が足りない場合、落札はできません。</p>
+    <p class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! アイテムを落札した後の確認</strong><br />
+        アイテムを落札した後、購入した結果を確認したい場合、次の方法で確認できます。<br />
+        <br />
+        「自分の落札物だけ表示」で検索する。<br />
+        バザーの出品物一覧で「自分の落札物だけ表示」にチェックをして検索すると自分が落札したアイテムのリストを表示できます。<br />
+    </p>
+    <p class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! アイテムを落札した後、お金はどうなる？</strong><br />
+        アイテムを落札したあと、結果発表時には、その取引が有効なものであるかどうかの判定が行われます。<br />
+        多くの場合は有効であるとして、処理が続行しますが、アイテムをもてなかったり、買えるだけのお金を持っていない場合には、バザーの落札は無効となり、その取引は中断されます。<br />
+        有効な取引であった場合、購入直後に、アイテムを取引相手から入手すると同時に、システムに対してお金が自動的に支払われます。<br />
+        このあと、時間差で、システムから、そのアイテムを出品した出品者に対して、お金が支払われます。<br />
+        バザーに出品されたアイテムを購入したあとに、別途マネートレードなどを行う必要はありません。
+    </p>
+</section>
+
+{% endblock %}

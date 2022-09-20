@@ -1,0 +1,28 @@
+{% extends 'base/root_base.html' %}
+{% load breadcrumbs url_extra %}
+
+{% block title %}{{detail_data.title}} | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "インフォメーション" root_information %}
+{% breadcrumb_url detail_data.category_name root_category detail_data.category %}
+{% breadcrumb detail_data.title %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>{{detail_data.category_name}}</h1>
+
+<section>
+ <h2>{{detail_data.title}}</h2>
+ <div class="postdate">
+ 	<span>最終更新日:&nbsp;{{detail_data.updated_at|date:"Y/m/d H:i"}}</span>
+	掲載日:&nbsp;{{detail_data.view_date|date:"Y/m/d"}}
+</div>
+  <p>{{detail_data.body|urlconvert|safe|linebreaksbr}}</p>
+</section>
+
+{% endblock %}

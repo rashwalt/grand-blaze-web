@@ -1,0 +1,128 @@
+{% extends 'base/playguide_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}隊列 | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "プレイガイド" playguide_index %}
+{% breadcrumb "隊列" %}
+
+{% endblock %}
+
+{% block maincontents %}
+<h1>隊列</h1>
+
+<section>
+    <h2>概要</h2>
+    <p>使用する武器やスキル、そしてヘイトを意識して戦うのか、仲間を護る盾として戦うのかを決めるために重要なのが「隊列」の存在です。ソロであるときは前列で固定されてしまいますが、パーティメンバーがいれば、前列に誰かがいる限り、後列でも戦うことができます。<br />
+    パーティでのバトルでは特に重要な設定となるでしょう。<br />
+    ※隊列によって被ダメージは変化しませんが、ヘイトの増加量に影響があります。</p>
+    <p class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 登録はどこで行う？</strong><br />
+        隊列の設定は、<strong>戦闘準備登録</strong>で行います。
+    </p>
+</section>
+
+<section>
+	<h2>ヘイトとは？</h2>
+	<p>ヘイトとは、モンスターからプレイヤーキャラクターに対しての「恨み」や「憎しみ」を数値化したものです。<br />
+		「敵対心」とも言います。<br />
+		この数値が高ければ高いほど、恨まれているということです。<br />
+		多くのモンスターは、この恨んでいる相手を純粋に狙ってくる特性があります（頭脳の高い相手はその限りではありません！）。<br />
+		ヘイトは様々な行動で蓄積されていきます。<br />
+		たとえば、より高いダメージをだしたり、味方を回復したり……。<br />
+		これらの「恨まれそうな行動」を行うとヘイトが増加していきます。
+	</p>
+</section>
+
+<section>
+    <h2>隊列の影響</h2>
+    <p>隊列は通常攻撃時の武器の射程、アーツ実行時のアーツの射程、そして、隊列によるヘイトの増加量補正に大きく影響してきます。<br />
+    前列であれば、射程Ｓの武器やアーツは最も強く効果を発揮し、なおかつ、ヘイトの増加量は大きくなるでしょう。<br />
+    反対に後列であれば射程Ｌの武器やアーツは効果が変化しませんが、それ以外の武器やアーツは射程がたりないと<span class="caution">ダメージが半減してしまいます。</span>。<br />
+    武器やアーツの射程と隊列の関係を表した図は次の通りです。<br />
+    ※相手が「飛行」している場合、対空効果をもった武器やアーツでないと攻撃できないことがあります。<br />
+    ※自分が対象の行動は射程による制限を一切受けません。</p>
+    <table class="guide-list" summary="射程と隊列による補正のリストです。" style="width:95%">
+        <caption>
+            射程と隊列の関係一覧
+        </caption>
+        <tr>
+            <th colspan="4" rowspan="2" scope="col"></th>
+            <th colspan="2" scope="col">敵の隊列</th>
+        </tr>
+        <tr>
+            <th scope="col">前衛</th>
+            <th scope="col">後衛</th>
+        </tr>
+        <tr>
+            <th rowspan="6" scope="row">自分の隊列</th>
+            <th rowspan="3" scope="row">前衛</th>
+            <th rowspan="3" scope="row">射程</th>
+            <th scope="row">S</th>
+            <td style="text-align: center">〇</td>
+            <td style="text-align: center">×</td>
+        </tr>
+        <tr>
+            <th scope="row">M</th>
+            <td style="text-align: center">〇</td>
+            <td style="text-align: center">〇</td>
+        </tr>
+        <tr>
+            <th scope="row">L</th>
+            <td style="text-align: center">〇</td>
+            <td style="text-align: center">〇</td>
+        </tr>
+        <tr>
+            <th rowspan="3" scope="row">後列</th>
+            <th rowspan="3" scope="row">射程</th>
+            <th scope="row">S</th>
+            <td style="text-align: center">×</td>
+            <td style="text-align: center">×</td>
+        </tr>
+        <tr>
+            <th scope="row">M</th>
+            <td style="text-align: center">〇</td>
+            <td style="text-align: center">×</td>
+        </tr>
+        <tr>
+            <th scope="row">L</th>
+            <td style="text-align: center">〇</td>
+            <td style="text-align: center">〇</td>
+        </tr>
+    </table>
+    <p>※〇ならばダメージ100%、×ならばダメージ50%（半減）</p>
+    <p class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 隊列の位置関係</strong><br />
+        これらの隊列の位置関係は、「距離」と考えましょう。<br />
+        前列は敵の最前列と剣を交えて斬り合う位置であり、後列は後ろから援護射撃や魔法を放つ位置です。<br />
+        <br />
+        前列がいない時、相手が剣をもっていれば、その射程距離の不利を無くすために近付きます。弓ならば、どの位置からでも効果的に攻撃できますが、近づかれるとそれだけ自分が危険になります。<br />
+		しかし、上記はほんの一例です。<br />
+		パーティにとって、最適な位置を相談してみてください。
+    </p>
+</section>
+
+<section>
+    <h2>隊列を設定する</h2>
+    <p>隊列を設定する場合、リストボックスから設定したい隊列を選択します。<br />
+    ※新規登録時は「前列」に設定されています。</p>
+    <div class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 隊列を設定する場合の例</strong><br />
+        隊列を「後列」にしたい場合、次のように記入します。<br />
+        <form>
+            <select name="formation" id="formation">
+                <option value="0">変更なし</option>
+                <option value="1">前列で戦う</option>
+                <option value="3" selected="selected">後列で戦う</option>
+            </select>
+        </form>
+    </div>
+</section>
+
+{% endblock %}

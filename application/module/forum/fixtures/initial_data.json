@@ -1,0 +1,317 @@
+[
+    {
+        "pk": 1, 
+        "model": "forum.forum", 
+        "fields": {
+            "name": "\u53d6\u5f15", 
+            "parent_forum": null
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "forum.forum", 
+        "fields": {
+            "name": "\u4ef2\u9593\u52df\u96c6", 
+            "parent_forum": null
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "forum.forum", 
+        "fields": {
+            "name": "\u8cea\u554f", 
+            "parent_forum": null
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "forum.forum", 
+        "fields": {
+            "name": "\u30c7\u30a3\u30b9\u30ab\u30c3\u30b7\u30e7\u30f3", 
+            "parent_forum": null
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "forum.forum", 
+        "fields": {
+            "name": "\u30d5\u30a3\u30fc\u30c9\u30d0\u30c3\u30af", 
+            "parent_forum": null
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "forum.forumstatus", 
+        "fields": {
+            "is_staff_only": false, 
+            "is_thread_rock": false, 
+            "name": "\u52df\u96c6", 
+            "forum": 2, 
+            "is_new_thread": true
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "forum.forumstatus", 
+        "fields": {
+            "is_staff_only": false, 
+            "is_thread_rock": false, 
+            "name": "\u5e0c\u671b", 
+            "forum": 2, 
+            "is_new_thread": true
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "forum.forumstatus", 
+        "fields": {
+            "is_staff_only": false, 
+            "is_thread_rock": true, 
+            "name": "\u7de0\u5207", 
+            "forum": 2, 
+            "is_new_thread": false
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "forum.forumstatus", 
+        "fields": {
+            "is_staff_only": false, 
+            "is_thread_rock": false, 
+            "name": "\u8ca9\u58f2", 
+            "forum": 1, 
+            "is_new_thread": true
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "forum.forumstatus", 
+        "fields": {
+            "is_staff_only": false, 
+            "is_thread_rock": false, 
+            "name": "\u8cb7\u53d6", 
+            "forum": 1, 
+            "is_new_thread": true
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "forum.forumstatus", 
+        "fields": {
+            "is_staff_only": false, 
+            "is_thread_rock": false, 
+            "name": "\u8cb8\u51fa", 
+            "forum": 1, 
+            "is_new_thread": true
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "forum.forumstatus", 
+        "fields": {
+            "is_staff_only": false, 
+            "is_thread_rock": false, 
+            "name": "\u501f\u5165", 
+            "forum": 1, 
+            "is_new_thread": true
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "forum.forumstatus", 
+        "fields": {
+            "is_staff_only": false, 
+            "is_thread_rock": false, 
+            "name": "\u5408\u6210\u8acb\u8ca0", 
+            "forum": 1, 
+            "is_new_thread": true
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "forum.forumstatus", 
+        "fields": {
+            "is_staff_only": false, 
+            "is_thread_rock": false, 
+            "name": "\u5408\u6210\u4f9d\u983c", 
+            "forum": 1, 
+            "is_new_thread": true
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "forum.forumstatus", 
+        "fields": {
+            "is_staff_only": false, 
+            "is_thread_rock": false, 
+            "name": "\u753b\u50cf\u8acb\u8ca0", 
+            "forum": 1, 
+            "is_new_thread": true
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "forum.forumstatus", 
+        "fields": {
+            "is_staff_only": false, 
+            "is_thread_rock": false, 
+            "name": "\u753b\u50cf\u4f9d\u983c", 
+            "forum": 1, 
+            "is_new_thread": true
+        }
+    }, 
+    {
+        "pk": 12, 
+        "model": "forum.forumstatus", 
+        "fields": {
+            "is_staff_only": false, 
+            "is_thread_rock": true, 
+            "name": "\u7de0\u5207", 
+            "forum": 1, 
+            "is_new_thread": false
+        }
+    }, 
+    {
+        "pk": 13, 
+        "model": "forum.forumstatus", 
+        "fields": {
+            "is_staff_only": false, 
+            "is_thread_rock": false, 
+            "name": "\u8cea\u554f", 
+            "forum": 3, 
+            "is_new_thread": true
+        }
+    }, 
+    {
+        "pk": 14, 
+        "model": "forum.forumstatus", 
+        "fields": {
+            "is_staff_only": false, 
+            "is_thread_rock": true, 
+            "name": "\u7de0\u5207", 
+            "forum": 3, 
+            "is_new_thread": false
+        }
+    }, 
+    {
+        "pk": 15, 
+        "model": "forum.forumstatus", 
+        "fields": {
+            "is_staff_only": false, 
+            "is_thread_rock": false, 
+            "name": "\u96d1\u8ac7", 
+            "forum": 4, 
+            "is_new_thread": true
+        }
+    }, 
+    {
+        "pk": 16, 
+        "model": "forum.forumstatus", 
+        "fields": {
+            "is_staff_only": false, 
+            "is_thread_rock": false, 
+            "name": "\u8a0e\u8ad6", 
+            "forum": 4, 
+            "is_new_thread": true
+        }
+    }, 
+    {
+        "pk": 17, 
+        "model": "forum.forumstatus", 
+        "fields": {
+            "is_staff_only": false, 
+            "is_thread_rock": false, 
+            "name": "\u4ea4\u6d41", 
+            "forum": 4, 
+            "is_new_thread": true
+        }
+    }, 
+    {
+        "pk": 18, 
+        "model": "forum.forumstatus", 
+        "fields": {
+            "is_staff_only": false, 
+            "is_thread_rock": false, 
+            "name": "\u305d\u306e\u4ed6", 
+            "forum": 4, 
+            "is_new_thread": true
+        }
+    }, 
+    {
+        "pk": 19, 
+        "model": "forum.forumstatus", 
+        "fields": {
+            "is_staff_only": false, 
+            "is_thread_rock": true, 
+            "name": "\u7d42\u4e86", 
+            "forum": 4, 
+            "is_new_thread": false
+        }
+    }, 
+    {
+        "pk": 20, 
+        "model": "forum.forumstatus", 
+        "fields": {
+            "is_staff_only": false, 
+            "is_thread_rock": false, 
+            "name": "\u30d0\u30b0", 
+            "forum": 5, 
+            "is_new_thread": true
+        }
+    }, 
+    {
+        "pk": 21, 
+        "model": "forum.forumstatus", 
+        "fields": {
+            "is_staff_only": false, 
+            "is_thread_rock": false, 
+            "name": "\u63d0\u6848", 
+            "forum": 5, 
+            "is_new_thread": true
+        }
+    }, 
+    {
+        "pk": 22, 
+        "model": "forum.forumstatus", 
+        "fields": {
+            "is_staff_only": true, 
+            "is_thread_rock": false, 
+            "name": "\u53d7\u4ed8\u6e08", 
+            "forum": 5, 
+            "is_new_thread": false
+        }
+    }, 
+    {
+        "pk": 23, 
+        "model": "forum.forumstatus", 
+        "fields": {
+            "is_staff_only": true, 
+            "is_thread_rock": false, 
+            "name": "\u5bfe\u5fdc\u5f85", 
+            "forum": 5, 
+            "is_new_thread": false
+        }
+    }, 
+    {
+        "pk": 24, 
+        "model": "forum.forumstatus", 
+        "fields": {
+            "is_staff_only": true, 
+            "is_thread_rock": false, 
+            "name": "\u4fee\u6b63\u6e08", 
+            "forum": 5, 
+            "is_new_thread": false
+        }
+    }, 
+    {
+        "pk": 25, 
+        "model": "forum.forumstatus", 
+        "fields": {
+            "is_staff_only": true, 
+            "is_thread_rock": true, 
+            "name": "\u7d42\u4e86", 
+            "forum": 5, 
+            "is_new_thread": false
+        }
+    }
+]

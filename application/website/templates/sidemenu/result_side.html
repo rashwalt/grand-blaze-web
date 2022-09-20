@@ -1,0 +1,38 @@
+
+<nav>
+	<h4>
+		冒険者一覧
+	</h4>
+	<dl id="side-menu" class="ui-right-icon">
+        <dt>
+        	<a href="{% url result_index %}">
+        		冒険者一覧<span class="ui-icon ui-icon-carat-1-e"></span>
+        	</a>
+        </dt>
+	</dl>
+	<h4>
+		リザルトツール
+	</h4>
+	<dl id="side-menu" class="ui-right-icon">
+        <dt>
+        	<a href="{% url result_newplayer %}">
+        		新規登録者一覧<span class="ui-icon ui-icon-carat-1-e"></span>
+        	</a>
+        </dt>
+        <dt>
+        	<a href="{% url result_search %}">
+        		キャラクター検索<span class="ui-icon ui-icon-carat-1-e"></span>
+        	</a>
+        </dt>
+	</dl>
+	<h4>
+		ダウンロード
+	</h4>
+	<dl id="side-menu" class="ui-right-icon">
+        <dt>
+        	<a href="{% url result_download %}">
+        		ダウンロード<span class="ui-icon ui-icon-carat-1-e"></span>
+        	</a>
+        </dt>
+	</dl>
+</nav>

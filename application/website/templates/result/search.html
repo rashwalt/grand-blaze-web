@@ -1,0 +1,83 @@
+{% extends 'base/result_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}キャラクター検索 | Grand Blaze{% endblock %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/result.css?{{publish_date}}" rel="stylesheet" type="text/css">
+<link href="{{ MEDIA_URL }}/css/form.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "冒険の結果" result_index %}
+{% breadcrumb "キャラクター検索" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>キャラクター検索</h1>
+
+<section>
+    <form action="{% url result_search %}" method="POST">
+        {% csrf_token %}
+    <div class="form-widget">
+        <div>
+            <div class="key">
+                <label for="id_body">
+                    検索語句
+                </label>
+                <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="body">
+                    <span class="ui-icon ui-icon-help"></span>
+                </a>
+            </div>
+            <div class="value">
+                {{ form.body }}
+                {{ form.body.errors }}
+            </div>
+            <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-body">
+                <span class="ui-icon ui-icon-info"></span><strong>検索語句</strong>
+                登録されているキャラクターの名前（一部）、またはEntryNoで検索できます。
+            </div>
+        </div>
+        <div>
+            <div class="value value-only">
+                <input type="submit" value="検索" />
+                <input type="reset" value="リセット" />
+            </div>
+        </div>
+    </div>
+    </form>
+</section>
+
+{% if is_result %}
+<section>
+    <h2>
+        検索結果
+    </h2>
+    <table class="player-list">
+        <tr>
+            <th>
+                EntryNo
+            </th>
+            <th>
+                名前
+            </th>
+        </tr>
+        {% for article in article_list %}
+            <tr>
+                <td>
+                    {{article.user_id}}
+                </td>
+                <td>
+                    <a href="{% url result_private_status article.user_id|stringformat:'04d' %}">{{article.character_name}}</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</section>
+{% endif %}
+
+{% endblock %}

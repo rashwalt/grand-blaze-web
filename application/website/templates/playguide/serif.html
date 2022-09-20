@@ -1,0 +1,75 @@
+{% extends 'base/playguide_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}バトルセリフ | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "プレイガイド" playguide_index %}
+{% breadcrumb "バトルセリフ" %}
+
+{% endblock %}
+
+{% block maincontents %}
+<h1>バトルセリフ</h1>
+
+<section>
+    <h2>概要</h2>
+    <p>バトル中、一定の条件が揃うとキャラクターはあらかじめ設定されているセリフを喋ることがあります。このバトルセリフはバトルを彩るアクセントとして活用できます。バトルセリフは複数のセリフを一度に設定することが出来ます。<br />
+    バトルセリフでは、すべての<a href="{% url playguide_textcommand %}">「代名詞」と「テキストコマンド」</a>を使用することができます。</p>
+    <p class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 登録はどこで行う？</strong><br />
+        バトルセリフの設定は、<strong>セリフ設定</strong>で行います。
+    </p>
+</section>
+
+<section>
+    <h2>セリフの設定の仕方</h2>
+    <p>一つのセリフに対して１つのシチュエーションを設定してセリフ内容を記入していきます。</p>
+    <form>
+        <p>
+		シチュエーションを選択したい場合は、直接シチュエーションの番号を記入するか、
+		<input name="situation_select2" type="button" value="選択" />
+		ボタンをクリックし、シチュエーション選択画面を表示して、設定したいシチュエーションをクリックしてください。<br />
+		こうすることで、自動でシチュエーションを設定できます。</p>
+        <p>セリフを追加したい時は
+        <input type="button" name="add_row" value="行を追加" />
+        をクリックし、セリフの数を減らしたい場合は
+        <input type="button" name="delete_is" value="この行を削除" />
+        をクリックします</p>
+    </form>
+    <div class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! バトルセリフを設定する場合の例</strong><br />
+        <form>
+            シチュエーション：
+	        <input name="situation_id" type="text" class="no_box" size="10" maxlength="5" value="2" />
+	        <input name="situation_select" type="button" value="選択" />
+	        通常攻撃の実行時<br />
+	        スキル：
+	        <select name="skill_id">
+                <option value="0">未設定</option>
+			</select>
+			セリフ内容：<br />
+			<textarea name="serif" cols="30" rows="5" class="standard_box">やぁっ！</textarea>
+        </form>
+        この場合、通常攻撃時に「やぁっ！」と表示されるようになります。
+    </div>
+</section>
+
+<section>
+    <h2>セリフのシチュエーション</h2>
+	<p>バトルセリフを設定できるシチュエーションは、全部で６０個以上存在します。代表的なシチュエーションをご紹介します。</p>
+	<dl class="subtext">
+        <dt>戦闘開始</dt>
+	    <dd>バトルが開始されたときに喋るセリフです。</dd>
+	    <dt>アーツの発動</dt>
+	    <dd>アーツを実行した場合に喋るセリフです。同時に、どのスキルを使用したときにしゃべるかどうかを「スキル」の項目で選択します。</dd>
+	    <dt>クリティカルを食らった</dt>
+	    <dd>クリティカルを受けたときに喋るセリフです。</dd>
+    </dl>
+</section>
+
+{% endblock %}

@@ -1,0 +1,116 @@
+{% extends 'base/regist_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}{{ page_title }} | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb page_title %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>{{ page_title }}</h1>
+
+{% if site_manager.is_regist_stop %}
+	<section>
+	    <h2>コンティニュー</h2>
+	    <dl class="regist-index">
+	        <dt class="ui-inline-icon">
+	            <a href="{% url continue_main_index %}"><span class="ui-icon ui-icon-refresh"></span>継続登録</a>
+	        </dt>
+	        <dd>
+	            継続登録を行います。規定回数、継続登録が行われないと、キャラクターが削除されてしまいますのでご注意ください。<br />
+	        </dd>
+	    </dl>
+	</section>
+    
+    <section>
+        <h2>バザー</h2>
+        <dl class="regist-index">
+            <dt class="ui-inline-icon">
+                <a href="{% url bazzer_sell_register %}"><span class="ui-icon ui-icon-suitcase"></span>バザー出品</a>
+            </dt>
+            <dd>
+                バザーへ手持ちのアイテムを出品します。<br />
+            </dd>
+            <dt class="ui-inline-icon">
+                <a href="{% url bazzer_list %}"><span class="ui-icon ui-icon-wrench"></span>バザー購入</a>
+            </dt>
+            <dd>
+                バザーに出品されているアイテムを購入します。<br />
+            </dd>
+        </dl>
+    </section>
+	
+	<section>
+	    <h2>カスタマイズ</h2>
+	    <dl class="regist-index">
+            <dt class="ui-inline-icon">
+                <a href="{% url continue_trade_index %}"><span class="ui-icon ui-icon-suitcase"></span>取引登録</a>
+            </dt>
+            <dd>
+                所持アイテムをお店に売却したり、他の人に手渡したり、お店からアイテムを購入します。<br />
+            </dd>
+            <dt class="ui-inline-icon">
+                <a href="{% url continue_equip_index %}"><span class="ui-icon ui-icon-gear"></span>戦闘準備登録</a>
+            </dt>
+            <dd>
+                アイテムの装備を変更したり、クラスの設定、隊列の設定を行います。<br />
+            </dd>
+            <dt class="ui-inline-icon">
+                <a href="{% url continue_battleaction_index %}"><span class="ui-icon ui-icon-calculator"></span>戦術登録</a>
+            </dt>
+            <dd>
+                バトル中の行動内容を設定します。<br />
+            </dd>
+            <dt class="ui-inline-icon">
+                <a href="{% url continue_profile_index %}"><span class="ui-icon ui-icon-wrench"></span>個人設定</a>
+            </dt>
+            <dd>
+                キャラクターやアカウントに関する情報を設定します。<br />
+            </dd>
+            <dt class="ui-inline-icon">
+                <a href="{% url continue_icon_index %}"><span class="ui-icon ui-icon-flag"></span>アイコン設定</a>
+            </dt>
+            <dd>
+                セリフやメッセージに組み込んで表示させるアイコンを設定します。<br />
+            </dd>
+            <dt class="ui-inline-icon">
+                <a href="{% url continue_message_index %}"><span class="ui-icon ui-icon-mail-closed"></span>メッセージ登録</a>
+            </dt>
+            <dd>
+                冒険結果中に表示されるメッセージを登録します。<br />
+            </dd>
+            <dt class="ui-inline-icon">
+                <a href="{% url continue_serif_index %}"><span class="ui-icon ui-icon-comment"></span>セリフ設定</a>
+            </dt>
+            <dd>
+                様々なバトルシチュエーションで表示されるセリフを設定します。<br />
+            </dd>
+	    </dl>
+	</section>
+    
+    <section>
+        <h2>登録内容確認</h2>
+        <dl class="regist-index">
+            <dt class="ui-inline-icon">
+                <a href="{% url continue_confirm_index %}"><span class="ui-icon ui-icon-print"></span>登録内容確認</a>
+            </dt>
+            <dd>
+                新規登録、継続登録、カスタマイズの各種登録の内容を確認できます。<br />
+            </dd>
+        </dl>
+    </section>
+{% else %}
+<section>
+	<h2>更新作業中</h2>
+	<p>現在、更新作業を行っています。<br />
+		更新完了までしばらくお待ちください。
+	</p>
+</section>
+{% endif %}
+
+{% endblock %}

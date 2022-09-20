@@ -1,0 +1,250 @@
+@charset "utf-8";
+@import "compass/css3/images";
+@import "compass/css3/text-shadow";
+
+$experimental-support-for-svg: true;
+
+h4.btarea {
+    color: #CCFFCC;
+    border-bottom: 1px solid #CCFFCC;
+}
+
+dl.areainfo {
+    margin:0 15px;
+    padding:0;
+    
+    dt{
+        margin:0;
+        padding:0;
+        color:#C63;
+        font-weight:bold;
+        display:inline-block;
+        line-height:1em;
+        
+        &:after{
+            content:':';
+            color: #D0D0D0;
+        }
+    }
+    
+    dd{
+        margin:0 20px 0 5px;
+        padding:0;
+        display:inline-block;
+        line-height:1em;
+    }
+}
+
+dl.object{
+    margin:0 15px;
+    padding:0;
+    width: 50%;
+    
+    dt, dd{
+        margin:0;
+        padding:3px;
+    }
+        
+    dt{
+        &:nth-child(1){
+            font-weight:bold;
+            color: #FFFFFF;
+            @include background-image(linear-gradient(color-stops(#000026, #000016)));
+            border-left: 1px solid #000036;
+            border-top: 1px solid #000036;
+            border-right: 1px solid #000006;
+            border-bottom: 1px solid #000006;
+            behavior: url(/static/css/PIE.htc);
+            position: relative;
+        }
+        &:nth-child(3){
+            margin-top: 10px;
+            font-weight:bold;
+            color: #FFFFFF;
+            @include background-image(linear-gradient(color-stops(#260000, #160000)));
+            border-left: 1px solid #360000;
+            border-top: 1px solid #360000;
+            border-right: 1px solid #060000;
+            border-bottom: 1px solid #060000;
+            behavior: url(/static/css/PIE.htc);
+            position: relative;
+        }
+    }
+    
+    dd{
+        &:nth-child(2){
+            color: #FFFFFF;
+            text-shadow: 0 0 6px #000;
+            @include background(linear-gradient(left top, rgba(0,0,102,0.2) rgba(0,0,102,1)));
+            behavior: url(/static/css/PIE.htc);
+            position: relative;
+        }
+        &:nth-child(4){
+            color: #FFFFFF;
+            text-shadow: 0 0 6px #000;
+            @include background(linear-gradient(left top, rgba(102,0,0,0.2) rgba(102,0,0,1)));
+            behavior: url(/static/css/PIE.htc);
+            position: relative;
+        }
+    }
+}
+
+p.battle_starts{
+    margin-top:10px;
+    font-style:italic;
+    font-weight:bold;
+    font-size: 110%;
+}
+
+ul.encount{
+    list-style:none;
+    margin: 5px 15px;
+    padding: 0 !important;
+}
+
+p.turn_obj{
+    font-weight:bold;
+    font-style:italic;
+    margin-bottom:0;
+    margin-top:10px;
+}
+
+.level_equal {
+	color: #CCCCCC;
+}
+.level_over {
+	color: #FF0000;
+}
+.level_upper {
+	color: #FFCC00;
+}
+.level_under {
+	color: #33CCFF;
+}
+
+table.mini_status {
+  width: 95%;
+  margin-left: 15px;
+  margin-right: 15px;
+  
+  tr:nth-child(2n) {
+    background-color: #202020;
+  }
+  tr:nth-child(2n+1) {
+    background-color: #161616;
+  }
+  th {
+    background-color: #c0c0c0;
+    color: #000000;
+  }
+  td {
+      padding-left: 5px;
+  }
+  
+  .st_name{
+      width:260px;
+      
+      small{
+          display:block;
+          font-size: 80%;
+          text-align:right;
+          margin-right:10px;
+      }
+  }
+  
+  .st_hp, .st_mp, .st_tp{
+      width: 70px;
+  }
+}
+
+dl.btact{
+	margin: 1em 15px;
+    padding:6px;
+    width: 50%;
+    color:#fff;
+    
+    dt{
+        font-weight: bold;
+        margin:0;
+        padding:0;
+        text-shadow: 3px 4px 6px #000;
+        border-bottom:1px solid #fff;
+        
+        &.nob{
+            border-bottom:none;
+        }
+        
+    }
+    
+    dd{
+        line-height: 1.2em;
+        margin:0;
+        padding:0;
+        text-shadow: 3px 4px 6px #000;
+    }
+    
+    &.friend {
+        @include background(linear-gradient(bottom, rgba(0,0,51,0.1) rgba(0,0,51,0.8)));
+        behavior: url(/static/css/PIE.htc);
+        position: relative;
+    }
+    
+    &.enemy {
+        @include background(linear-gradient(bottom, rgba(51,0,0,0.1) rgba(51,0,0,0.8)));
+        behavior: url(/static/css/PIE.htc);
+        position: relative;
+		margin:1em 15px 1em auto;
+    }
+    
+    &.guest {
+        @include background(linear-gradient(bottom, rgba(0,51,0,0.1) rgba(0,51,0,0.8)));
+        behavior: url(/static/css/PIE.htc);
+        position: relative;
+    }
+    
+}
+
+
+p.result_draw{
+    font-weight: bold;
+    font-size:120%;
+	color: #CCCCCC;
+}
+
+p.result_win{
+    font-weight: bold;
+    font-size:120%;
+	color: #FF6666;
+}
+
+p.result_lose{
+    font-weight: bold;
+    font-size:120%;
+	color: #99CCFF;
+}
+
+div.exp_point{
+	margin-left: 15px;
+	margin-right: 15px;
+    color: #FFFF99;
+}
+
+div.level_up{
+    font-weight: bold;
+	margin-left: 15px;
+	margin-right: 15px;
+    color: #FFFF99;
+}
+
+div.have_item{
+    font-weight: bold;
+    color: #FFFF99;
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+div.get_item{
+	margin-left: 15px;
+	margin-right: 15px;
+    color: #FFFF99;
+}

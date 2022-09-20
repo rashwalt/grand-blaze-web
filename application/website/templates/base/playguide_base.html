@@ -1,0 +1,16 @@
+{% extends 'base/one_base.html' %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/playguide.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{%block page_type%}play-guide{%endblock%}
+
+{% block sidemenu %}
+
+{# --------- メニュー --------- #}
+
+{% include 'sidemenu/playguide_side.html' %}
+
+
+{% endblock %}

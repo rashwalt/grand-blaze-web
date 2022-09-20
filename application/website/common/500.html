@@ -1,0 +1,23 @@
+{% extends 'base/root_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}Internal Server Error | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb "Internal Server Error" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>Internal Server Error</h1>
+
+<section>
+	<h2>サーバーのエラーが発生しました。</h2>
+     <p>サーバーエラーが発生しました。<br />
+     問題解決までしばらくお待ち下さい。</p>
+</section>
+
+{% endblock %}

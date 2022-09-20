@@ -1,0 +1,16 @@
+{% extends 'base/one_base.html' %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/regist.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{%block page_type%}registration{%endblock%}
+
+{% block sidemenu %}
+
+{# --------- メニュー --------- #}
+
+{% include 'sidemenu/regist_side.html' %}
+
+
+{% endblock %}

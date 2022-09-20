@@ -1,0 +1,126 @@
+{% extends 'base/playguide_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}リザルトメッセージ | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "プレイガイド" playguide_index %}
+{% breadcrumb "リザルトメッセージ" %}
+
+{% endblock %}
+
+{% block maincontents %}
+<h1>リザルトメッセージ</h1>
+
+<section>
+    <h2>概要</h2>
+    <p>リザルトメッセージには、パーティメンバーに宛てる「パーティメッセージ」、特定の個人に対してメールのように送る「個人宛てメッセージ」、冒険の結果のリストに直接表示し、不特定多数に対して宛てた「リストメッセージ」の３つがあります。<br />
+    メッセージのやり取りはプレイヤーやキャラクター同士の交流に大いに役立つことでしょう。</p>
+    <p class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 登録はどこで行う？</strong><br />
+        リザルトメッセージは、<strong>メッセージ登録</strong>で行います。
+    </p>
+</section>
+
+<section>
+    <h2>メッセージの登録（共通事項）</h2>
+    <form>
+        <p>メッセージ登録画面では、複数のメッセージを多人数へ送ることができます。送りたいメッセージを追加したい時は
+        <input type="button" name="add_row" value="行を追加" />
+        をクリックし、送りたいメッセージの数を減らしたい場合は
+        <input type="button" name="delete_is" value="この行を削除" />
+        をクリックします。</p>
+    </form>
+</section>
+
+<section>
+    <h2>個人宛てメッセージ</h2>
+    <p>個人宛てメッセージでは、特定の個人に対してメッセージを送信することができます。たとえば、エントリー番号34番の人にメッセージを送ることができます。<br />
+     個人宛てメッセージを送る場合は、送信先を「個人宛て」にし、ターゲットE-Noに送信したい相手のエントリー番号を記入した状態でメッセージを記入します。<br />
+    個人宛てメッセージは、相手のプライベート結果に表示されます。<br />
+    また、個人宛てメッセージでは<a href="{% url playguide_textcommand %}">「代名詞」と「テキストコマンド」</a>が使用できます。</p>
+    <div class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 個人宛てメッセージを送信する場合の例</strong><br />
+        エントリー番号34番の人へメッセージを送りたい場合、次のように記入します。<br />
+        <form>
+            送信先：
+            <select name="target_form" id="target_form">
+                <option value="0" selected="selected">個人宛て</option>
+                <option value="1">パーティメンバーに</option>
+                <option value="2">リストに表示</option>
+            </select>
+            <br />
+			ターゲットE-No.
+			<input name="target_entry" type="text" class="no_box" id="target_entry" value="34" size="5" maxlength="5" />
+			にメッセージを送信する。<br />
+			<br />
+			メッセージ内容：<br />
+			<textarea name="message" cols="35" rows="10" class="standard_box" id="message">元気ですかー？
+こっちはばりばり元気です♪</textarea>
+        </form>
+    </div>
+</section>
+
+<section>
+    <h2>パーティメッセージ</h2>
+    <p>パーティメッセージでは、パーティメンバーに対してメッセージを送信することができます。<br />
+    パーティメッセージを送る場合は、送信先を「パーティメンバーに」にし、ターゲットE-Noは未記入の状態でメッセージを記入します。<br />
+    パーティメッセージは、自分たちのパーティ結果に表示されます。<br />
+    また、パーティメッセージでは一部の<a href="{% url playguide_textcommand %}">「代名詞」と「テキストコマンド」</a>が使用できます。</p>
+    <div class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! パーティメッセージを送信する場合の例</strong><br />
+        パーティメンバーに対しメッセージを送りたい場合、次のように記入します。<br />
+        <form>
+            送信先：
+            <select name="select" id="select">
+	           	<option value="0">個人宛て</option>
+                <option value="1" selected="selected">パーティメンバーに</option>
+                <option value="2">リストに表示</option>
+            </select>
+            <br />
+            ターゲットE-No.
+            <input name="target_entry2" type="text" class="no_box" id="target_entry2" size="5" maxlength="5" />
+            にメッセージを送信する。<br />
+            <br />
+            メッセージ内容：<br />
+            <textarea name="textarea" cols="35" rows="10" class="standard_box" id="textarea">さ、これからはりきっていこうぜ！
+死んだらそれまでだけどなー</textarea>
+	    </form>
+    </div>
+</section>
+
+<section>
+    <h2>リストメッセージ</h2>
+    <p>リストメッセージでは、参加している冒険者たちに対して、冒険者リスト上でメッセージを配信することができます。<br />
+    リストメッセージを送る場合は、送信先を「リストに表示」にし、ターゲットE-Noは未記入の状態でメッセージを記入します。<br />
+    リストメッセージは、冒険者リストに表示されます。<br />
+    また、リストメッセージでは一部の<a href="{% url playguide_textcommand %}">「代名詞」</a>が使用できます。</p>
+    <div class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! リストメッセージを送信する場合の例</strong><br />
+        以下の例では、エントリー番号34番の人へメッセージを送りたい場合、次のように記入します。<br />
+	    <form>
+            送信先：
+            <select name="select2" id="select2">
+                <option value="0">個人宛て</option>
+                <option value="1">パーティメンバーに</option>
+                <option value="2" selected="selected">リストに表示</option>
+            </select>
+            <br />
+            ターゲットE-No.
+            <input name="target_entry3" type="text" class="no_box" id="target_entry3" size="5" maxlength="5" />
+            にメッセージを送信する。<br />
+            <br />
+            メッセージ内容：<br />
+            <textarea name="textarea2" cols="35" rows="10" class="standard_box" id="textarea2">これからよろしく！
+困ったことがあったら、助け合っていこうね！</textarea>
+        </form>
+    </div>
+</section>
+
+{% endblock %}

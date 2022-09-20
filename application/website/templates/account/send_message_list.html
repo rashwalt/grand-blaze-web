@@ -1,0 +1,75 @@
+{% extends 'base/root_base.html' %}
+{% load breadcrumbs pager %}
+
+{% block title %}メッセージの確認 | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb "メッセージの確認" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>メッセージの確認</h1>
+
+{% if messages %}
+<section>
+    <p class="ui-state-highlight ui-corner-all ui-inline-icon ui-wiget-p">
+        {% for message in messages %}
+        <span class="ui-icon ui-icon-info"></span>
+        <strong>送信完了:</strong>
+        {{message}}<br />
+        {% endfor %}
+    </p>
+</section>
+{% endif %}
+
+{% pager pager 'account_send_message_list' %}
+
+<section>
+	<p>
+		<a href="{% url account_message_create 0 %}" id="message-create" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button" aria-disabled="false"><span class="ui-button-icon-primary ui-icon ui-icon-pencil"></span><span class="ui-button-text">メッセージ作成</span></a>
+    </p>
+	<div class="ui-tabs ui-widget">
+	<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-corner-all">
+		<li class="ui-state-default ui-corner-top"><a href="{% url account_message_list %}" class="ui-tabs-anchor">受信済</a></li>
+		<li class="ui-state-default ui-corner-top ui-tabs-active ui-state-active"><a href="#">送信済</a></li>
+	</ul>
+	</div>
+	{% if message_list %}
+	<table class="message-list">
+		<tr>
+			<th>件名</th>
+			<th>送信先</th>
+			<th>送信日時</th>
+		</tr>
+		{% for message in message_list %}
+		<tr>
+			<td class="ui-inline-icon">
+				{% if message.read_complete %}
+				<span class="ui-icon ui-icon-mail-open"></span>
+				<a href="{% url account_message_detail message.id %}" class="strong">{{message.title}}</a>
+				{% else %}
+				<span class="ui-icon ui-icon-mail-closed"></span>
+				<a href="{% url account_message_detail message.id %}">{{message.title}}</a>
+				{% endif %}
+			</td>
+			<td>
+				{{message.get_to_user_name}} (<a href="{% url result_private_status message.user_id|stringformat:'04d' %}">{{message.user_id}}</a>) C:{{ message.to_character_name }}
+			</td>
+			<td>
+				{{message.created_at|date:"Y/m/d H:i"}}
+			</td>
+		</tr>
+		{% endfor %}
+	</table>
+	{% else %}
+	<p>送信済のメッセージはありません。</p>
+	{% endif %}
+</section>
+
+{% pager pager 'account_send_message_list' %}
+
+{% endblock %}

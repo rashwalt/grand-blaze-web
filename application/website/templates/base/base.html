@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{% block title %}Grand Blaze{% endblock %}</title>
+<link href="{{ MEDIA_URL }}/css/common.css?{{publish_date}}" rel="stylesheet" type="text/css">
+<link href="{{ MEDIA_URL }}/css/dark-hive/jquery-ui-1.9.0.custom.min.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{% block head %}{% endblock %}
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+<![endif]-->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30449583-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+
+<body class="{%block page_type%}play-guide{%endblock%}">
+
+<div id="container">
+  <header>
+    <a id="site-logo" href="{% url root_index %}"><img src="{{ MEDIA_URL }}/images/common/site_logo.png" alt="Grand Blaze" /></a>
+    <div id="header-right">
+        {% include 'account/parts/login_side.html' %}
+		<div id="searchcontrol">
+			<form action="{% url root_search %}" id="cse-search-box">
+			  <div>
+			    <input type="hidden" name="cx" value="018114392011501256481:1jv92qvio2i" />
+			    <input type="hidden" name="cof" value="FORID:11" />
+			    <input type="hidden" name="ie" value="UTF-8" />
+			    <input type="text" name="q" id="q" autocomplete="off" size="31" />
+			    <button type="submit" id="search-submit" name="sa" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" role="button" aria-disabled="false" title="検索"><span class="ui-button-icon-primary ui-icon ui-icon-search"></span><span class="ui-button-text">検索</span></button>
+			  </div>
+			</form>
+			<script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=ja"></script>
+	   </div>
+    </div>
+  </header>
+  <nav>
+      <ul id="global-navi">
+        <li id="page-top"><a href="{% url root_index %}">トップ</a></li>
+        <li id="registration">
+            <a href="{% url regist_index %}">
+                {% if character %}
+                    各種登録
+                {% else %}
+                    新規登録
+                {% endif %}
+            </a>
+        </li>
+        <li id="play-guide"><a href="{% url playguide_index %}">プレイガイド</a></li>
+        <li id="adventure-result"><a href="{% url result_index %}">冒険の結果</a></li>
+        <li id="forum"><a href="{% url forum_index %}">フォーラム</a></li>
+        <li id="world-guide"><a href="{% url worldguide_index %}">世界背景</a></li>
+      </ul>
+  </nav>
+  <div id="main-view">
+	  <div id="sidebar1">
+	  	{% block sidemenu %}
+	    <nav>
+	    	<dl id="side-menu" class="ui-right-icon">
+		        <dt>
+		        	<a href="#">
+		        		テスト<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="#">
+		        		テスト<span class="ui-icon ui-icon-plus"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="#">
+		        		テスト<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+			</dl>
+	    </nav>
+	    {% endblock %}
+	  </div>
+	  <div id="view-container">
+	  	<div id="breadcrumbs">
+	  		{% block breadcrumbs %}
+	  		{% endblock %}
+	  	</div>
+	  {% block contents %}
+	  <article id="content">
+	    <h1>説明</h1>
+	    <section>
+	     <h2>このドキュメントの使用方法</h2>
+	      <p>このレイアウト用の CSS には多くのコメントが記述されています。大部分の作業をデザインビューで行う場合、これらのコードを確認して、CSS で固定レイアウトを使用する際の参考にしてください。これらのコメントは、サイトを立ち上げる前に削除できます。CSS レイアウトに使用されているテクニックについて詳しくは、アドビデベロッパーセンターの記事 (<a href="http://www.adobe.com/go/adc_css_layouts">http://www.adobe.com/go/adc_css_layouts</a>) をお読みください。</p>
+	    </section>
+	    <section>
+	      <h2>クリア方法</h2>
+	      <p>このレイアウトではすべてのカラムがフローティングするので、footer ルールで clear:both 宣言を使用します。このクリアテクニックによりカラムの範囲がどこまでかを .container に強制的に認識させ、.container に配置するボーダーまたは背景色が表示されるようにします。デザインの都合上、.container から footer を削除する必要がある場合は、別のクリア方法を使用する必要があります。最も確実な方法は、最後のフローティングカラムの後 (.container を閉じる前) に &lt;br class=&quot;clearfloat&quot; /&gt; または &lt;div  class=&quot;clearfloat&quot;&gt;&lt;/div&gt; を追加することです。これにより同じクリア効果が得られます。 </p>
+	    </section>
+	    <section>
+	      <h2>ロゴの置換</h2>
+	      <p>このレイアウトでは header にイメージプレースホルダーを使用しているので、ここにロゴを配置できます。プレースホルダーを削除してユーザー独自のリンクされたロゴに置き換えることをお勧めします。 </p>
+	      <p> プロパティインスペクターで (プレースホルダーを削除して置き換える代わりに) SRC フィールドを使用してロゴイメージに移動する場合、インラインの背景プロパティと表示プロパティを削除する必要があることに注意してください。これらのインラインスタイルは、デモ用にロゴのプレースホルダーをブラウザーに表示するために使用されています。 </p>
+	      <p>インラインスタイルを削除するには、CSS スタイルパネルが「現在」に設定されていることを確認してからイメージを選択し、CSS スタイルパネルのプロパティウィンドウで表示プロパティと背景プロパティを右クリックして削除します (代わりに、コードを直接参照し、コード内でイメージまたはプレースホルダーからインラインスタイルを削除することもできます)。</p>
+	    </section>
+	  </article>
+	  <aside>
+	    <h4>背景</h4>
+	    <p>基本的にどの block エレメントでも背景色はコンテンツの長さ分だけ表示されます。色の代わりに区切り線を使用したい場合は、.content block の横側にボーダーを配置します (ただし、これは常にコンテンツの方が多い場合のみです)。</p>
+	  </aside>
+	  {% endblock %}
+	  </div>
+  </div>
+  <footer>
+  	<ul>
+  		<li><a href="{% url root_about %}">このサイトについて</a></li>
+  		<li><a href="{% url root_support_index %}">お問い合わせ</a></li>
+  		{% if request.user and request.user.is_staff %}<li><a href="{% url root_cache_clear %}">キャッシュクリア</a></li>{% endif %}
+  	</ul>
+    <small>
+		&copy;2003-2012 Grand Blaze Game Master All Rights Reserved.
+    </small>
+  </footer>
+  <!-- end .container --></div>
+<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+<script src="{{ MEDIA_URL }}/js/jquery-ui-1.9.0.custom.min.js?{{publish_date}}"></script>
+<script src="{{ MEDIA_URL }}/js/jquery.formset.min.js?{{publish_date}}"></script>
+{% block foot %}{% endblock %}
+{% if debug %}
+<script src="{{ MEDIA_URL }}/js/common.js?{{publish_date}}"></script>
+{% else %}
+<script src="{{ MEDIA_URL }}/js/main.min.js?{{publish_date}}1"></script>
+{% endif %}
+{% block foot2 %}{% endblock %}
+</body>
+</html>

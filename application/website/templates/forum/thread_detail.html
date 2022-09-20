@@ -1,0 +1,67 @@
+{% extends 'base/forum_base.html' %}
+{% load breadcrumbs pager %}
+
+{% block title %}{{forum.name}} | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "フォーラム" forum_index %}
+{% breadcrumb_url forum.name forum_list forum.id %}
+{% breadcrumb thread.title %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>{{forum.name}}</h1>
+
+{% pager pager 'forum_thread_detail' forum.id thread.id %}
+
+<section>
+    {% if not thread.is_rock and not thread.thread_solid %}
+	{% if forum.is_not_auth and not request.user.is_authenticated %}
+    <p>
+    	<a href="{% url forum_thread_reply_notauth forum.id thread.id %}" id="message-reply" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button" aria-disabled="false"><span class="ui-button-icon-primary ui-icon ui-icon-arrowreturnthick-1-e"></span><span class="ui-button-text">このスレッドへ返信</span></a>
+    </p>
+	{% else %}
+    <p>
+    	<a href="{% url forum_thread_reply forum.id thread.id %}" id="message-reply" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button" aria-disabled="false"><span class="ui-button-icon-primary ui-icon ui-icon-arrowreturnthick-1-e"></span><span class="ui-button-text">このスレッドへ返信</span></a>
+    </p>
+    {% endif %}
+    {% endif %}
+    <h2>
+        スレッド：{{ thread.title }}
+    </h2>
+    <ol class="post-list">
+        {% for article in article_list %}
+        <li>
+            {% include 'forum/parts/article_detail.html' %}
+            {% if not article.is_delete %}
+            {% if not thread.is_rock and not thread.thread_solid %}
+            <div class="post-footer">
+            	{% if request.user.is_authenticated %}
+                <a class="ui-inline-icon" href="javascript:void(0);" onclick="grb.goodAjax({{article.id}})"><span class="ui-icon ui-icon-check"></span>いいね!(<span id="id_good_count_{{article.id}}">{{article.good_count}}</span>)</a>
+                {% else %}
+                <span class="ui-inline-icon"><span class="ui-icon ui-icon-check"></span>いいね!({{article.good_count}})</span>
+                {% endif %}
+                {% if forum.is_not_auth and not request.user.is_authenticated %}
+                <a class="ui-inline-icon" href="{% url forum_thread_reply_notauth forum.id thread.id article.id %}"><span class="ui-icon ui-icon-arrowreturnthick-1-e"></span>引用して返信</a>
+                {% else %}
+                {% if article.user_id == request.user.id %}
+                    <a class="ui-inline-icon" href="{% url forum_article_delete forum.id thread.id article.id %}"><span class="ui-icon ui-icon-trash"></span>この記事を削除</a>
+                    <a class="ui-inline-icon" href="{% url forum_article_edit forum.id thread.id article.id %}"><span class="ui-icon ui-icon-pencil"></span>この記事を編集</a>
+                {% endif %}
+                <a class="ui-inline-icon" href="{% url forum_thread_reply forum.id thread.id article.id %}"><span class="ui-icon ui-icon-arrowreturnthick-1-e"></span>引用して返信</a>
+                {% endif %}
+            </div>
+            {% endif %}
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ol>
+</section>
+
+{% pager pager 'forum_thread_detail' forum.id thread.id %}
+
+{% endblock %}

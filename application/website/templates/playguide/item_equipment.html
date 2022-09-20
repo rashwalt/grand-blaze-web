@@ -1,0 +1,180 @@
+{% extends 'base/playguide_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}装備 | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "プレイガイド" playguide_index %}
+{% breadcrumb "装備" %}
+
+{% endblock %}
+
+{% block maincontents %}
+<h1>装備</h1>
+
+<section>
+    <h2>概要</h2>
+    <p>剣や銃、鎧などは装備しなければバトル中に使うことはできません。装備できるアイテムは、それぞれ装備可能な部位（メインやサブ、頭部、身体など）と、装備可能になるレベル、装備可能なクラスや種族、性別が設定されています。装備可能な条件を満たしていない場合、そのアイテムは装備できません。装備可能なアイテムには、攻撃力や防御力、種別、装備可能な種族とレベルなどが記載されています。<br />
+    新しいアイテムを装備すると、それまで装備していたアイテムは自動的に装備解除されます。</p>
+    <p class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 登録はどこで行う？</strong><br />
+        アイテムの装備は、<strong>戦闘準備登録</strong>で行います。
+    </p>
+    <p class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 片手、両手武器、盾</strong><br />
+        片手武器はサブに盾を装備したり、スキル「<strong>ダブルハンド</strong>」などを習得していれば、両手に片手武器を一本ずつもって戦うことができます。<br />
+        対して、両手武器はサブに盾を装備したり、両手にもつことはできませんが、威力やＣＴなどが片手武器よりも優遇されています。<br />
+	    <br />
+	    <strong>片手武器</strong>は次の通りです。<br />
+	    短剣、片手剣、片手斧、片手刀、片手鞭、書物、魔導器。<br />
+	    <br />
+	    <strong>両手武器</strong>は次の通りです。<br />
+	    格闘、両手剣、両手刀、両手杖、両手槍、両手棒、楽器、投擲、弓、弩、銃。
+    </p>
+    <p class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 二刀流</strong><br />
+        スキル「<strong>ダブルハンド</strong>」や「<strong>二刀流</strong>」などを習得し、両手に武器を装備していると、メインとサブ、両方の武器で攻撃することができます。<br />
+        しかし、二刀流は高度な技術が要求されるために、ダメージ倍率が低下します（「二刀流」やさらに上の段階のスキルを習得していれば、ダメージ倍率が上昇します）。
+	    <br />
+	    ※CTは遅い方が優先されます。<br />
+	    ※武器回避率やアーツ使用時の能力はメインの武器で判定されます。<br />
+	    ※射程や属性は個別に判定されます。
+    </p>
+</section>
+
+<section>
+    <h2>アイテムを装備する</h2>
+    <p>アイテムを装備する場合、装備するアイテムを指定します。アイテムによって装備可能な部位が異なります。</p>
+    <div class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! アイテムを装備する場合の例</strong><br />
+        メインに所持アイテム番号6のアイテムを装備する場合、次のように記入します。<br />
+        <form>
+            <input name="equip_main" type="text" class="no_box validate-number" id="equip_main" value="6" size="5" maxlength="5" />
+            <button type="button">選択</button>
+            バトル・ロングソード
+            を装備する。
+        </form>
+    </div>
+</section>
+
+<section>
+    <h2>装備可能な部位</h2>
+    <p>部位ごとに装備可能なアイテムの種類の一部を紹介します。<br />
+    リンクをクリックすると、その防具の一部を確認できます。</p>
+    <dl class="subtext">
+        <dt>メイン</dt>
+        <dd>武器全般</dd>
+        <dt>サブ</dt>
+        <dd><a href="{% url protect_data 33 %}">盾</a>、（スキル「ダブルハンド」などを習得済に限り、片手用の武器全般）</dd>
+        <dt>頭部</dt>
+        <dd><a href="{% url protect_data 35 %}">兜</a>、<a href="{% url protect_data 37 %}">魔帽</a>、<a href="{% url protect_data 36 %}">帽子</a></dd>
+        <dt>胴体</dt>
+        <dd><a href="{% url protect_data 38 %}">鎧</a>、<a href="{% url protect_data 40 %}">魔服</a>、<a href="{% url protect_data 39 %}">服</a></dd>
+        <dt>装飾</dt>
+        <dd><a href="{% url protect_data 41 %}">アクセサリ</a></dd>
+    </dl>
+</section>
+
+<section>
+    <h2>アイテムを装備解除する</h2>
+    <p>アイテムの装備を解除する場合、番号に「-1」を指定します。</p>
+    <div class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! アイテムの装備を解除する場合の例</strong><br />
+        サブに装備しているアイテムを解除する場合、次のように記入します。<br />
+        <form>
+            <input name="equip_sub" type="text" class="no_box validate-number" id="equip_sub" value="-1" size="5" maxlength="5" />
+            <button type="button">選択</button>
+            を装備する。
+        </form>
+    </div>
+</section>
+
+<section>
+    <h2>武器ごとの特徴</h2>
+    <p>武器には、様々な特徴があります。特徴はいくつかに分類され、優先される能力などが決まってきます。自分が使用する武器にあったスキルやアイテムを使えば有利に冒険を進めることができるでしょう。<br />
+    それぞれの特徴は次の通りです。<br />
+    リンクをクリックすると、その武器で使えるスキル、アイテムの一部を確認できます。</p>
+    <dl class="subtext">
+        <dt>
+            力だけでダメージが決定する標準的なタイプ
+        </dt>
+        <dd>
+            <a href="{% url weapon_data 3 %}">片手剣</a>
+            <br />
+            <a href="{% url weapon_data 12 %}">両手剣</a>
+        </dd>
+        <dt>
+            敏捷だけでダメージが決定するタイプ
+        </dt>
+        <dd>
+            <a href="{% url weapon_data 2 %}">短剣</a>
+            <br />
+            <a href="{% url weapon_data 25 %}">弓</a>
+        </dd>
+        <dt>
+            魔力だけでダメージが決定するタイプ
+        </dt>
+        <dd>
+            <a href="{% url weapon_data 11 %}">魔導器</a>
+            <br />
+            <a href="{% url weapon_data 16 %}">両手杖</a>
+        </dd>
+        <dt>
+            力の他、敏捷が必要となるタイプ
+        </dt>
+        <dd>
+            <a href="{% url weapon_data 1 %}">格闘</a>
+            <br />
+            <a href="{% url weapon_data 26 %}">弩</a>
+        </dd>
+        <dt>
+            力の他、魔力が必要となるタイプ
+        </dt>
+        <dd>
+            <a href="{% url weapon_data 8 %}">片手刀</a>
+            <br />
+            <a href="{% url weapon_data 15 %}">両手刀</a>
+        </dd>
+        <dt>
+            力の他、ユニークが必要となるタイプ。ただし、ダメージの高低差は標準的
+        </dt>
+        <dd>
+            <a href="{% url weapon_data 9 %}">片手鞭</a>
+            <br />
+            <a href="{% url weapon_data 17 %}">両手槍</a>
+        </dd>
+        <dt>
+            力の他、ユニークが必要となるタイプ。さらに、ダメージの高低差が大きい
+        </dt>
+        <dd>
+            <a href="{% url weapon_data 6 %}">片手斧</a>
+            <br />
+            <a href="{% url weapon_data 24 %}">投擲</a>
+        </dd>
+        <dt>
+            力だけでダメージが決定するが、相手の魔法防御によりダメージが変化するタイプ
+        </dt>
+        <dd>
+            <a href="{% url weapon_data 10 %}">書物</a>
+            <br />
+            <a href="{% url weapon_data 19 %}">両手棒</a>
+        </dd>
+        <dt>
+            防御力を無視し、単純に威力によってダメージが変化するタイプ
+        </dt>
+        <dd>
+            <a href="{% url weapon_data 21 %}">楽器</a>
+            <br />
+            <a href="{% url weapon_data 23 %}">銃</a>
+        </dd>
+        </dl>
+</section>
+
+{% endblock %}

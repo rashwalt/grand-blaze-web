@@ -1,0 +1,123 @@
+{% extends 'base/forum_two_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}フォーラム | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb "フォーラム" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>フォーラム</h1>
+
+<section>
+	<h2>ご利用の前に</h2>
+	<dl class="forum-index">
+		<dt class="ui-inline-icon">
+			<a href="{% url forum_guideline %}"><span class="ui-icon ui-icon-info"></span>ご利用の前に</a>
+		</dt>
+		<dd>
+			掲示板の利用方法を記したガイドです。利用前に一度ご覧下さい。関連サイト集に関しては関連サイト集のページにて利用ガイドを紹介しています。
+		</dd>
+        <dt class="ui-inline-icon">
+            <a href="{% url forum_search %}"><span class="ui-icon ui-icon-search"></span>フォーラム検索</a>
+        </dt>
+        <dd>
+            各フォーラムの記事内容を検索できます。
+        </dd>
+	</dl>
+</section>
+
+<section>
+    <h2>プレイヤーズ</h2>
+    <dl class="forum-index">
+        <dt class="ui-inline-icon">
+            <a href="{% url forum_list 1 %}"><span class="ui-icon ui-icon-suitcase"></span>取引</a>
+        </dt>
+        <dd>
+            アイテムなど様々な代物を取引できます。<br />
+        </dd>
+        <dt class="ui-inline-icon">
+            <a href="{% url forum_list 2 %}"><span class="ui-icon ui-icon-person"></span>仲間募集</a>
+        </dt>
+        <dd>
+            共に冒険を行う仲間を募集します。<br />
+        </dd>
+        <dt class="ui-inline-icon">
+            <a href="{% url forum_list 3 %}"><span class="ui-icon ui-icon-help"></span>質問</a>
+        </dt>
+        <dd>
+            疑問や質問を行うための掲示板です。<br />
+        </dd>
+        <dt class="ui-inline-icon">
+            <a href="{% url forum_list 4 %}"><span class="ui-icon ui-icon-comment"></span>ディスカッション</a>
+        </dt>
+        <dd>
+            他のプレイヤー、キャラクターと自由に雑談を交わすことの出来る交流場所です。<br />
+        </dd>
+    </dl>
+</section>
+
+<section>
+    <h2>サポート</h2>
+    <dl class="forum-index">
+        <dt class="ui-inline-icon">
+            <a href="{% url forum_list 5 %}"><span class="ui-icon ui-icon-wrench"></span>フィードバック</a>
+        </dt>
+        <dd>
+            バグの報告や提案など、様々なフィードバックを行うことができます。<br />
+        </dd>
+    </dl>
+</section>
+
+<section>
+    <h2>コミュニティ</h2>
+    <dl class="forum-index">
+        <dt class="ui-inline-icon">
+            <a href="{% url link_index %}"><span class="ui-icon ui-icon-transferthick-e-w"></span>関連サイトリンク</a>
+        </dt>
+        <dd>
+            Grand Blazeの関連サイトリストです。<br />
+        </dd>
+        <dt class="ui-inline-icon">
+            <a href="{% url link_register %}"><span class="ui-icon ui-icon-refresh"></span>サイト申請・変更</a>
+        </dt>
+        <dd>
+            Grand Blazeの関連サイトの申請を行うことが出来ます。<br />
+        </dd>
+    </dl>
+</section>
+
+{% endblock %}
+
+{% block sidecontents %}
+
+<section>
+	<h1>ホットスレッド</h1>
+    <ol class="post-list" style="margin:auto 15px;">
+        {% for article in lastest_list %}
+            <li>
+            <div class="post-header ui-inline-icon">
+                <span class="ui-icon ui-icon-document"></span>
+                <a href="{% url forum_thread_detail article.forum_id article.thread_id %}">{{ article.b_thread.title }}</a>
+                &nbsp;
+                
+            </div>
+            <div class="post-detail">
+                <div class="post-user">
+                    投稿者:<span class="user-name">{% if article.user_id > 0 %}{{ article.get_user_name }}{% if not article.user.is_staff %} (<a href="{% url result_private_status article.user_id|stringformat:'04d' %}">{{article.user_id}}</a>)C:{{ article.character_name }}{% endif %}{% else %}{{ article.user_name }}{% endif %}</span>
+                </div>
+            </div>
+                <div class="post-footer">
+                    更新日:{{ article.updated_at|date:"Y/m/d H:i" }}
+                </div>
+            </li>
+        {% endfor %}
+    </ol>
+</section>
+
+{% endblock %}

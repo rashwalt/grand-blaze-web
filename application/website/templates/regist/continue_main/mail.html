@@ -1,0 +1,43 @@
+
+
+■継続登録 (登録日時:{{data.updated_at|date:"Y/m/d H:i:s"}})
+
+◇クエスト選択{% if character.new_play %}
+    ・クエスト
+        {{data.quest_name}}
+    ・マーク
+        {% if data.mark_id == 0 %}メンバーの指定した場所へ向かいます{% else %}{{data.mark_name}}{% endif %}{% else %}
+    ・クエスト
+        【ミッション】ようこそギルドへ！
+    ・マーク
+        はじまりの場所{% endif %}
+
+◇パーティ編成
+    ・離脱設定
+        {{data.get_party_secession_display}}{% if data.pcm_add_1 > 0 or data.pcm_add_2 > 0 or data.pcm_add_3 > 0 or data.pcm_add_4 > 0 or data.pcm_add_5 > 0 %}
+    ・パーティ勧誘
+    　パーティに誘うメンバー
+        1: E-No. {{data.pcm_add_1|default:''}} {{data.pcmd_add_1_ch.nick_name}}
+        2: E-No. {{data.pcm_add_2|default:''}} {{data.pcmd_add_2_ch.nick_name}}
+        3: E-No. {{data.pcm_add_3|default:''}} {{data.pcmd_add_3_ch.nick_name}}
+        4: E-No. {{data.pcm_add_4|default:''}} {{data.pcmd_add_4_ch.nick_name}}
+        5: E-No. {{data.pcm_add_5|default:''}} {{data.pcmd_add_5_ch.nick_name}}{% endif %}        
+    ・パーティ参加希望
+        {{data.get_party_hope_display}}{% if data.option_comes_no %}
+        オプション : E-No. {{data.option_comes_no|default:''}} {{data.option_comes_no_ch.nick_name}} からの誘いにのみ応じる。{% endif %}{% if data.party_name %}
+    ・パーティ名設定
+        {{data.party_name}}{% endif %}
+{% if data.use_item_1 > 0 or data.use_item_2 > 0 or use_item_3 > 0 %}
+◇アイテム使用
+    ・使用アイテム
+        1. 所持アイテムNo. {{data.use_item_1|default:''}} {% if data.use_item_1 %}{{data.use_item_1_it.item.name}}{% endif %} を使う。{% if data.use_item_1_message %}
+		メッセージ : {{data.use_item_1_message}}
+{% endif %}        2. 所持アイテムNo. {{data.use_item_2|default:''}} {% if data.use_item_2 %}{{data.use_item_2_it.item.name}}{% endif %} を使う。{% if data.use_item_2_message %}
+		メッセージ : {{data.use_item_2_message}}
+{% endif %}        3. 所持アイテムNo. {{data.use_item_3|default:''}} {% if data.use_item_3 %}{{data.use_item_3_it.item.name}}{% endif %} を使う。{% if data.use_item_3_message %}
+		メッセージ : {{data.use_item_3_message}}
+{% endif %}{% endif %}
+{% if data.getting_private_skill > 0 %}
+◇プライベートスキル習得
+    ・習得スキル
+        {{data.prv_skill.name}} を習得する。{% endif %}

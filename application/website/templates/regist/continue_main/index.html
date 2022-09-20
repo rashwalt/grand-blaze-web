@@ -1,0 +1,355 @@
+{% extends 'base/regist_base.html' %}
+{% load breadcrumbs register_extras %}
+
+{% block title %}継続登録 | Grand Blaze{% endblock %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/regist.css?{{publish_date}}" rel="stylesheet" type="text/css">
+<link href="{{ MEDIA_URL }}/css/form.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "各種登録" regist_index %}
+{% breadcrumb "継続登録" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>継続登録</h1>
+
+<section>
+    <h2>登録上の注意</h2>
+    <p>入力内容にHTMLタグは使用できません。<br />
+        登録前にプレイガイドを良くお読みください。<br />
+        半角カナや機種依存文字（例：①など）は使用しないでください。<br />
+        対象エントリーナンバーの間違いには十分ご注意ください。<br />
+        <span class="required-guide">*</span>印は必須項目です。
+    </p>
+</section>
+
+{% if messages %}
+<section>
+	<p class="ui-state-highlight ui-corner-all ui-inline-icon ui-wiget-p">
+		{% for message in messages %}
+		<span class="ui-icon ui-icon-info"></span>
+		<strong>継続登録:</strong>
+		{{message}}
+		{% endfor %}
+	</p>
+</section>
+{% endif %}
+
+<section>
+    <form action="{% url continue_main_index %}" method="POST">
+        {% csrf_token %}        
+        <h2>クエスト選択</h2>
+        <div class="form-widget">
+            <div>
+            	<div class="key">
+	                <label for="id_quest_id">
+	                    クエスト<span class="required-guide">*</span>
+	                </label>
+	                <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="quest_id">
+	                	<span class="ui-icon ui-icon-help"></span>
+	                </a>
+            	</div>
+            	<div class="value">
+            		{{ form.quest_id }}
+            		<input type="button" class="dialog-open" data-dialog="weather" data-title="" value="選択クエストの天気予報" id="weather_button" style="display: none;" />
+                    {{ form.quest_id.errors }}
+            	</div>
+            	<div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-quest_id">
+            		<span class="ui-icon ui-icon-info"></span><strong>クエスト</strong>
+            		遂行するクエストを選択します。<br />
+            		現在選択可能なすべてのクエストが表示されています。<br />
+            		※「推奨レベル」以下のSPのキャラクターが同じパーティにいる場合、クエストに挑戦できない場合があります。
+            	</div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_mark_id">
+                        マーク<span class="required-guide">*</span>
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="mark_id">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value">
+                    {{ form.mark_id }}
+                    {{ form.mark_id.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-mark_id">
+                    <span class="ui-icon ui-icon-info"></span><strong>マーク</strong>
+                    クエストごとに細かく区分けされたマーク（地点）を選択します。<br />
+                    実際に訪れるマークはパーティの多数決で決定します。<br />
+                    マークの侵入条件を満たしていない場合、クエストの最初のマークへ移動します。
+                </div>
+            </div>
+        </div>
+        <h2>パーティ編成</h2>
+        <div class="form-widget">
+            <div>
+                <div class="key">
+                    <label for="id_party_secession">
+                        離脱設定<span class="required-guide">*</span>
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="party_secession">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value list-liner">
+                    {{ form.party_secession }}
+                    {{ form.party_secession.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-party_secession">
+                    <span class="ui-icon ui-icon-info"></span><strong>離脱設定</strong>
+                    現在のパーティに所属したまま冒険を続ける場合は「現在のパーティで冒険を続ける」を選択してください。<br />
+                    現在のパーティから離脱する場合には<br />「現在のパーティから離脱する」を選択してください。
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_pcm_add_1">
+                        パーティ勧誘
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="pcm_add_1">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value integer">
+                    E-No.{{ form.pcm_add_1 }} {{ form.pcm_add_2 }} {{ form.pcm_add_3 }} {{ form.pcm_add_4 }} {{ form.pcm_add_5 }} を誘う
+                    {{ form.pcm_add_1.errors }}
+                    {{ form.pcm_add_2.errors }}
+                    {{ form.pcm_add_3.errors }}
+                    {{ form.pcm_add_4.errors }}
+                    {{ form.pcm_add_5.errors }}
+                    
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-pcm_add_1">
+                    <span class="ui-icon ui-icon-info"></span><strong>パーティ勧誘</strong>
+                    パーティに誘うメンバーのエントリーナンバーを指定してください。<br />
+                    最大５人まで指定することが出来ます（パーティは自分を含めて最大６人です）。<br />
+                    誘う相手のエントリーナンバーは相手のプライベート結果にフルネームと共に「Entry No:XXX」の形で明記されています（XXXはこの場合、数値を表します）。
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_party_hope">
+                        パーティ参加希望<span class="required-guide">*</span>
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="party_hope">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value list-liner">
+                    {{ form.party_hope }}
+                    {{ form.party_hope.errors }}
+                    <div class="ui-state-highlight ui-corner-all sub-content">
+                    	<strong>オプション:逆指定</strong>
+                    	Entry No.{{ form.option_comes_no }}からの誘いのみ受け付ける。
+                        {{ form.option_comes_no.errors }}
+                    </div>
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-party_hope">
+                    <span class="ui-icon ui-icon-info"></span><strong>パーティ参加希望</strong>
+                    パーティに参加するかどうかを設定します（パーティに参加する場合は、ソロ状態である必要があります）。<br />
+                    パーティに参加しない場合は、「現状を維持する」を選択してください。<br />
+                    誰かに誘ってもらう場合は「パーティへの参加希望を出す」を選択してください<br />（オプションで誘いを受ける相手を指定可能）。<br />
+                    ランダムパーティへ参加する場合は、「ランダムパーティに参加する」を選択してください（システム側で希望者を対象に自動的にパーティを編成する機能です）。<br />
+                    ランダムパーティからメンバーを補充する場合は、「ランダムパーティから参加者を募る」を選択してください（過半数がこの選択を行わないと実行されません）。
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_party_name">
+                        パーティ名称設定
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="party_name">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value">
+                    {{ form.party_name }}
+                    {{ form.party_name.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-party_name">
+                    <span class="ui-icon ui-icon-info"></span><strong>パーティ名称設定</strong>
+                    パーティの名称を入力してください。<br />
+                    パーティ内で複数の人が登録した場合はランダムで決定されます。
+                </div>
+            </div>
+        </div>
+        
+        <h2>アイテム使用</h2>
+        <div class="form-widget">
+            <div>
+                <div class="key">
+                    <label for="id_use_item_1">
+                        使用アイテム
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="use_item_1">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value integer">
+                    1. 所持アイテムNo. {{ form.use_item_1 }}
+                    <input type="button" class="dialog-open" data-dialog="having_item" data-return_id="id_use_item_1" data-return_value="id_use_item_1-name" value="選択" />
+                    <span id="id_use_item_1-name">{% if form.instance.use_item_1_it %}{{ form.instance.use_item_1_it.name }}{% endif %}</span>
+                    を使う<br />
+                    <div class="ui-state-highlight ui-corner-all sub-content string">
+                    	<strong>オプション:メッセージ</strong>
+                    	{{ form.use_item_1_message }}
+                        {{ form.use_item_1_message.errors }}
+                    </div>
+                    2. 所持アイテムNo. {{ form.use_item_2 }}
+                    <input type="button" class="dialog-open" data-dialog="having_item" data-return_id="id_use_item_2" data-return_value="id_use_item_2-name" value="選択" />
+                    <span id="id_use_item_2-name">{% if form.instance.use_item_2_it %}{{ form.instance.use_item_2_it.name }}{% endif %}</span>
+                    を使う<br />
+                    <div class="ui-state-highlight ui-corner-all sub-content string">
+                    	<strong>オプション:メッセージ</strong>
+                    	{{ form.use_item_2_message }}
+                        {{ form.use_item_2_message.errors }}
+                    </div>
+                    3. 所持アイテムNo. {{ form.use_item_3 }}
+                    <input type="button" class="dialog-open" data-dialog="having_item" data-return_id="id_use_item_3" data-return_value="id_use_item_3-name" value="選択" />
+                    <span id="id_use_item_3-name">{% if form.instance.use_item_3_it %}{{ form.instance.use_item_3_it.name }}{% endif %}</span>
+                    を使う<br />
+                    <div class="ui-state-highlight ui-corner-all sub-content string">
+                    	<strong>オプション:メッセージ</strong>
+                    	{{ form.use_item_3_message }}
+                        {{ form.use_item_3_message.errors }}
+                    </div>
+                    {{ form.use_item_1.errors }}
+                    {{ form.use_item_2.errors }}
+                    {{ form.use_item_3.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-use_item_1">
+                    <span class="ui-icon ui-icon-info"></span><strong>使用アイテム</strong>
+                    使用するアイテムの所持アイテムNoを入力します。
+                </div>
+            </div>
+        </div>
+        
+        {% if is_private_skill %}
+        <h2>プライベートスキル習得</h2>
+        <div class="form-widget">
+            <div>
+                <div class="key">
+                    <label for="id_getting_private_skill">
+                        習得スキル<span class="required-guide">*</span>
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="getting_private_skill">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value integer">
+                    {{ form.getting_private_skill }}
+                    <input type="button" class="dialog-open" data-dialog="private_skill" data-return_id="id_getting_private_skill" data-return_value="id_getting_private_skill-name" value="選択" />
+                    <span id="id_getting_private_skill-name">{% if form.instance.prv_skill %}{{ form.instance.prv_skill.name }}{% endif %}</span>
+                    {{ form.getting_private_skill.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-getting_private_skill">
+                    <span class="ui-icon ui-icon-info"></span><strong>習得スキル</strong>
+                    おめでとうございます！ レベルアップしました！<br />
+                    レベルアップし、プライベートスキル習得可能レベルに達したことで、プライベートスキルを１つ、習得することができます。<br />
+                    習得したいスキルを選択してください。
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        
+        <div class="form-widget">
+	        <div>
+	            <div class="value value-only">
+	                <input type="submit" value="確認する" />
+	            </div>
+	        </div>
+	    </div>
+    </form>
+</section>
+
+<section class="dialog-base" id="dialog-private_skill" title="習得するプライベートスキル" style="display: none;">
+	<form>
+		<input type="hidden" name="ret_id" class="ret_id" value="" />
+		<input type="hidden" name="ret_value" class="ret_value" value="" />
+	</form>
+    <table class="regist-list">
+            <tr>
+                <th>習得SP</th>
+                <th>スキル名</th>
+                <th>習得条件</th>
+            </tr>
+        {% for skill_data in skill_list %}
+        <tr>
+            <td rowspan="2">{{ skill_data.tm_level }}</td>
+            <td>
+                {% if skill_data.is_having != 2 %}
+                    {{ skill_data.skill_name }}
+                    {% if skill_data.is_having == 1 %}
+                        [習得済]
+                    {% else %}
+                        【条件不足】
+                    {% endif %}
+                {% else %}
+                    <a href="javascript:void(0);" class="apply-link" data-dialog="private_skill" data-id_value="{{ skill_data.skill_id }}" data-name_value="{{ skill_data.skill_name }}">{{ skill_data.skill_name }}</a>
+                {% endif %}
+            </td>
+            <td>{{ skill_data.condition_text|safe }}</td>
+        </tr>
+        <tr>
+            <td colspan="2">{{ skill_data.sk_comment|safe }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</section>
+
+<section class="dialog-base" id="dialog-having_item" title="所持しているアイテム" style="display: none;">
+	<form>
+		<input type="hidden" name="ret_id" class="ret_id" value="" />
+		<input type="hidden" name="ret_value" class="ret_value" value="" />
+	</form>
+    <div id="pagination">
+        
+    </div>
+    <table class="regist-list">
+            <tr>
+                <th>所持No.</th>
+                <th>アイテム名</th>
+                <th>価値</th>
+                <th>所持数</th>
+            </tr>
+        {% for item_data in having_item_list %}      
+        <tr>
+            <td rowspan="2">{{ item_data.have_no }}</td>
+            <td>
+                <a href="javascript:void(0);" class="apply-link" data-dialog="having_item" data-id_value="{{ item_data.have_no }}" data-name_value="{{ item_data.item.name }}">{{ item_data.item.name }}</a>
+            </td>
+            <td>{{ item_data.item.it_seller|sub_money }}</td>
+            <td>{{ item_data.it_box_count }}</td>
+        </tr>
+        <tr>
+            <td colspan="3">{{ item_data.item.it_comment|safe }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</section>
+
+<section class="dialog-base" id="dialog-weather" title="選択中クエストの天気予報" style="display: none;">
+	<div>
+		<span id="selected_mark"></span>
+	</div>
+    <table class="regist-list">
+        <tr>
+            <th>マーク名</th>
+            <th>天気予報</th>
+        </tr>
+        <tbody id="weabody">
+        </tbody>
+    </table>
+</section>
+
+{% endblock %}
+

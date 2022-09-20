@@ -1,0 +1,23 @@
+{% extends 'base/root_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}お問い合わせ完了 | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb "お問い合わせ完了" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>お問い合わせ完了</h1>
+
+<section>
+	<h2>お問い合わせを受け付けました</h2>
+     <p>お問い合わせを受け付けました。<br />
+	内容によっては返信ができない場合がありますので、予めご了承下さい。</p>
+</section>
+
+{% endblock %}

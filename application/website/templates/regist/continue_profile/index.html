@@ -1,0 +1,301 @@
+{% extends 'base/regist_base.html' %}
+{% load breadcrumbs register_extras %}
+
+{% block title %}個人設定 | Grand Blaze{% endblock %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/regist.css?{{publish_date}}" rel="stylesheet" type="text/css">
+<link href="{{ MEDIA_URL }}/css/form.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "各種登録" regist_index %}
+{% breadcrumb "個人設定" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>個人設定</h1>
+
+<section>
+    <h2>登録上の注意</h2>
+    <p>入力内容にHTMLタグは使用できません。<br />
+        登録前にプレイガイドを良くお読みください。<br />
+        半角カナや機種依存文字（例：①など）は使用しないでください。<br />
+        対象エントリーナンバーの間違いには十分ご注意ください。<br />
+        <span class="required-guide">*</span>印は必須項目です。
+    </p>
+</section>
+
+{% if messages %}
+<section>
+	<p class="ui-state-highlight ui-corner-all ui-inline-icon ui-wiget-p">
+		{% for message in messages %}
+		<span class="ui-icon ui-icon-info"></span>
+		<strong>個人設定:</strong>
+		{{message}}
+		{% endfor %}
+	</p>
+</section>
+{% endif %}
+
+<section>
+    <form action="{% url continue_profile_index %}" method="POST">
+        {% csrf_token %}        
+        <h2>キャラクター設定</h2>
+        <div class="form-widget">
+            <div>
+            	<div class="key">
+	                <label for="id_nick_name">
+	                    愛称
+	                </label>
+	                <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="nick_name">
+	                	<span class="ui-icon ui-icon-help"></span>
+	                </a>
+            	</div>
+            	<div class="value">
+            		{{ form.nick_name }}
+                    {{ form.nick_name.errors }}
+            	</div>
+            	<div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-nick_name">
+            		<span class="ui-icon ui-icon-info"></span><strong>愛称</strong>
+            		冒険を行うキャラクターの愛称です。
+            	</div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_age">
+                        年齢
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="age">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value integer">
+                    {{ form.age }}歳
+                    {{ form.age.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-age">
+                    <span class="ui-icon ui-icon-info"></span><strong>年齢</strong>
+                    冒険を行うキャラクターの年齢です。<br />
+                    種族による差はないため、人間換算で入力してください。
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_height">
+                        身長
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="height">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value integer">
+                    {{ form.height }}cm
+                    {{ form.height.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-height">
+                    <span class="ui-icon ui-icon-info"></span><strong>身長</strong>
+                    冒険を行うキャラクターの身長です。
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_weight">
+                        体重
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="weight">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value integer">
+                    {{ form.weight }}kg
+                    {{ form.weight.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-weight">
+                    <span class="ui-icon ui-icon-info"></span><strong>体重</strong>
+                    冒険を行うキャラクターの体重です。
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_unique_name">
+                        大切なもの
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="unique_name">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value">
+                    {{ form.unique_name }}
+                    {{ form.unique_name.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-unique_name">
+                    <span class="ui-icon ui-icon-info"></span><strong>大切なもの</strong>
+                    キャラクター本人が大切に思っていること、好きな言葉などを入力してください（愛や勇気、魅力など）。<br />
+                    能力値の名前になります。
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_profile">
+                        プロフィール
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="profile">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value full-text">
+                    {{ form.profile }}
+                    {{ form.profile.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-profile">
+                    <span class="ui-icon ui-icon-info"></span><strong>プロフィール</strong>
+                    冒険を行うキャラクターの背景です。<br />
+                    キャラクターの過去や目標など、好きな内容を入力できます。
+                </div>
+            </div>
+        </div>
+        
+        <h2>キャラクターの画像</h2>
+        <div class="form-widget">
+            <div>
+                <div class="key">
+                    <label for="id_image_url">
+                        イメージURL
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="image_url">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value">
+                    {{ form.image_url }}
+                    <input type="button" name="hidden_image" value="非表示化" onclick="grb.hiddenImage('id_image_url')" />
+                    <input type="button" name="hidden_image" value="デフォルトに戻す" onclick="grb.defaultImage('id_image_url')" />
+                    {{ form.image_url.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-image_url">
+                    <span class="ui-icon ui-icon-info"></span><strong>イメージURL</strong>
+                    キャラクターの画像イメージが置かれている場所（URL）を入力してください。<br />
+                    最大サイズは横250px、縦300px以下です。<br />
+                    イメージを登録するには「イメージURL」、「横幅」、「縦幅」、「イメージ権利表記」が必須となります。<br />
+                    デフォルトに戻す場合、「http://www.grand-blaze.com/defimage.gif」を指定してください。<br />
+                    画像を非表示にする場合、「http://www.grand-blaze.com/default.gif」を指定してください。
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_image_width">
+                        横幅
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="image_width">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value integer">
+                    {{ form.image_width }}px
+                    {{ form.image_width.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-image_width">
+                    <span class="ui-icon ui-icon-info"></span><strong>横幅</strong>
+                    キャラクターの画像イメージの横のサイズ（ピクセル）を入力してください。<br />
+                    最大サイズは横250pxです。
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_image_height">
+                        縦幅
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="image_height">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value integer">
+                    {{ form.image_height }}px
+                    {{ form.image_height.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-image_height">
+                    <span class="ui-icon ui-icon-info"></span><strong>縦幅</strong>
+                    キャラクターの画像イメージの縦のサイズ（ピクセル）を入力してください。<br />
+                    最大サイズは縦300px以下です。
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_image_copyright">
+                        イメージ権利表記
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="image_copyright">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value">
+                    {{ form.image_copyright }}
+                    {{ form.image_copyright.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-image_copyright">
+                    <span class="ui-icon ui-icon-info"></span><strong>イメージ権利表記</strong>
+                    キャラクターの画像イメージの権利表記を入力してください。
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_image_link_url">
+                        イメージリンクURL
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="image_link_url">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value">
+                    {{ form.image_link_url }}
+                    <input type="button" name="hidden_image" value="リンク削除" onclick="grb.hiddenImage('id_image_link_url')" />
+                    {{ form.image_link_url.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-image_link_url">
+                    <span class="ui-icon ui-icon-info"></span><strong>イメージリンクURL</strong>
+                    キャラクターの画像イメージからリンクするURLを入力してください。<br />
+                    リンクURLを消す場合、「http://www.grand-blaze.com/default.gif」を指定してください。
+                </div>
+            </div>
+        </div>
+        
+        <h2>アカウント設定</h2>
+        <div class="form-widget">
+            <div>
+                <div class="key">
+                    <label for="id_account_status">
+                        アカウント設定
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="account_status">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value">
+                    {{ form.account_status }}
+                    {{ form.account_status.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-account_status">
+                    <span class="ui-icon ui-icon-info"></span><strong>アカウント設定</strong>
+                    アカウント状態を選択してください。<br />
+					設定により、未継続カウントがカウントされるかどうかが決定されます。
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-widget">
+	        <div>
+	            <div class="value value-only">
+	                <input type="submit" value="登録する" />
+	            </div>
+	        </div>
+	    </div>
+    </form>
+</section>
+
+{% endblock %}
+

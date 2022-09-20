@@ -1,0 +1,18 @@
+
+
+■取引登録
+
+{% if sell_datas %}◇アイテムの売却{% for data in sell_datas %}
+	・No.{{data.shopping_no}}: {{data.item_no}} {{data.having_item.item.name}} を {{data.item_count}} 個 売却する。{% endfor %}
+{% endif %}
+{% if item_datas %}◇アイテムのトレード{% for data in item_datas %}
+	・No.{{data.trade_no}}: E-No.{{data.trade_entry}} {{data.target.nick_name}} に {{data.trade_item_no}} {{data.having_item.item.name}} を {{data.trade_number}} 個送る。{% if data.trade_message %}
+		メッセージ : {{data.trade_message}}{% endif %}{% endfor %}
+{% endif %}
+{% if money_datas %}◇お金のトレード{% for data in money_datas %}
+	・No.{{data.trade_no}}: E-No.{{data.trade_entry}} {{data.target.nick_name}} に {{data.trade_number}} ギムル送る。{% if data.trade_message %}
+		メッセージ : {{data.trade_message}}{% endif %}{% endfor %}
+{% endif %}
+{% if buy_datas %}◇アイテムの購入{% for data in buy_datas %}
+	・No.{{data.shopping_no}}: {{data.item_no}} {{data.item.name}} を {{data.item_count}} 個 購入する。{% endfor %}
+{% endif %}

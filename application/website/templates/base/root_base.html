@@ -1,0 +1,16 @@
+{% extends 'base/one_base.html' %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/root.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{%block page_type%}page-top{%endblock%}
+
+{% block sidemenu %}
+
+{# --------- メニュー --------- #}
+
+{% include 'sidemenu/root_side.html' %}
+
+
+{% endblock %}

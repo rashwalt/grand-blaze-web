@@ -1,0 +1,126 @@
+{% extends 'base/playguide_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}アイテムの売買 | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "プレイガイド" playguide_index %}
+{% breadcrumb "アイテムの売買" %}
+
+{% endblock %}
+
+{% block maincontents %}
+<h1>アイテムの売買</h1>
+
+<section>
+    <h2>購入</h2>
+    <p>新たなアイテムを購入したい場合、取引登録で購入したいアイテムと個数を指定し、購入します。</p>
+    <p class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 登録はどこで行う？</strong><br />
+        アイテムの購入は、<strong>取引登録</strong>で行います。
+    </p>
+    <div class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! アイテムを購入する場合の例</strong><br />
+        アイテム「ブロンズアクス」を１つ、「手裏剣」を１０個、購入したい場合、次のように記入します。 <br />
+        <form>
+            1. 
+            ショップから
+            <input name="buy_no_12222" type="text" class="no_box validate-digits" id="buy_no_12222" value="140" size="5" maxlength="5" />
+			<input type="button" name="select" value="選択" />
+			ブロンズアクス
+			を
+			<input name="buy_number_12222" type="text" class="no_box validate-digits" id="buy_number_12222" value="1" size="5" maxlength="2" />
+			個購入する。<br />
+			2. 
+			ショップから
+			<input name="buy_no_22222" type="text" class="no_box validate-digits" id="buy_no_22222" value="28070" size="5" maxlength="5" />
+			<input type="button" name="select" value="選択" />
+			手裏剣
+			を
+			<input name="buy_number_22222" type="text" class="no_box validate-digits" id="buy_number_22222" value="10" size="5" maxlength="2" />
+			個購入する。<br />
+			3. 
+			ショップから
+			<input name="buy_no_32222" type="text" class="no_box validate-digits" id="buy_no_32222" size="5" maxlength="5" />
+			<input type="button" name="select" value="選択" />
+			を
+			<input name="buy_number_32222" type="text" class="no_box validate-digits" id="buy_number_32222" size="5" maxlength="2" />
+			個購入する。<br />
+			4. 
+			ショップから
+			<input name="buy_no_42222" type="text" class="no_box validate-digits" id="buy_no_42222" size="5" maxlength="5" />
+			<input type="button" name="select" value="選択" />
+			を
+			<input name="buy_number_42222" type="text" class="no_box validate-digits" id="buy_number_42222" size="5" maxlength="2" />
+			個購入する。<br />
+			5. 
+			ショップから
+			<input name="buy_no_52222" type="text" class="no_box validate-digits" id="buy_no_52222" size="5" maxlength="5" />
+			<input type="button" name="select" value="選択" />
+			を
+			<input name="buy_number_52222" type="text" class="no_box validate-digits" id="buy_number_52222" size="5" maxlength="2" />
+			個購入する。
+        </form>
+    </div>
+    <p class="ui-state-highlight ui-corner-all ui-inline-icon" style="margin-top: 10px;">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! お金が足りない場合</strong><br />
+        イテムを購入する時に、所持金が足りないと、そのアイテムは購入できません。
+    </p>
+</section>
+
+<section>
+    <h2>売却</h2>
+    <p>所持しているアイテムはその種類に問わずすべてお店に売却することができます。アイテムはプライベート結果に表示されている「価値」の価格で売却できます。<br />
+    <span class="caution">※装備しているアイテムは装備から解除しないと売却できません。</span></p>
+    <p class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 登録はどこで行う？</strong><br />
+        アイテムの売却は、<strong>取引登録</strong>で行います。
+    </p>
+    <div class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! アイテムを売却する場合の例</strong><br />
+        所持アイテム番号 7番のアイテムを１つ、13番のアイテムを２つ、売却したい場合、次のように記入します。<br />
+        <form>
+            1. 所持アイテムNo.
+            <input name="sell_item_1" type="text" class="no_box validate-digits" id="sell_item_1" value="7" size="5" maxlength="5" />
+            <input type="button" name="select" value="選択" />
+            ロングソード
+            を
+            <input name="sell_number_1" type="text" class="no_box validate-digits" id="sell_number_1" value="1" size="5" maxlength="2" />
+            個売却する。<br />
+            2. 所持アイテムNo.
+            <input name="sell_item_2" type="text" class="no_box validate-digits" id="sell_item_2" value="13" size="5" maxlength="5" />
+            <input type="button" name="select" value="選択" />
+            ブリガンダイン
+            を
+            <input name="sell_number_2" type="text" class="no_box validate-digits" id="sell_number_2" value="2" size="5" maxlength="2" />
+            個売却する。<br />
+            3. 所持アイテムNo.
+            <input name="sell_item_3" type="text" class="no_box validate-digits" id="sell_item_3" size="5" maxlength="5" />
+            <input type="button" name="select" value="選択" />
+            を
+            <input name="sell_number_3" type="text" class="no_box validate-digits" id="sell_number_3" size="5" maxlength="2" />
+			個売却する。<br />
+			4. 所持アイテムNo.
+			<input name="sell_item_4" type="text" class="no_box validate-digits" id="sell_item_4" size="5" maxlength="5" />
+			<input type="button" name="select" value="選択" />
+			を
+			<input name="sell_number_4" type="text" class="no_box validate-digits" id="sell_number_4" size="5" maxlength="2" />
+			個売却する。<br />
+			5. 所持アイテムNo.
+			<input name="sell_item_5" type="text" class="no_box validate-digits" id="sell_item_5" size="5" maxlength="5" />
+			<input type="button" name="select" value="選択" />
+			を
+			<input name="sell_number_5" type="text" class="no_box validate-digits" id="sell_number_5" size="5" maxlength="2" />
+			個売却する。
+         </form>
+    </div>
+</section>
+
+{% endblock %}

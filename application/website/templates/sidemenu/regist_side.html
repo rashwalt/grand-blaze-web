@@ -1,0 +1,93 @@
+
+<nav>
+    {% if site_manager.is_regist_stop %}
+    	{% if character %}
+	        <h4>
+	            コンティニュー
+	        </h4>
+	        <dl id="side-menu" class="ui-right-icon">
+	            <dt>
+	                <a href="{% url continue_main_index %}">
+	                    継続登録<span class="ui-icon ui-icon-carat-1-e"></span>
+	                </a>
+	            </dt>
+	        </dl>
+            <h4>
+                バザー
+            </h4>
+            <dl id="side-menu" class="ui-right-icon">
+                <dt>
+                    <a href="{% url bazzer_sell_register %}">
+                        バザー出品<span class="ui-icon ui-icon-carat-1-e"></span>
+                    </a>
+                </dt>
+                <dt>
+                    <a href="{% url bazzer_list %}">
+                        バザー購入<span class="ui-icon ui-icon-carat-1-e"></span>
+                    </a>
+                </dt>
+            </dl>
+	        <h4>
+	            カスタマイズ
+	        </h4>
+	        <dl id="side-menu" class="ui-right-icon">
+                <dt>
+                    <a href="{% url continue_trade_index %}">
+                        取引登録<span class="ui-icon ui-icon-carat-1-e"></span>
+                    </a>
+                </dt>
+                <dt>
+                    <a href="{% url continue_equip_index %}">
+                        戦闘準備登録<span class="ui-icon ui-icon-carat-1-e"></span>
+                    </a>
+                </dt>
+                <dt>
+                    <a href="{% url continue_battleaction_index %}">
+                        戦術登録<span class="ui-icon ui-icon-carat-1-e"></span>
+                    </a>
+                </dt>
+                <dt>
+                    <a href="{% url continue_profile_index %}">
+                        個人設定<span class="ui-icon ui-icon-carat-1-e"></span>
+                    </a>
+                </dt>
+                <dt>
+                    <a href="{% url continue_icon_index %}">
+                        アイコン設定<span class="ui-icon ui-icon-carat-1-e"></span>
+                    </a>
+                </dt>
+                <dt>
+                    <a href="{% url continue_message_index %}">
+                        メッセージ登録<span class="ui-icon ui-icon-carat-1-e"></span>
+                    </a>
+                </dt>
+                <dt>
+                    <a href="{% url continue_serif_index %}">
+                        セリフ設定<span class="ui-icon ui-icon-carat-1-e"></span>
+                    </a>
+                </dt>
+	        </dl>
+            <h4>
+                登録内容確認
+            </h4>
+            <dl id="side-menu" class="ui-right-icon">
+                <dt>
+                    <a href="{% url continue_confirm_index %}">
+                        登録内容確認<span class="ui-icon ui-icon-carat-1-e"></span>
+                    </a>
+                </dt>
+            </dl>
+		{% else %}
+	        <h4>
+	            新規登録
+	        </h4>
+	        <dl id="side-menu" class="ui-right-icon">
+	            <dt>
+	                <a href="{% url newgame_index %}">
+	                    新規登録<span class="ui-icon ui-icon-carat-1-e"></span>
+	                </a>
+	            </dt>
+	        </dl>
+		{% endif %}
+    {% endif %}
+</nav>

@@ -1,0 +1,132 @@
+{% extends 'base/regist_base.html' %}
+{% load breadcrumbs register_extras %}
+
+{% block title %}メッセージ登録 | Grand Blaze{% endblock %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/regist.css?{{publish_date}}" rel="stylesheet" type="text/css">
+<link href="{{ MEDIA_URL }}/css/form.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "各種登録" regist_index %}
+{% breadcrumb "メッセージ登録" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>メッセージ登録</h1>
+
+<section>
+    <h2>登録上の注意</h2>
+    <p>入力内容にHTMLタグは使用できません。<br />
+        登録前にプレイガイドを良くお読みください。<br />
+        半角カナや機種依存文字（例：①など）は使用しないでください。<br />
+        対象エントリーナンバーの間違いには十分ご注意ください。<br />
+        登録できるメッセージの数に制限はありません。<br />
+        <span class="required-guide">*</span>印は必須項目です。<br />
+        <a href="{% url playguide_textcommand %}">テキストコマンドはこちら</a>ご確認下さい！
+    </p>
+</section>
+
+{% if messages %}
+<section>
+	<p class="ui-state-highlight ui-corner-all ui-inline-icon ui-wiget-p">
+		{% for message in messages %}
+		<span class="ui-icon ui-icon-info"></span>
+		<strong>メッセージ登録:</strong>
+		{{message}}
+		{% endfor %}
+	</p>
+</section>
+{% endif %}
+
+<section>
+    <form action="{% url continue_message_index %}" method="POST" id="action_index">
+        {% csrf_token %}
+        <h2>メッセージ登録</h2>
+        {{ formset.management_form }}
+        <div id="messagelist">
+    	<div id="mslist">
+        {% for form in formset.forms %}
+        <div class="form-widget">
+        	{{ form.id }}
+        	{{ form.DELETE }}
+        	<h3>
+        		No.<span class="mes_no">{{ forloop.counter }}</span>
+        	</h3>
+            <div>
+            	<div class="key">
+	                <label for="id_form-{{ forloop.counter0 }}-message_target">
+	                    メッセージ対象<span class="required-guide">*</span>
+	                </label>
+	                <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="form-{{ forloop.counter0 }}-message_target">
+	                	<span class="ui-icon ui-icon-help"></span>
+	                </a>
+            	</div>
+            	<div class="value">
+            		{{ form.message_target }}
+                    {{ form.message_target.errors }}
+            	</div>
+            	<div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-form-{{ forloop.counter0 }}-message_target">
+            		<span class="ui-icon ui-icon-info"></span><strong>メッセージ対象</strong>
+            		メッセージを送る種類を選択します。<br />
+            		「個人宛て」は個人に対して、「パーティメンバーに」はパーティのメンバー全員に、「リストメッセージ」は専用のリストメッセージ枠にて発言します。
+            	</div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_form-{{ forloop.counter0 }}-message_entry">
+                        送信相手
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="form-{{ forloop.counter0 }}-message_entry">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value integer">
+                    No. {{ form.message_entry }}
+                    {{ form.message_entry.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-form-{{ forloop.counter0 }}-message_entry">
+                    <span class="ui-icon ui-icon-info"></span><strong>送信相手</strong>
+            		「個人宛て」に設定したときの送信先のE-No.を入力します。
+                </div>
+            </div>
+            <div>
+            	<div class="key">
+	                <label for="id_form-{{ forloop.counter0 }}-message_body">
+	                    メッセージ内容<span class="required-guide">*</span>
+	                </label>
+	                <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="form-{{ forloop.counter0 }}-message_body">
+	                	<span class="ui-icon ui-icon-help"></span>
+	                </a>
+            	</div>
+            	<div class="value">
+            		{{ form.message_body }}
+                    {{ form.message_body.errors }}
+            	</div>
+            	<div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-form-{{ forloop.counter0 }}-message_body">
+            		<span class="ui-icon ui-icon-info"></span><strong>メッセージ内容</strong>
+            		メッセージを送る内容を入力します。
+            	</div>
+            </div>
+        </div>
+        {% endfor %}
+        </div>
+        </div>
+        
+        <div class="form-widget">
+	        <div>
+	            <div class="value value-only">
+	                <input type="submit" value="確認する" />
+	            </div>
+	        </div>
+	    </div>
+    </form>
+</section>
+
+{% endblock %}
+

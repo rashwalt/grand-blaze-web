@@ -1,0 +1,33 @@
+{% extends 'base/root_base.html' %}
+{% load breadcrumbs pager %}
+
+{% block title %}{{category_name}} | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "インフォメーション" root_information %}
+{% breadcrumb category_name %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>{{category_name}}</h1>
+
+{% pager pager 'root_category' category_id %}
+
+<section>
+	<ul class="notice-list">
+		{% for category in category_list %}
+		<li>
+			{{category.view_date|date:"Y/m/d"}}
+			<a href="{% url root_notice_detail category.id %}">{{category.title}}</a>
+		</li>
+		{% endfor %}
+	</ul>
+</section>
+
+{% pager pager 'root_category' category_id %}
+
+{% endblock %}

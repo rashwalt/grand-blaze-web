@@ -1,0 +1,587 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>冒険の結果 | Grand Blaze</title>
+<link href="../static/css/common.css" rel="stylesheet" type="text/css">
+<link href="../static/css/dark-hive/jquery-ui-1.9.0.custom.min.css" rel="stylesheet" type="text/css">
+<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+<script src="../static/js/jquery-ui-1.9.0.custom.min.js"></script>
+<script src="../static/js/jquery.formset.min.js"></script>
+<script src="../static/js/main.min.js"></script>
+<link href="../static/css/result.css" rel="stylesheet" type="text/css">
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+<![endif]-->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30449583-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body class="adventure-result">
+
+<div id="container">
+  <header>
+    <a id="site-logo" href="http://www.grand-blaze.com/"><img src="../static/images/common/site_logo.png" alt="Grand Blaze" /></a>
+    <div id="header-right">
+        <!--{% include 'account/login_parts.html' %}-->
+		<div id="searchcontrol">
+			<form action="/search/" id="cse-search-box">
+			  <div>
+			    <input type="hidden" name="cx" value="018114392011501256481:1jv92qvio2i" />
+			    <input type="hidden" name="cof" value="FORID:11" />
+			    <input type="hidden" name="ie" value="UTF-8" />
+			    <input type="text" name="q" id="q" autocomplete="off" size="31" />
+			    <button type="submit" id="search-submit" name="sa" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" role="button" aria-disabled="false" title="検索"><span class="ui-button-icon-primary ui-icon ui-icon-search"></span><span class="ui-button-text">検索</span></button>
+			  </div>
+			</form>
+			<script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=ja"></script>
+	   </div>
+    </div>
+  </header>
+  <nav>
+      <ul id="global-navi">
+        <li id="page-top"><a href="http://www.grand-blaze.com/">トップ</a></li>
+        <li id="registration"><a href="/continue/">各種登録</a></li>
+        <li id="play-guide"><a href="/playguide/">プレイガイド</a></li>
+        <li id="adventure-result"><a href="/result/">冒険の結果</a></li>
+        <li id="forum"><a href="/forum/">フォーラム</a></li>
+        <li id="world-guide"><a href="/worldguide/">世界背景</a></li>
+      </ul>
+  </nav>
+  <div id="main-view">
+	  <div id="sidebar1">
+	  	<!--sidebar start-->
+	    <nav>
+	    	<h4>
+	    		冒険者一覧
+	    	</h4>
+	    	<dl id="side-menu" class="ui-right-icon">
+		        <dt>
+		        	<a href="list0001.html">
+		        		1 ～ 100<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="list0002.html">
+		        		101 ～ 200<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="list0003.html">
+		        		201 ～ 300<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="list0004.html">
+		        		301 ～ 400<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="list0005.html">
+		        		401 ～ 500<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="list0006.html">
+		        		501 ～ 600<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="list0007.html">
+		        		601 ～ 700<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="list0008.html">
+		        		701 ～ 800<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+			</dl>
+	    	<h4>
+	    		リストメッセージ
+	    	</h4>
+	    	<dl id="side-menu" class="ui-right-icon">
+		        <dt>
+		        	<a href="lcom0001.html">
+		        		1 ～ 100<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="lcom0002.html">
+		        		101 ～ 200<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="lcom0003.html">
+		        		201 ～ 300<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="lcom0004.html">
+		        		301 ～ 400<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="lcom0005.html">
+		        		401 ～ 500<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="lcom0006.html">
+		        		501 ～ 600<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="lcom0007.html">
+		        		601 ～ 700<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="lcom0008.html">
+		        		701 ～ 800<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+			</dl>
+	    	<h4>
+	    		リザルトツール
+	    	</h4>
+	    	<dl id="side-menu" class="ui-right-icon">
+		        <dt>
+		        	<a href="newplayer.html">
+		        		新規登録者一覧<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="/result/search/">
+		        		キャラクター検索<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+			</dl>
+	    	<h4>
+	    		ダウンロード
+	    	</h4>
+	    	<dl id="side-menu" class="ui-right-icon">
+		        <dt>
+		        	<a href="/result/download/">
+		        		ダウンロード<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+			</dl>
+	    </nav>
+	    <!--sidebar end-->
+	  </div>
+	  <div id="view-container">
+        <div id="breadcrumbs">
+            <!--bread start-->
+            <a href="/">トップ</a> &gt; <a href="./">冒険の結果</a> &gt; 冒険者一覧(1 ～ 100)
+            <!--bread end-->
+        </div>
+        <article id="wcontent">
+      <!--content start-->
+      
+<h1>冒険の結果</h1>
+<section>
+<h2>冒険者一覧(1 ～ 100)</h2>
+<div id="player-comment" class="ui-tabs"><ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix">
+<li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="javascript:void(0);">キャラクター一覧</a></li><li class="ui-state-default ui-corner-top"><a href="lcom0001.html">リストメッセージ</a></li>
+</ul></div>
+<table class="player-list" summary="冒険者の一覧です。">
+  <tr>
+    <th scope="col">E-No.</th>
+    <th scope="col">名前</th>
+    <th scope="col">パーティ</th>
+  </tr>
+  <tr>
+    <td>11</td>
+    <td><a href="status/character0011.html">ミサイル・シューマッハ</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>12</td>
+    <td><a href="status/character0012.html">イレイン</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>13</td>
+    <td><a href="status/character0013.html">ビアレイ・瓜宿</a></td>
+    <td><a href="party/party0020.html">P-No.20 Wind Style 【風流】</a></td>
+  </tr>
+  <tr>
+    <td>14</td>
+    <td><a href="status/character0014.html">クロイシス＝ヴェーティドット</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>15</td>
+    <td><a href="status/character0015.html">『デスティニー』</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>16</td>
+    <td><a href="status/character0016.html">マロン=B=ベルリオール</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>17</td>
+    <td><a href="status/character0017.html">ヒズミ</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>19</td>
+    <td><a href="status/character0019.html">ロデルフィア・ハーモニリス</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>20</td>
+    <td><a href="status/character0020.html">マディフェラム</a></td>
+    <td><a href="party/party0009.html">P-No.9 衆にも個にも等しく時は流る</a></td>
+  </tr>
+  <tr>
+    <td>21</td>
+    <td><a href="status/character0021.html">ココン・トエト＝ド＝コソコ</a></td>
+    <td><a href="party/party0012.html">P-No.12 （一方的な）愛の逃避行</a></td>
+  </tr>
+  <tr>
+    <td>22</td>
+    <td><a href="status/character0022.html">天城　白遊</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>23</td>
+    <td><a href="status/character0023.html">ユーリ・クロスリード</a></td>
+    <td><a href="party/party0014.html">P-No.14 ボッチなんていなかった</a></td>
+  </tr>
+  <tr>
+    <td>24</td>
+    <td><a href="status/character0024.html">闇</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>25</td>
+    <td><a href="status/character0025.html">彼岸花</a></td>
+    <td><a href="party/party0016.html">P-No.16 灼熱の舞台で踊る者たち</a></td>
+  </tr>
+  <tr>
+    <td>26</td>
+    <td><a href="status/character0026.html">ケツゲヒッパル13世</a></td>
+    <td><a href="party/party0007.html">P-No.7 教授のエレクトリカルケツゲヒッパレード</a></td>
+  </tr>
+  <tr>
+    <td>27</td>
+    <td><a href="status/character0027.html">霜月 銀華</a></td>
+    <td><a href="party/party0018.html">P-No.18 俺達のチキレはまだ始まったばかりだ！</a></td>
+  </tr>
+  <tr>
+    <td>28</td>
+    <td><a href="status/character0028.html">ニヴェラ・ディルディーヴ・ディルディ</a></td>
+    <td><a href="party/party0362.html">P-No.362 物理と魔法(物理)で殴るだけ</a></td>
+  </tr>
+  <tr>
+    <td>29</td>
+    <td><a href="status/character0029.html">ミスティ＝レンドル</a></td>
+    <td><a href="party/party0020.html">P-No.20 Wind Style 【風流】</a></td>
+  </tr>
+  <tr>
+    <td>30</td>
+    <td><a href="status/character0030.html">天</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>31</td>
+    <td><a href="status/character0031.html">ヴィネ</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>32</td>
+    <td><a href="status/character0032.html">エリク・ヴァンツィーナ</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>35</td>
+    <td><a href="status/character0035.html">橘　速</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>36</td>
+    <td><a href="status/character0036.html">エリン・オニール</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>37</td>
+    <td><a href="status/character0037.html">ギルガメシュ</a></td>
+    <td><a href="party/party0045.html">P-No.45 第45パーティ</a></td>
+  </tr>
+  <tr>
+    <td>39</td>
+    <td><a href="status/character0039.html">鈴力　ステラ</a></td>
+    <td><a href="party/party0030.html">P-No.30 第30パーティ</a></td>
+  </tr>
+  <tr>
+    <td>40</td>
+    <td><a href="status/character0040.html">ジェイル＝ルクセンドゥ</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>42</td>
+    <td><a href="status/character0042.html">ディッシュ・ハーツ</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>43</td>
+    <td><a href="status/character0043.html">フュシル</a></td>
+    <td><a href="party/party0007.html">P-No.7 教授のエレクトリカルケツゲヒッパレード</a></td>
+  </tr>
+  <tr>
+    <td>44</td>
+    <td><a href="status/character0044.html">アルベルト・ゲオルギィ</a></td>
+    <td><a href="party/party0013.html">P-No.13 れっつごーぱーりー</a></td>
+  </tr>
+  <tr>
+    <td>45</td>
+    <td><a href="status/character0045.html">ビスマス</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>46</td>
+    <td><a href="status/character0046.html">アンフェール・A・ワールディリア＝ヴァルドゥン</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>47</td>
+    <td><a href="status/character0047.html">カイン＝デューク</a></td>
+    <td><a href="party/party0255.html">P-No.255 ゆるふわ系挙動不審者</a></td>
+  </tr>
+  <tr>
+    <td>48</td>
+    <td><a href="status/character0048.html">モニカ・アプリコット</a></td>
+    <td><a href="party/party0125.html">P-No.125 第125パーティ</a></td>
+  </tr>
+  <tr>
+    <td>49</td>
+    <td><a href="status/character0049.html">ジジュカ＝リンスロッテ＝アーネスヘルブ</a></td>
+    <td><a href="party/party0033.html">P-No.33 【第24話】テラファーマーズ</a></td>
+  </tr>
+  <tr>
+    <td>51</td>
+    <td><a href="status/character0051.html">テオドリック</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>52</td>
+    <td><a href="status/character0052.html">袖無　柚</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>54</td>
+    <td><a href="status/character0054.html">ルトラシア・レーテパップ</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>56</td>
+    <td><a href="status/character0056.html">セルシアーナ＝グランウォル</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>57</td>
+    <td><a href="status/character0057.html">空飛ぶ宇宙忍者教首領</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>58</td>
+    <td><a href="status/character0058.html">スワロウ=デスチェイン</a></td>
+    <td><a href="party/party0067.html">P-No.67 第67パーティ</a></td>
+  </tr>
+  <tr>
+    <td>59</td>
+    <td><a href="status/character0059.html">Rory Lorimer</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>61</td>
+    <td><a href="status/character0061.html">イェニ・レヴァイン</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>62</td>
+    <td><a href="status/character0062.html">かえるくん</a></td>
+    <td><a href="party/party0051.html">P-No.51 第51パーティ</a></td>
+  </tr>
+  <tr>
+    <td>63</td>
+    <td><a href="status/character0063.html">オルソン=マルムスティン</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>64</td>
+    <td><a href="status/character0064.html">スキュラーズ・スフィン</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>65</td>
+    <td><a href="status/character0065.html">柚前　唯我</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>66</td>
+    <td><a href="status/character0066.html">天賢慈 朔夜</a></td>
+    <td><a href="party/party0091.html">P-No.91 何事もアトランダムに</a></td>
+  </tr>
+  <tr>
+    <td>67</td>
+    <td><a href="status/character0067.html">響詩声</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>69</td>
+    <td><a href="status/character0069.html">ザイフリート・T・マリオン</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>70</td>
+    <td><a href="status/character0070.html">エスタ・リエーテ</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>71</td>
+    <td><a href="status/character0071.html">沙漣・ロトア</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>72</td>
+    <td><a href="status/character0072.html">シンシア・ペイリン</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>74</td>
+    <td><a href="status/character0074.html">シルベルヴィーヌ・フォン・ローゼスシュタインベルク</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>75</td>
+    <td><a href="status/character0075.html">レイラ・ファルツ</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>77</td>
+    <td><a href="status/character0077.html">フェリス・Ｉ・サギミヤ</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>78</td>
+    <td><a href="status/character0078.html">アルムム・デートリー</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>79</td>
+    <td><a href="status/character0079.html">ユアン・リンデロード</a></td>
+    <td><a href="party/party0013.html">P-No.13 れっつごーぱーりー</a></td>
+  </tr>
+  <tr>
+    <td>81</td>
+    <td><a href="status/character0081.html">カイル・ローウェン</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>82</td>
+    <td><a href="status/character0082.html">ジンクルウッド</a></td>
+    <td><a href="party/party0005.html">P-No.5 でこぼこパーティー</a></td>
+  </tr>
+  <tr>
+    <td>83</td>
+    <td><a href="status/character0083.html">ナブラ・ホークランド</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>85</td>
+    <td><a href="status/character0085.html">上総　知哉</a></td>
+    <td><a href="party/party0093.html">P-No.93 第93パーティ</a></td>
+  </tr>
+  <tr>
+    <td>86</td>
+    <td><a href="status/character0086.html">ソレル</a></td>
+    <td><a href="party/party0075.html">P-No.75 やりきれないケチャップ</a></td>
+  </tr>
+  <tr>
+    <td>87</td>
+    <td><a href="status/character0087.html">フロード・イングナル</a></td>
+    <td><a href="party/party0073.html">P-No.73 アッズアンドエンズ</a></td>
+  </tr>
+  <tr>
+    <td>88</td>
+    <td><a href="status/character0088.html">セリィアンナ・レストラ</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>89</td>
+    <td><a href="status/character0089.html">八剣・T・絵名</a></td>
+    <td><a href="party/party0093.html">P-No.93 第93パーティ</a></td>
+  </tr>
+  <tr>
+    <td>90</td>
+    <td><a href="status/character0090.html">カレン・ザ・スマイリーリッパー</a></td>
+    <td><a href="party/party0007.html">P-No.7 教授のエレクトリカルケツゲヒッパレード</a></td>
+  </tr>
+  <tr>
+    <td>92</td>
+    <td><a href="status/character0092.html">ユーリィ・Ｇ・Ｃ・シャルレ</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>93</td>
+    <td><a href="status/character0093.html">瓦　砂塵</a></td>
+    <td><a href="party/party0194.html">P-No.194 FESTINA LENTE</a></td>
+  </tr>
+  <tr>
+    <td>94</td>
+    <td><a href="status/character0094.html">ファーラント・トレネシュタイン</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>95</td>
+    <td><a href="status/character0095.html">ラルア・ツヴァーク</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>96</td>
+    <td><a href="status/character0096.html">ヴィカタ</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>97</td>
+    <td><a href="status/character0097.html">ヴォールク</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+  <tr>
+    <td>99</td>
+    <td><a href="status/character0099.html">トモリ=シクザラヴァ</a></td>
+    <td><a href="party/party0999.html">P-No.999 グランドブレイズ</a></td>
+  </tr>
+</table>
+</section>
+
+	  <!--content end-->
+      </article>
+	  </div>
+  </div>
+  <footer>
+  	<ul>
+  		<li><a href="/about/">このサイトについて</a></li>
+  		<li><a href="/support/">お問い合わせ</a></li>
+  	</ul>
+    <small>
+		&copy;2003-2012 Grand Blaze Game Master All Rights Reserved.
+    </small>
+  </footer>
+  <!-- end .container --></div>
+</body>
+</html>

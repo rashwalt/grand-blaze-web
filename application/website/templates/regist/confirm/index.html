@@ -1,0 +1,56 @@
+{% extends 'base/regist_base.html' %}
+{% load breadcrumbs register_extras %}
+
+{% block title %}登録内容確認 | Grand Blaze{% endblock %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/regist.css?{{publish_date}}" rel="stylesheet" type="text/css">
+<link href="{{ MEDIA_URL }}/css/form.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "各種登録" regist_index %}
+{% breadcrumb "登録内容確認" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>登録内容確認</h1>
+
+<section>
+    <h2>確認上の注意</h2>
+    <p>現在までに登録されているすべての登録内容を照会します。<br />
+        設定の「公式からのお知らせ配信を受け取る」のチェックを外していた場合でもメール送信されます。
+    </p>
+</section>
+
+{% if messages %}
+<section>
+	<p class="ui-state-highlight ui-corner-all ui-inline-icon ui-wiget-p">
+		{% for message in messages %}
+		<span class="ui-icon ui-icon-info"></span>
+		<strong>登録内容確認:</strong>
+		{{message}}
+		{% endfor %}
+	</p>
+</section>
+{% endif %}
+
+<section>
+    <form action="{% url continue_confirm_index %}" method="POST">
+        {% csrf_token %}
+        <div class="form-widget">
+	        <div>
+	            <div class="value value-only">
+	                <input type="submit" value="登録内容を照会する" />
+	            </div>
+	        </div>
+	    </div>
+    </form>
+</section>
+
+{% endblock %}
+

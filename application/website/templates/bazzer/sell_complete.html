@@ -1,0 +1,32 @@
+{% extends 'base/regist_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}バザー出品完了 | Grand Blaze{% endblock %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/regist.css?{{publish_date}}" rel="stylesheet" type="text/css">
+<link href="{{ MEDIA_URL }}/css/form.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "各種登録" regist_index %}
+{% breadcrumb_url "バザー" bazzer_list %}
+{% breadcrumb "バザー出品完了" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>バザー出品完了</h1>
+
+<section>
+	<h2>バザー出品が完了しました</h2>
+	<p>出品内容は以下のリンクから確認できます。<br />
+		<a href="{% url bazzer_detail bazzer_id %}">⇒出品内容の確認</a>
+	</p>
+</section>
+
+{% endblock %}
+

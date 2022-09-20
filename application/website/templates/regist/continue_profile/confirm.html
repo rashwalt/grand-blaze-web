@@ -1,0 +1,228 @@
+{% extends 'base/regist_base.html' %}
+{% load breadcrumbs register_extras %}
+
+{% block title %}個人設定 確認 | Grand Blaze{% endblock %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/regist.css?{{publish_date}}" rel="stylesheet" type="text/css">
+<link href="{{ MEDIA_URL }}/css/form.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "各種登録" regist_index %}
+{% breadcrumb "個人設定 確認" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>個人設定 確認</h1>
+
+<section>
+    <form action="{% url continue_profile_execute %}" method="POST">
+        {% csrf_token %}        
+        <h2>キャラクター設定</h2>
+        <div class="form-widget">
+            <div>
+            	<div class="key">
+	                <label for="id_nick_name">
+	                    愛称
+	                </label>
+            	</div>
+            	<div class="value">
+            		{{data.nick_name}}
+            	</div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_age">
+                        年齢
+                    </label>
+                </div>
+                <div class="value integer">
+                    {{data.age|default:''}}歳
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_height">
+                        身長
+                    </label>
+                </div>
+                <div class="value integer">
+                    {{data.height|default:''}}cm
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_weight">
+                        体重
+                    </label>
+                </div>
+                <div class="value integer">
+                    {{data.weight|default:''}}kg
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_unique_name">
+                        大切なもの
+                    </label>
+                </div>
+                <div class="value">
+                    {{data.unique_name}}
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_profile">
+                        プロフィール
+                    </label>
+                </div>
+                <div class="value full-text">
+                    {{data.profile|linebreaksbr}}
+                </div>
+            </div>
+        </div>
+        
+        <h2>キャラクターの画像</h2>
+        <div class="form-widget">
+        	<div>
+        		<div class="key">
+        			イメージプレビュー
+        		</div>
+        		<div class="value">
+        			{% if data.image_url == 'http://www.grand-blaze.com/defimage.gif' %}
+        				{% if character.race_id == 1 %}
+        					{% if character.sex == 2 %}
+        					<img src="{{MEDIA_URL}}/images/result/op_hf.jpg" style="width:250px; height: 300px;" />
+        					{% else %}
+        					<img src="{{MEDIA_URL}}/images/result/op_hm.jpg" style="width:250px; height: 300px;" />
+        					{% endif %}
+        				{% elif character.race_id == 2 %}
+        					{% if character.sex == 2 %}
+        					<img src="{{MEDIA_URL}}/images/result/op_ef.jpg" style="width:250px; height: 300px;" />
+        					{% else %}
+        					<img src="{{MEDIA_URL}}/images/result/op_em.jpg" style="width:250px; height: 300px;" />
+        					{% endif %}
+        				{% elif character.race_id == 3 %}
+        					{% if character.sex == 2 %}
+        					<img src="{{MEDIA_URL}}/images/result/op_ff.jpg" style="width:250px; height: 300px;" />
+        					{% else %}
+        					<img src="{{MEDIA_URL}}/images/result/op_fm.jpg" style="width:250px; height: 300px;" />
+        					{% endif %}
+        				{% elif character.race_id == 4 %}
+        					{% if character.sex == 2 %}
+        					<img src="{{MEDIA_URL}}/images/result/op_lf.jpg" style="width:250px; height: 300px;" />
+        					{% else %}
+        					<img src="{{MEDIA_URL}}/images/result/op_lm.jpg" style="width:250px; height: 300px;" />
+        					{% endif %}
+        				{% elif character.race_id == 5 %}
+        					{% if character.sex == 2 %}
+        					<img src="{{MEDIA_URL}}/images/result/op_bf.jpg" style="width:250px; height: 300px;" />
+        					{% else %}
+        					<img src="{{MEDIA_URL}}/images/result/op_bm.jpg" style="width:250px; height: 300px;" />
+        					{% endif %}
+        				{% elif character.race_id == 6 %}
+        					{% if character.sex == 2 %}
+        					<img src="{{MEDIA_URL}}/images/result/op_df.jpg" style="width:250px; height: 300px;" />
+        					{% else %}
+        					<img src="{{MEDIA_URL}}/images/result/op_dm.jpg" style="width:250px; height: 300px;" />
+        					{% endif %}
+        				{% endif %}
+        				<br />&copy;Grand Blaze Products.
+        			{% elif data.image_url == 'http://www.grand-blaze.com/default.gif' %}
+        				<img src="{{MEDIA_URL}}/images/result/no_img.gif" style="width:250px; height: 300px;" /><br />
+        				&copy;Grand Blaze Products.
+        			{% elif data.image_url and data.image_copyright %}
+        				<img src="{{data.image_url}}" style="width:{{data.image_width}}px; height: {{data.image_height}}px;" /><br />
+        				&copy;{{data.image_copyright}}
+        			{% endif %}
+        		</div>
+        	</div>
+            <div>
+                <div class="key">
+                    <label for="id_image_url">
+                        イメージURL
+                    </label>
+                </div>
+                <div class="value">
+                    {{ data.image_url }}
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_image_width">
+                        横幅
+                    </label>
+                </div>
+                <div class="value integer">
+                    {{data.image_width|default:''}}px
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_image_height">
+                        縦幅
+                    </label>
+                </div>
+                <div class="value integer">
+                    {{data.image_height|default:''}}px
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_image_copyright">
+                        イメージ権利表記
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="image_copyright">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value">
+                    {{data.image_copyright}}
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_image_link_url">
+                        イメージリンクURL
+                    </label>
+                </div>
+                <div class="value">
+                	{% if data.image_link_url %}
+                    <a href="{{ data.image_link_url }}">{{ data.image_link_url }}</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <h2>アカウント設定</h2>
+        <div class="form-widget">
+            <div>
+                <div class="key">
+                    <label for="id_account_status">
+                        アカウント設定
+                    </label>
+                </div>
+                <div class="value">
+                    {{data.get_account_status_display}}
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-widget">
+	        <div>
+	            <div class="value value-only">
+	            	<a data-role="button" href="{% url continue_profile_index %}">修正する</a>
+	                <input type="submit" value="登録する" />
+	            </div>
+	        </div>
+	    </div>
+    </form>
+</section>
+
+{% endblock %}
+

@@ -1,0 +1,213 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>冒険の結果 | Grand Blaze</title>
+<link href="../static/css/common.css" rel="stylesheet" type="text/css">
+<link href="../static/css/dark-hive/jquery-ui-1.9.0.custom.min.css" rel="stylesheet" type="text/css">
+<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+<script src="../static/js/jquery-ui-1.9.0.custom.min.js"></script>
+<script src="../static/js/jquery.formset.min.js"></script>
+<script src="../static/js/main.min.js"></script>
+<link href="../static/css/result.css" rel="stylesheet" type="text/css">
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+<![endif]-->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30449583-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body class="adventure-result">
+
+<div id="container">
+  <header>
+    <a id="site-logo" href="http://www.grand-blaze.com/"><img src="../static/images/common/site_logo.png" alt="Grand Blaze" /></a>
+    <div id="header-right">
+        <!--{% include 'account/login_parts.html' %}-->
+		<div id="searchcontrol">
+			<form action="/search/" id="cse-search-box">
+			  <div>
+			    <input type="hidden" name="cx" value="018114392011501256481:1jv92qvio2i" />
+			    <input type="hidden" name="cof" value="FORID:11" />
+			    <input type="hidden" name="ie" value="UTF-8" />
+			    <input type="text" name="q" id="q" autocomplete="off" size="31" />
+			    <button type="submit" id="search-submit" name="sa" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" role="button" aria-disabled="false" title="検索"><span class="ui-button-icon-primary ui-icon ui-icon-search"></span><span class="ui-button-text">検索</span></button>
+			  </div>
+			</form>
+			<script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=ja"></script>
+	   </div>
+    </div>
+  </header>
+  <nav>
+      <ul id="global-navi">
+        <li id="page-top"><a href="http://www.grand-blaze.com/">トップ</a></li>
+        <li id="registration"><a href="/continue/">各種登録</a></li>
+        <li id="play-guide"><a href="/playguide/">プレイガイド</a></li>
+        <li id="adventure-result"><a href="/result/">冒険の結果</a></li>
+        <li id="forum"><a href="/forum/">フォーラム</a></li>
+        <li id="world-guide"><a href="/worldguide/">世界背景</a></li>
+      </ul>
+  </nav>
+  <div id="main-view">
+	  <div id="sidebar1">
+	  	<!--sidebar start-->
+	    <nav>
+	    	<h4>
+	    		冒険者一覧
+	    	</h4>
+	    	<dl id="side-menu" class="ui-right-icon">
+		        <dt>
+		        	<a href="list0001.html">
+		        		1 ～ 100<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="list0002.html">
+		        		101 ～ 200<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="list0003.html">
+		        		201 ～ 300<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="list0004.html">
+		        		301 ～ 400<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="list0005.html">
+		        		401 ～ 500<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="list0006.html">
+		        		501 ～ 600<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="list0007.html">
+		        		601 ～ 700<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="list0008.html">
+		        		701 ～ 800<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+			</dl>
+	    	<h4>
+	    		リストメッセージ
+	    	</h4>
+	    	<dl id="side-menu" class="ui-right-icon">
+		        <dt>
+		        	<a href="lcom0001.html">
+		        		1 ～ 100<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="lcom0002.html">
+		        		101 ～ 200<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="lcom0003.html">
+		        		201 ～ 300<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="lcom0004.html">
+		        		301 ～ 400<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="lcom0005.html">
+		        		401 ～ 500<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="lcom0006.html">
+		        		501 ～ 600<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="lcom0007.html">
+		        		601 ～ 700<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="lcom0008.html">
+		        		701 ～ 800<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+			</dl>
+	    	<h4>
+	    		リザルトツール
+	    	</h4>
+	    	<dl id="side-menu" class="ui-right-icon">
+		        <dt>
+		        	<a href="newplayer.html">
+		        		新規登録者一覧<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="/result/search/">
+		        		キャラクター検索<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+			</dl>
+	    	<h4>
+	    		ダウンロード
+	    	</h4>
+	    	<dl id="side-menu" class="ui-right-icon">
+		        <dt>
+		        	<a href="/result/download/">
+		        		ダウンロード<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+			</dl>
+	    </nav>
+	    <!--sidebar end-->
+	  </div>
+	  <div id="view-container">
+        <div id="breadcrumbs">
+            <!--bread start-->
+            <a href="/">トップ</a> &gt; <a href="./">冒険の結果</a> &gt; 新規登録者一覧
+            <!--bread end-->
+        </div>
+        <article id="wcontent">
+      <!--content start-->
+      
+<h1>冒険の結果</h1>
+<section>
+<h2>新規登録者一覧</h2>
+<p>今回の更新で、新規登録者はいませんでした。</p>
+</section>
+
+	  <!--content end-->
+      </article>
+	  </div>
+  </div>
+  <footer>
+  	<ul>
+  		<li><a href="/about/">このサイトについて</a></li>
+  		<li><a href="/support/">お問い合わせ</a></li>
+  	</ul>
+    <small>
+		&copy;2003-2012 Grand Blaze Game Master All Rights Reserved.
+    </small>
+  </footer>
+  <!-- end .container --></div>
+</body>
+</html>

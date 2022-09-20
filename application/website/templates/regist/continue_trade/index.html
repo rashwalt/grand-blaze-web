@@ -1,0 +1,366 @@
+{% extends 'base/regist_base.html' %}
+{% load breadcrumbs register_extras file_extras %}
+
+{% block title %}取引登録 | Grand Blaze{% endblock %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/regist.css?{{publish_date}}" rel="stylesheet" type="text/css">
+<link href="{{ MEDIA_URL }}/css/form.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "各種登録" regist_index %}
+{% breadcrumb "取引登録" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>取引登録</h1>
+
+<section>
+    <h2>登録上の注意</h2>
+    <p>入力内容にHTMLタグは使用できません。<br />
+        登録前にプレイガイドを良くお読みください。<br />
+        半角カナや機種依存文字（例：①など）は使用しないでください。<br />
+        対象エントリーナンバーの間違いには十分ご注意ください。<br />
+        <span class="required-guide">*</span>印は必須項目です。<br />
+        <a href="{% url playguide_textcommand %}">テキストコマンドはこちら</a>ご確認下さい！
+    </p>
+</section>
+
+{% if messages %}
+<section>
+	<p class="ui-state-highlight ui-corner-all ui-inline-icon ui-wiget-p">
+		{% for message in messages %}
+		<span class="ui-icon ui-icon-info"></span>
+		<strong>取引登録:</strong>
+		{{message}}
+		{% endfor %}
+	</p>
+</section>
+{% endif %}
+
+<section>
+    <form action="{% url continue_trade_index %}" method="POST" id="action_index">
+        {% csrf_token %}
+        <h2>アイテムの売却</h2>
+        {{ sell_shop_formset.management_form }}
+        {% for form in sell_shop_formset.forms %}
+        <div class="form-widget">
+        	{{ form.id }}
+            <div>
+            	<div class="key">
+	                <label for="id_sell-{{ forloop.counter0 }}-item_no">
+	                    No{{forloop.counter}}
+	                </label>
+	                <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="sell-{{ forloop.counter0 }}-item_no">
+	                	<span class="ui-icon ui-icon-help"></span>
+	                </a>
+            	</div>
+            	<div class="value integer">
+            		{{ form.item_no }}
+                    <input type="button" class="dialog-open" data-dialog="having_item" data-return_id="id_sell-{{ forloop.counter0 }}-item_no" data-return_value="id_sell-{{ forloop.counter0 }}-item_no-name" data-return_count="id_sell-{{ forloop.counter0 }}-item_no-count" data-return_money="id_sell-{{ forloop.counter0 }}-item_no-money" value="選択" />
+                    <span id="id_sell-{{ forloop.counter0 }}-item_no-name">{% if form.instance.having_item %}{{ form.instance.having_item.item.name }}{% endif %}</span>
+                    を
+                    {{ form.item_count }}
+                    /
+                    <span id="id_sell-{{ forloop.counter0 }}-item_no-count">{% if form.instance.having_item %}{{ form.instance.having_item.it_box_count }}{% endif %}</span>
+                    個売却する。
+                    {{ form.item_no.errors }}
+                    {{ form.item_count.errors }}
+                    <input type="hidden" name="add_money" value="0" id="id_sell-{{ forloop.counter0 }}-item_no-money" /> 
+            	</div>
+            	<div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-sell-{{ forloop.counter0 }}-item_no">
+            		<span class="ui-icon ui-icon-info"></span><strong>アイテムの売却</strong>
+            		所持しているカバンに入っているアイテムのうち、売却したいアイテムを最大5個、選択してください。<br />
+                    指定したアイテムにアイテムを持っていない場合、設定は無視されます。<br />
+                    指定した個数以下しかアイテムを持っていない場合、すべて売却する設定になります。<br />
+                    カバンに入っていないアイテムは直接売却できません。
+            	</div>
+            </div>
+        </div>
+        {% endfor %}
+        
+        <h2>アイテムのトレード</h2>
+        {{ tradeitem_formset.management_form }}
+        {% for form in tradeitem_formset.forms %}
+        <div class="form-widget">
+            {{ form.id }}
+            <div>
+                <div class="key">
+                    <label for="id_item-{{ forloop.counter0 }}-trade_entry">
+                        No{{forloop.counter}}
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="item-{{ forloop.counter0 }}-trade_entry">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value integer">
+                	E-No.
+                    {{ form.trade_entry }}
+                    に
+                    {{ form.trade_item_no }}
+                    <input type="button" class="dialog-open" data-dialog="having_item" data-return_id="id_item-{{ forloop.counter0 }}-trade_item_no" data-return_value="id_item-{{ forloop.counter0 }}-trade_item_no-name" data-return_count="id_item-{{ forloop.counter0 }}-trade_item_no-count" value="選択" />
+                    <span id="id_item-{{ forloop.counter0 }}-trade_item_no-name">{% if form.instance.having_item %}{{ form.instance.having_item.item.name }}{% endif %}</span>
+                    を
+                    {{ form.trade_number }}
+                    /
+                    <span id="id_item-{{ forloop.counter0 }}-trade_item_no-count">{% if form.instance.having_item %}{{ form.instance.having_item.it_box_count }}{% endif %}</span>
+                    個送る。
+                    {{ form.trade_entry.errors }}
+                    {{ form.trade_item_no.errors }}
+                    {{ form.trade_number.errors }}
+                    <div class="ui-state-highlight ui-corner-all sub-content string">
+                    	<strong>オプション:メッセージ</strong>
+                    	{{ form.trade_message }}
+                        {{ form.trade_message.errors }}
+                    </div>
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-item-{{ forloop.counter0 }}-trade_entry">
+                    <span class="ui-icon ui-icon-info"></span><strong>アイテムのトレード</strong>
+                    所持しているアイテムのうち、最大5人までトレードすることができます。<br />
+           			「E-No.」には、トレードする相手のエントリーナンバーを入力してください。<br />
+		   			指定したアイテムにアイテムを持っていない場合、設定は無視されます。<br />
+		   			指定した個数以下しかアイテムを持っていない場合、すべてトレードする設定になります。
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        
+        <h2>お金のトレード</h2>
+        {{ trademoney_formset.management_form }}
+        {% for form in trademoney_formset.forms %}
+        <div class="form-widget">
+            {{ form.id }}
+            <div>
+                <div class="key">
+                    <label for="id_money-{{ forloop.counter0 }}-trade_entry">
+                        No{{forloop.counter}}
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="money-{{ forloop.counter0 }}-trade_entry">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value integer">
+                	E-No.
+                    {{ form.trade_entry }}
+                    に
+                    {{ form.trade_number }}
+                    ギムル送る。
+                    {{ form.trade_entry.errors }}
+                    {{ form.trade_number.errors }}
+                    <div class="ui-state-highlight ui-corner-all sub-content string">
+                    	<strong>オプション:メッセージ</strong>
+                    	{{ form.trade_message }}
+                        {{ form.trade_message.errors }}
+                    </div>
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-money-{{ forloop.counter0 }}-trade_entry">
+                    <span class="ui-icon ui-icon-info"></span><strong>お金のトレード</strong>
+                    所持しているギムルのうち、最大5人までトレードすることができます。<br />
+		           	「E-No.」には、トレードする相手のエントリーナンバーを入力してください。<br />
+				   	指定した金額以下しかギムルを持っていない場合、すべてトレードする設定になります。
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        
+        <h2>アイテムの購入</h2>
+        <div class="form-widget">
+            <div>
+                <div class="key">
+                    所持金
+                </div>
+                <div class="value integer">
+                    <span id="id_havemoney">{{chara.have_money|intcomma}}</span> ギムル
+                    <input type="hidden" name="hide_money" id="hide_havemoney" value="{{chara.have_money}}" />
+                </div>
+            </div>
+        </div>
+        {{ buy_shop_formset.management_form }}
+        {% for form in buy_shop_formset.forms %}
+        <div class="form-widget">
+        	{{ form.id }}
+            <div>
+            	<div class="key">
+	                <label for="id_buy-{{ forloop.counter0 }}-item_no">
+	                    No{{forloop.counter}}
+	                </label>
+	                <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="buy-{{ forloop.counter0 }}-item_no">
+	                	<span class="ui-icon ui-icon-help"></span>
+	                </a>
+            	</div>
+            	<div class="value integer">
+            		{{ form.item_no }}
+                    <input type="button" class="dialog-open" data-dialog="shop_item" data-return_id="id_buy-{{ forloop.counter0 }}-item_no" data-return_value="id_buy-{{ forloop.counter0 }}-item_no-name" data-return_money="id_buy-{{ forloop.counter0 }}-item_no-money" value="選択" />
+                    <span id="id_buy-{{ forloop.counter0 }}-item_no-name">{% if form.instance.item %}{{ form.instance.item.name }}{% endif %}</span>
+                    を
+                    {{ form.item_count }}
+                    個購入する。
+                    {{ form.item_no.errors }}
+                    {{ form.item_count.errors }}
+                    <input type="hidden" name="minus_money" value="0" id="id_buy-{{ forloop.counter0 }}-item_no-money" /> 
+            	</div>
+            	<div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-buy-{{ forloop.counter0 }}-item_no">
+            		<span class="ui-icon ui-icon-info"></span><strong>アイテムの売却</strong>
+            		購入総額が所持金よりも多い場合、購入できません。
+            	</div>
+            </div>
+        </div>
+        {% endfor %}
+        
+        <div class="form-widget">
+	        <div>
+	            <div class="value value-only">
+	                <input type="submit" value="登録する" />
+	            </div>
+	        </div>
+	    </div>
+    </form>
+</section>
+
+<section class="dialog-base" id="dialog-having_item" title="所持しているアイテム" style="display: none;">
+	<form>
+		<input type="hidden" name="ret_id" class="ret_id" value="" />
+		<input type="hidden" name="ret_value" class="ret_value" value="" />
+        <input type="hidden" name="ret_count" class="ret_count" value="" />
+        <input type="hidden" name="ret_money" class="ret_money" value="" />
+	</form>
+    <div id="pagination">
+        
+    </div>
+    <table class="regist-list">
+            <tr>
+                <th>所持No.</th>
+                <th>アイテム名</th>
+                <th>価値</th>
+                <th>所持数</th>
+            </tr>
+        {% for item_data in having_item_list %}      
+        <tr>
+            <td rowspan="2">{{ item_data.have_no }}</td>
+            <td>
+                <a href="javascript:void(0);" class="apply-link" data-dialog="having_item" data-id_value="{{ item_data.have_no }}" data-name_value="{{ item_data.item.name }}" data-count_value="{{ item_data.it_box_count }}">{{ item_data.item.name }}</a>
+            </td>
+            <td>{{ item_data.item.it_seller|sub_money }}</td>
+            <td>{{ item_data.it_box_count }}</td>
+        </tr>
+        <tr>
+            <td colspan="3">{{ item_data.item.it_comment|safe }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</section>
+
+<section class="dialog-base" id="dialog-shop_item" title="販売されているアイテム" style="display: none;">
+	<form>
+		<input type="hidden" name="ret_id" class="ret_id" value="" />
+		<input type="hidden" name="ret_value" class="ret_value" value="" />
+        <input type="hidden" name="ret_money" class="ret_money" value="" />
+		<input type="hidden" name="shopcategory" id="id_shopcategory" value="2" />
+	</form>
+  <div class="ui-tabs" id="shopitemdata">
+  <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix">
+  <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="javascript:void(0);" data-viewer="type1">片手武器</a></li>
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="type2">両手武器</a></li>
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="type3">遠隔武器</a></li>
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="type4">防具</a></li>
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="type5">素材</a></li>
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="type6">道具</a></li>
+  </ul>
+  <div id="view-type1">
+  <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix">
+  <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="javascript:void(0);" data-viewer="2">短剣</a></li>
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="3">片手剣</a></li>
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="4">片手斧</a></li>
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="5">片手刀</a></li>
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="6">片手鞭</a></li>
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="7">書物</a></li>
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="8">魔導器</a></li>
+  </ul>
+  </div>
+  <div id="view-type2" style="display: none;">
+  <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix">
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="1">格闘</a></li>
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="9">両手剣</a></li>
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="10">両手刀</a></li>
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="11">両手杖</a></li>
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="12">両手槍</a></li>
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="13">両手棒</a></li>
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="14">楽器</a></li>
+  </ul>
+  </div>
+  <div id="view-type3" style="display: none;">
+  <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix">
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="15">投擲</a></li>
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="16">弓</a></li>
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="17">弩</a></li>
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="18">銃</a></li>
+  </ul>
+  </div>
+  <div id="view-type4" style="display: none;">
+  <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix">
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="33">盾</a></li>
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="35">兜</a></li>
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="36">帽子</a></li>
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="37">魔帽</a></li>
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="38">鎧</a></li>
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="39">服</a></li>
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="40">魔服</a></li>
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="41">アクセサリ</a></li>
+  </ul>
+  </div>
+  <div id="view-type5" style="display: none;">
+  <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix">
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="53">聖水</a></li>
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="54">調剤</a></li>
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="55">薬剤</a></li>
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="56">爆薬</a></li>
+  {#<li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="57">魔塊</a></li>#}
+  {#<li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="58">罠材</a></li>#}
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="64">特殊弾</a></li>
+  {#<li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="65">忍具</a></li>#}
+  {#<li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="66">餌</a></li>#}
+  </ul>
+  </div>
+  <div id="view-type6" style="display: none;">
+  <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix">
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="49">食品</a></li>
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="63">道具</a></li>
+  </ul>
+  </div>
+    <table class="regist-list">
+            <tr>
+                <th>No.</th>
+                <th>アイテム名</th>
+                <th>価格</th>
+            </tr>
+        <tbody id="shopbody">
+        {% for item_data in item_list %}
+        <tr>
+            <td rowspan="2">{{ item_data.id }}</td>
+            <td>
+                <a href="javascript:void(0);" class="apply-link" data-dialog="shop_item" data-id_value="{{ item_data.id }}" data-name_value="{{ item_data.name }}">{{ item_data.name }}</a>
+            </td>
+            <td>{{ item_data.it_price|sub_money }}</td>
+        </tr>
+        <tr>
+            <td colspan="2">{{ item_data.it_comment|safe }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block foot2 %}
+
+<script type="text/javascript">
+    grb.calcMoney();
+</script>
+{% endblock %}

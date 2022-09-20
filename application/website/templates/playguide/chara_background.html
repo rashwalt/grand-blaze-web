@@ -1,0 +1,155 @@
+{% extends 'base/playguide_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}キャラクターの設定 | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "プレイガイド" playguide_index %}
+{% breadcrumb "キャラクターの設定" %}
+
+{% endblock %}
+
+{% block maincontents %}
+<h1>キャラクターの設定</h1>
+
+<section>
+    <h2>概要</h2>
+    <p>新規登録時に設定するキャラクター設定の中で、愛称、年齢、身長、体重、プロフィール、称号、大切なもの、キャラクター画像、画像からのリンク先は後から自由に変更することができます。<br />
+    これらは戦闘能力には影響しません。</p>
+    <p class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 登録はどこで行う？</strong><br />
+        キャラクターの設定は、<strong>個人設定</strong>で行います。
+    </p>
+</section>
+
+<section>
+    <h2>愛称を変更する</h2>
+    <p>キャラクターの愛称を変更すると、バトル時などに表示される愛称を変更することができます。</p>
+    <div class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 愛称を変更する場合の例</strong><br />
+        愛称を「アラン」に変更したい場合、次のように記入します。<br />
+        <form>
+            <input name="nick_name" type="text" class="name_box" id="nick_name" value="アラン" size="35" maxlength="60" />
+        </form>
+    </div>
+</section>
+
+<section>
+    <h2>年齢を変更する</h2>
+    <p>キャラクターの年齢を変更できます。</p>
+    <div class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 年齢を変更する場合の例</strong><br />
+        年齢を「26」歳に変更したい場合、次のように記入します。<br />
+        <form>
+            <input type="text" maxlength="3" class="no_box" name="age" value="26">歳
+        </form>
+    </div>
+</section>
+
+<section>
+    <h2>身長を変更する</h2>
+    <p>キャラクターの身長を変更できます。</p>
+    <div class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 身長を変更する場合の例</strong><br />
+        身長を「186」cmに変更したい場合、次のように記入します。<br />
+        <form>
+            <input type="text" maxlength="3" class="no_box" name="height" value="186">cm
+        </form>
+    </div>
+</section>
+
+<section>
+    <h2>体重を変更する</h2>
+    <p>キャラクターの体重を変更できます。</p>
+    <div class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 体重を変更する場合の例</strong><br />
+        体重を「80」kgに変更したい場合、次のように記入します。<br />
+        <form>
+             <input type="text" maxlength="3" class="no_box" name="weight" value="80">kg
+        </form>
+    </div>
+</section>
+
+<section>
+    <h2>プロフィールを設定する</h2>
+    <p>キャラクターのプロフィールを設定すると、プライベート結果に、そのキャラクターのプロフィールを掲載することができます。</p>
+    <div class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! プロフィールを変更する場合の例</strong><br />
+        プロフィールを設定したい場合、次のように記入します。<br />
+	    <form>
+            <textarea name="profile" cols="40" rows="10" class="standard_box" id="profile">田舎から飛び出してきた。
+街での冒険者家業に憧れる青年。</textarea>
+        </form>
+    </div>
+</section>
+
+<section>
+    <h2>大切なものを変更する</h2>
+    <p>キャラクターの大切なものを変更できます。</p>
+    <div class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 大切なものを変更する場合の例</strong><br />
+        大切なものを「勇気」に変更したい場合、次のように記入します。<br />
+        <form>
+            <input type="text" maxlength="3" class="name_box" name="unique" value="勇気">
+        </form>
+    </div>
+</section>
+
+<section id="image">
+    <h2>画像イメージを変更する</h2>
+    <form>
+        <p>キャラクターの画像イメージなどを変更することができます。画像イメージを変更する場合、画像がおかれている場所（URL、アドレス）、画像のサイズ（縦と横）、画像の著作権者名を記入する必要があります。どれか一つでも未記入の状態だと設定されませんのでご注意ください。<br />
+        ※画像イメージのファイル形式は、gif、png、jpg(jpeg)を推奨します。<br />
+		※特に画像イメージを指定しなかった場合、デフォルトで決定されるイラストが表示されます。<br />
+		※デフォルトイラストを表示したくない場合は、
+		<input type="button" name="noimg" value="非表示化" />
+		をクリックすると画像URLなどが非表示設定になります。</p>
+    </form>
+    <p class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 画像のサイズについて</strong><br />
+        画像イメージのサイズは、横：250px以下、縦：300px以下となっています。
+    </p>
+    <div class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 画像イメージを変更する場合の例</strong><br />
+        画像イメージを変更したい場合、次のように記入します。<br />
+        <form>
+            画像URL<br />
+	        <input name="graph_url" type="text" class="standard_box validate-url" id="graph_url" value="http://www.grand-blaze.com/image/chara_image.jpg" size="50" maxlength="255" />
+	        <br />
+	        画像 横サイズ<br />
+	        <input name="graph_width" type="text" class="no_box validate-digits" id="graph_width" value="250" size="5" maxlength="3" />
+	        px<br />
+	        画像 縦サイズ<br />
+	        <input name="graph_height" type="text" class="no_box validate-digits" id="graph_height" value="300" size="5" maxlength="3" />
+	        px<br />
+	        画像著作権者<br />
+	        <input name="graph_copy" type="text" class="name_box" id="graph_copy" value="GameMasters" size="50" maxlength="60" />
+        </form>
+    </div>
+</section>
+
+<section id="imglink">
+    <h2>画像からのリンク先を変更する</h2>
+    <p>キャラクターの画像イメージなどからリンクされるリンク先を変更することができます。リンク先は、画像イメージを設定していなくても設定することができます。</p>
+    <div class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 画像からのリンク先を変更する場合の例</strong><br />
+        画像からのリンク先を変更したい場合、次のように記入します。<br />
+        <form>
+            <input name="graph_link" type="text" class="standard_box validate-url" id="graph_link" value="http://www.grand-blaze.com/" size="50" maxlength="255" />
+        </form>
+    </div>
+</section>
+
+{% endblock %}

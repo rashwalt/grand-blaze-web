@@ -1,0 +1,24 @@
+{% extends 'base/playguide_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}プレイガイド | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb "プレイガイド" %}
+
+{% endblock %}
+
+{% block maincontents %}
+<h1>プレイガイド</h1>
+
+<section>
+    <p>このページでは、Grand Blazeをプレイする上で必要になる様々なシステム、遊び方についての様々な情報を集めています。<br />
+    記載されている内容は、繰り返し行われるバージョンアップによって変更、追加などが行われていきます。<br />
+    変更内容は「<a href="{% url playguide_update %}">改訂履歴</a>」に記載されていますので、そちらをご確認ください。<br />
+    内容についてのミスなどがありましたら、お気軽にご連絡下さい。</p>
+    <p>何はともあれ、新規に開始するために必要なことを確認したい場合は、「<a href="{% url playguide_start_chart %}">新規登録の流れ</a>」をごらんください。</p>
+</section>
+
+{% endblock %}

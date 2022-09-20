@@ -1,0 +1,98 @@
+{% extends 'base/root_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}お問い合わせ | Grand Blaze{% endblock %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/root.css?{{publish_date}}" rel="stylesheet" type="text/css">
+<link href="{{ MEDIA_URL }}/css/form.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb "お問い合わせ" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>お問い合わせ</h1>
+
+<section>
+	<h2>お問い合わせの前に</h2>
+	<p>「<a href="{% url root_faq %}">FAQ</a>」に同様の質問がないか、よくご確認下さい。</p>
+	<p>通常の質問は、なるべくフォーラム内の<a href="{% url forum_list 3 %}">質問</a>をご利用ください。何らかの理由により、掲示板が相応しくない場合は、こちらのメールフォームからご連絡ください。</p>
+	<p>シナリオやシステムなどの要望も、こちらから投稿することが可能です。投稿前には、<a href="{% url root_idea %}">投稿の注意事項</a>を確認の上、送信してください。</p>
+	<p>頂いたお問い合わせは全プレイヤーに共通する項目であると判断できる限り、引用されることがあります（質問者の情報は一切公開しません）。</p>
+</section>
+
+
+<section>
+	<form action="{% url root_support_index %}" method="POST">
+		{% csrf_token %}
+	<p><span class="required-guide">*</span>印は必須項目です。</p>
+	<div class="form-widget">
+        <div>
+            <div class="key">
+                <label for="id_name">
+                    名前<span class="required-guide">*</span>
+                </label>
+            </div>
+            <div class="value">
+                {{ form.name }}
+                {{ form.name.errors }}
+            </div>
+        </div>
+        <div>
+            <div class="key">
+                <label for="id_entry_no">
+                    エントリーナンバー
+                </label>
+            </div>
+            <div class="value">
+                {{ form.entry_no }}
+                {{ form.entry_no.errors }}
+            </div>
+        </div>
+        <div>
+            <div class="key">
+                <label for="id_from_mail">
+                    メールアドレス<span class="required-guide">*</span>
+                </label>
+            </div>
+            <div class="value">
+                {{ form.from_mail }}
+                {{ form.from_mail.errors }}
+            </div>
+        </div>
+        <div>
+            <div class="key">
+                <label for="id_subject">
+                    お問い合わせ内容<span class="required-guide">*</span>
+                </label>
+            </div>
+            <div class="value">
+                {{ form.subject }}
+                {{ form.subject.errors }}
+            </div>
+        </div>
+        <div>
+            <div class="value full-text">
+                <label for="id_body">
+                    本文<span class="required-guide">*</span>
+                </label>
+                {{ form.body }}
+                {{ form.body.errors }}
+            </div>
+        </div>
+        <div>
+            <div class="value value-only">
+                <input type="submit" value="メール送信" />
+            </div>
+        </div>
+	</div>
+	</form>
+</section>
+
+{% endblock %}

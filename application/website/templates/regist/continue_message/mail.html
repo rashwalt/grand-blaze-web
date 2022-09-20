@@ -1,0 +1,13 @@
+
+
+■メッセージ登録
+
+◇メッセージ登録{% for data in datas %}
+	・No.{{data.mes_no}}
+	　メッセージ対象：
+		{{data.get_message_target_display}}{% if data.message_entry %}
+	　送信相手：
+		{{data.message_entry|default:''}} {{data.message_entry_ch.nick_name}}{% endif %}
+	　メッセージ内容：
+		{{data.message_body}}
+{% endfor %}

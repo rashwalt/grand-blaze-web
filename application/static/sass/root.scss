@@ -1,0 +1,88 @@
+@charset "utf-8";
+
+dl.result-date {
+	margin: 0;
+	padding: 0;
+	
+	>dt {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    color: #ffffcc;
+    font-weight: bold;
+  }
+  >dd {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    color: #ffffff;
+  }
+}
+
+ul.notice-list {
+  list-style-type: square;
+  
+  >li {
+    padding-left: 0;
+    
+    >a {
+      margin-left: 0.5em;
+    }
+  }
+}
+
+div.more {
+  text-align: right;
+  font-size: 80%;
+  margin-right: 15px;
+}
+
+p.flowchart {
+  overflow: hidden;
+  
+  >img {
+    float: right;
+    display: block;
+  }
+}
+
+div.postdate {
+  margin-left: 15px;
+  margin-right: 15px;
+  text-align: right;
+  
+  span {
+    font-weight: bold;
+  }
+}
+
+.faq-list {
+  h3.q, h3.a {
+    border-left: 10px solid #ffffff;
+    border-bottom: 1px dotted #ffffff;
+    padding-left: 5px;
+  }
+  h3.q {
+    color: #03f;
+  }
+  h3.a {
+    color: #f30;
+  }
+}
+
+table.message-list {
+  width: 95%;
+  margin-left: 15px;
+  margin-right: 15px;
+  
+  tr:nth-child(2n) {
+    background-color: #202020;
+  }
+  tr:nth-child(2n+1) {
+    background-color: #161616;
+  }
+  th {
+    background-color: #c0c0c0;
+    color: #000000;
+  }
+}

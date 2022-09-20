@@ -1,0 +1,19 @@
+-->
+<ul id="login-menu">
+{% if request.user.is_authenticated %}
+	{% if user_name %}
+    <li class="welcometo">ようこそ、{{user_name}}さん</li>
+    {% endif %}
+	{% if read_complete_count > 0 %}
+    <li class="ui-inline-icon"><a href="{% url account_message_list %}"><span class="ui-icon ui-icon-mail-closed"></span>{{read_complete_count}}&nbsp;件の未読メッセージがあります！</a></li>
+    {% else %}
+    <li><a href="{% url account_message_list %}">メッセージの確認</a></li>
+    {% endif %}
+    <li><a href="{% url my_result %}">最新の結果</a></li>
+    <li><a href="{% url account_setting %}">設定</a></li>
+    <li><a href="{% url account_logout %}">ログアウト</a></li>
+{% else %}
+    <li><a href="{% url account_login %}">ログイン</a></li>
+{% endif %}
+</ul>
+<!--

@@ -1,0 +1,16 @@
+{% extends 'base/one_base.html' %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/worldguide.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{%block page_type%}world-guide{%endblock%}
+
+{% block sidemenu %}
+
+{# --------- メニュー --------- #}
+
+{% include 'sidemenu/worldguide_side.html' %}
+
+
+{% endblock %}

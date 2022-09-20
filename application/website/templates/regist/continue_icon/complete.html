@@ -1,0 +1,30 @@
+{% extends 'base/regist_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}アイコン設定完了 | Grand Blaze{% endblock %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/regist.css?{{publish_date}}" rel="stylesheet" type="text/css">
+<link href="{{ MEDIA_URL }}/css/form.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb "アイコン設定完了" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>アイコン設定完了</h1>
+
+<section>
+	<h2>アイコン設定が完了しました</h2>
+	<p>登録されたアカウントのメールアドレス宛てに後ほど各種登録完了のお知らせが送付されますので、登録内容をご確認下さい。<br />
+     	ご登録のメールアドレスによっては、「迷惑メール」扱いになっている可能性があります。<br />
+     	メールが届かない場合には、「迷惑メール」に入っていないかもご確認下さい！</p>
+</section>
+
+{% endblock %}
+

@@ -1,0 +1,251 @@
+{% extends 'base/regist_base.html' %}
+{% load breadcrumbs register_extras %}
+
+{% block title %}戦術登録 | Grand Blaze{% endblock %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/regist.css?{{publish_date}}" rel="stylesheet" type="text/css">
+<link href="{{ MEDIA_URL }}/css/form.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{% block foot2 %}
+<script type="text/javascript">
+    function loadSaving(){
+        $('#mode_hidden').val('load');
+        $('#action_index')[0].submit();
+    }
+    function writeSaving(){
+        $('#mode_hidden').val('write');
+        $('#action_index')[0].submit();
+    }
+    function deleteSaving(){
+        $('#mode_hidden').val('delete');
+        $('#action_index')[0].submit();
+    }
+</script>
+{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "各種登録" regist_index %}
+{% breadcrumb "戦術登録" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>戦術登録</h1>
+
+<section>
+    <h2>登録上の注意</h2>
+    <p>入力内容にHTMLタグは使用できません。<br />
+        登録前にプレイガイドを良くお読みください。<br />
+        半角カナや機種依存文字（例：①など）は使用しないでください。<br />
+        対象エントリーナンバーの間違いには十分ご注意ください。<br />
+        <strong>要素を掴むと順番を並び替えることが出来ます</strong>。<br />
+        現在の行動設定内容を保存することができます。<br />
+        保存している行動内容をロードした後、名前を変更して保存すると別名保存となります。同名で保存すると上書き保存です。<br />
+        ターゲットNoを直接入力した場合、ターゲット名称は即反映されません。<br />
+        登録できる戦術は最大10個です。<br />
+        <span class="required-guide">*</span>印は必須項目です。
+    </p>
+</section>
+
+{% if messages %}
+<section>
+	<p class="ui-state-highlight ui-corner-all ui-inline-icon ui-wiget-p">
+		{% for message in messages %}
+		<span class="ui-icon ui-icon-info"></span>
+		<strong>戦術登録:</strong>
+		{{message}}
+		{% endfor %}
+	</p>
+</section>
+{% endif %}
+
+<section>
+    <form action="{% url continue_battleaction_index %}" method="POST" id="action_index">
+        {% csrf_token %}
+        <h2>戦術読込・保存</h2>
+        <input type="hidden" name="mode" value="none" id="mode_hidden" />
+        <div class="form-widget">
+            <div>
+                <div class="key">
+                    <label for="id_saving_id">
+                        読込・保存先
+                    </label>
+                </div>
+                <div class="value">
+                    {{ saving_form.saving_id }}
+                    {{ saving_form.saving_id.errors }}
+                </div>
+            </div>
+            <div>
+                <div class="value value-only">
+                    <input type="button" value="読み込み" onclick="loadSaving()" />
+                    <input type="button" value="削除する" onclick="deleteSaving()" />
+                </div>
+            </div>
+        </div>
+    
+        <div class="form-widget">
+            <div>
+                <div class="key">
+                    <label for="id_saving_id">
+                        戦術名
+                    </label>
+                </div>
+                <div class="value">
+                    {{ saving_form.title }}
+                    {{ saving_form.title.errors }}
+                </div>
+            </div>
+            <div>
+                <div class="value value-only">
+                    <input type="button" value="保存する" onclick="writeSaving()" />
+                </div>
+            </div>
+        </div>
+       
+        <h2>戦術設定</h2>
+        {{ formset.management_form }}
+        <div id="battlelist">
+    	<div id="btactlist">
+        {% for form in formset.forms %}
+        <div class="form-widget">
+        	{{ form.id }}
+        	{{ form.DELETE }}
+        	<h3>
+        		優先度:<span class="action_no">{{ forloop.counter }}</span>
+        	</h3>
+            <div>
+            	<div class="key">
+	                <label for="id_form-{{ forloop.counter0 }}-action_target">
+	                    ターゲット<span class="required-guide">*</span>
+	                </label>
+	                <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="form-{{ forloop.counter0 }}-action_target">
+	                	<span class="ui-icon ui-icon-help"></span>
+	                </a>
+            	</div>
+            	<div class="value integer">
+            		{{ form.action_target }}
+                    <input type="button" class="dialog-open" data-dialog="action_target" data-return_id="id_form-{{ forloop.counter0 }}-action_target" data-return_value="id_form-{{ forloop.counter0 }}-action_target-name" value="選択" />
+                    <span id="id_form-{{ forloop.counter0 }}-action_target-name">{% if character_actions %}{{ character_actions|get_target_name:forloop.counter0 }}{% endif %}{% if form.instance.target %}{{ form.instance.target.name }}{% endif %}</span>
+                    {{ form.action_target.errors }}
+            	</div>
+            	<div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-form-{{ forloop.counter0 }}-action_target">
+            		<span class="ui-icon ui-icon-info"></span><strong>ターゲット</strong>
+            		バトルにおいて、実行するアクションのターゲット（対象）を選択します。<br />
+            		攻撃的な選択肢でも味方に実行可能であるため、アクションの内容には注意してください。
+            	</div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_form-{{ forloop.counter0 }}-action">
+                        アクション<span class="required-guide">*</span>
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="form-{{ forloop.counter0 }}-action">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value">
+                    {{ form.action }}
+                    {{ form.action.errors }}
+                    <div class="ui-state-highlight ui-corner-all sub-content">
+                    	<strong>オプション:使用スキル</strong>
+                    	{{ form.perks_id }}
+	                    <input type="button" class="dialog-open" data-dialog="perks_id" data-return_id="id_form-{{ forloop.counter0 }}-perks_id" data-return_value="id_form-{{ forloop.counter0 }}-perks_id-name" value="選択" />
+	                    <span id="id_form-{{ forloop.counter0 }}-perks_id-name">{% if character_actions %}{{ character_actions|get_arts_name:forloop.counter0 }}{% endif %}{% if form.instance.skill %}{{ form.instance.skill.name }}{% endif %}</span>
+	                    を発動
+                        {{ form.perks_id.errors }}
+                    </div>
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-form-{{ forloop.counter0 }}-action">
+                    <span class="ui-icon ui-icon-info"></span><strong>アクション</strong>
+            		バトルにおいて、実行するアクション（内容）を選択します。<br />
+            		通常攻撃の他、スキルを使用することも出来ます。
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        </div>
+        </div>
+        
+        <div class="form-widget">
+	        <div>
+	            <div class="value value-only">
+	                <input type="submit" value="登録する" />
+	            </div>
+	        </div>
+	    </div>
+    </form>
+</section>
+
+<section class="dialog-base" id="dialog-action_target" title="アクションのターゲット" style="display: none;">
+	<form>
+		<input type="hidden" name="ret_id" class="ret_id" value="" />
+		<input type="hidden" name="ret_value" class="ret_value" value="" />
+	</form>
+  <div class="ui-tabs" id="targetdata">
+  <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix">
+  <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="javascript:void(0);" data-viewer="tgt0">敵対象</a></li>
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="tgt1">味方対象</a></li>
+  <li class="ui-state-default ui-corner-top"><a href="javascript:void(0);" data-viewer="tgt2">自分対象</a></li>
+  </ul>
+    <table class="regist-list">
+    	<thead>
+            <tr>
+                <th>ID</th>
+                <th>ターゲット</th>
+                <th>解説</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for target_data in target_list %}
+        <tr class="tgt{{target_data.target_type}}" {% if target_data.target_type != 0 %}style="display:none;"{% endif %}>
+            <td>{{ target_data.id }}</td>
+            <td>
+                {% partymember target_data.name request target_data.target_no as target_name %}
+                <a href="javascript:void(0);" class="apply-link" data-dialog="action_target" data-id_value="{{ target_data.id }}" data-name_value="{{ target_name }}">{{ target_name }}</a>
+            </td>
+            <td>{{ target_data.comment|safe }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</section>
+
+<section class="dialog-base" id="dialog-perks_id" title="使用するスキル" style="display: none;">
+	<form>
+		<input type="hidden" name="ret_id" class="ret_id" value="" />
+		<input type="hidden" name="ret_value" class="ret_value" value="" />
+	</form>
+    <table class="regist-list">
+            <tr>
+                <th>ID</th>
+                <th>スキル名</th>
+                <th>MP</th>
+                <th>TP</th>
+                <th>種別</th>
+            </tr>
+        {% for skill_data in skill_list %}
+        <tr>
+            <td rowspan="2">{{ skill_data.id }}</td>
+            <td>
+                <a href="javascript:void(0);" class="apply-link" data-dialog="perks_id" data-id_value="{{ skill_data.id }}" data-name_value="{{ skill_data.name }}">{{ skill_data.name }}</a>
+            </td>
+            <td>{{ skill_data.sk_mp }}</td>
+            <td>{{ skill_data.sk_tp }}</td>
+            <td>{{ skill_data.get_sk_type_display }}</td>
+        </tr>
+        <tr>
+            <td colspan="4">{{ skill_data.sk_comment|safe }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</section>
+
+{% endblock %}
+

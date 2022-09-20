@@ -1,0 +1,38 @@
+{% extends 'base/root_base.html' %}
+{% load breadcrumbs pager %}
+
+{% block title %}インフォメーション | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb "インフォメーション" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>インフォメーション</h1>
+
+{% for information in information_list %}
+<section>
+	<h2>{{information.category_name}}</h2>
+	{% if information.data %}
+	<ul class="notice-list">
+		{% for category in information.data %}
+		<li>
+			{{category.view_date|date:"Y/m/d"}}
+			<a href="{% url root_notice_detail category.id %}">{{category.title}}</a>
+		</li>
+		{% endfor %}
+	</ul>
+	<div class="more">
+		<a href="{% url root_category information.category %}">{{information.category_name}}のすべてを表示&nbsp;&gt;&gt;</a>
+	</div>
+	{% else %}
+	<p>最新のお知らせはありません。</p>
+	{% endif %}
+</section>
+{% endfor %}
+
+{% endblock %}

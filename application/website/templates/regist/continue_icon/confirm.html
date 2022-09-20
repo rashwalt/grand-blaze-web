@@ -1,0 +1,98 @@
+{% extends 'base/regist_base.html' %}
+{% load breadcrumbs register_extras %}
+
+{% block title %}アイコン設定 確認 | Grand Blaze{% endblock %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/regist.css?{{publish_date}}" rel="stylesheet" type="text/css">
+<link href="{{ MEDIA_URL }}/css/form.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "各種登録" regist_index %}
+{% breadcrumb "アイコン設定 確認" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>アイコン設定 確認</h1>
+
+<section>
+    <form action="{% url continue_icon_execute %}" method="POST" id="action_index">
+        {% csrf_token %}
+        <h2>アイコン設定</h2>
+        {% for data in datas %}
+        <div class="form-widget">
+        	<h3>
+        		No.{{ forloop.counter }}
+        	</h3>
+            <div>
+            	<div class="key">
+	                アイコンプレビュー
+            	</div>
+            	<div class="value">
+            		<table>
+            			<tr>
+            				<th>
+            					small
+            				</th>
+            				<th>
+            					middle
+            				</th>
+            				<th>
+            					large
+            				</th>
+            			</tr>
+            			<tr>
+            				<td>
+            					<img src="{{data.icon_url}}" style="width:32px; height:32px;" />
+            				</td>
+            				<td>
+            					<img src="{{data.icon_url}}" style="width:48px; height:48px;" />
+            				</td>
+            				<td>
+            					<img src="{{data.icon_url}}" style="width:64px; height:64px;" />
+            				</td>
+            			</tr>
+            		</table>
+            	</div>
+            </div>
+            <div>
+            	<div class="key">
+	                <label for="id_form-{{ forloop.counter0 }}-icon_url">
+	                    アイコンURL<span class="required-guide">*</span>
+	                </label>
+            	</div>
+            	<div class="value">
+            		{{data.icon_url}}
+            	</div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_form-{{ forloop.counter0 }}-icon_copyright">
+                        アイコン著作者<span class="required-guide">*</span>
+                    </label>
+                </div>
+                <div class="value">
+                    {{data.icon_copyright}}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        
+        <div class="form-widget">
+	        <div>
+	            <div class="value value-only">
+	            	<a data-role="button" href="{% url continue_icon_index %}">修正する</a>
+	                <input type="submit" value="登録する" />
+	            </div>
+	        </div>
+	    </div>
+    </form>
+</section>
+
+{% endblock %}
+

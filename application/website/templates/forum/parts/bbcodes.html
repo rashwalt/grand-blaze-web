@@ -1,0 +1,61 @@
+{% load bbcodes %}
+
+<section>
+     <h2>利用可能なBBCode</h2>
+     <p>フォーラム内で利用可能なBBCodeは以下の通りです。<br />
+     	※この他にも使えるBBCodeがありますが、記載されていないものは非推奨です、または未対応です。</p>
+     <table class="forum-list" summary="BBcode一覧です。" style="width:95%;">
+       <tr>
+         <th class="status" style="width:50%;">BBCode</th>
+         <th>表示結果</th>
+       </tr>
+       <tr>
+         <td class="status">[b]太字[/b]</td>
+         <td>{{ '[b]太字[/b]'|bbcode }}</td>
+       </tr>
+       <tr>
+         <td class="status">[i]斜体[/i]</td>
+         <td>{{ '[i]斜体[/i]'|bbcode }}</td>
+       </tr>
+       <tr>
+         <td class="status">[u]アンダーライン[/u]</td>
+         <td>{{ '[u]アンダーライン[/u]'|bbcode }}</td>
+       </tr>
+       <tr>
+         <td class="status">[s]取消線[/s]</td>
+         <td>{{ '[s]取消線[/s]'|bbcode }}</td>
+       </tr>
+       <tr>
+         <td class="status">[url]http://blog.grand-blaze.com/[/url]</td>
+         <td>{{ '[url]http://blog.grand-blaze.com/[/url]'|bbcode }}</td>
+       </tr>
+       <tr>
+         <td class="status">[url=http://blog.grand-blaze.com/]リンク[/url]</td>
+         <td>{{ '[url=http://blog.grand-blaze.com/]リンク[/url]'|bbcode }}</td>
+       </tr>
+       <tr>
+         <td class="status">[img]http://www.grand-blaze.com/static/images/common/site_logo.png[/img]</td>
+         <td>{{ '[img]http://www.grand-blaze.com/static/images/common/site_logo.png[/img]'|bbcode }}</td>
+       </tr>
+       <tr>
+         <td class="status">[quote]引用[/quote]</td>
+         <td>{{ '[quote]引用[/quote]'|bbcode }}</td>
+       </tr>
+       <tr>
+         <td class="status">[quote="タイトル"]引用[/quote]</td>
+         <td>{{ '[quote="タイトル"]引用[/quote]'|bbcode }}</td>
+       </tr>
+       <tr>
+         <td class="status">[list][*]リスト 1[*]リスト 2[/list]</td>
+         <td>{{ '[list][*]リスト 1[*]リスト 2[/list]'|bbcode }}</td>
+       </tr>
+       <tr>
+         <td class="status">[list=1][*]番号リスト 1[*]番号リスト 2[/list]</td>
+         <td>{{ '[list=1][*]番号リスト 1[*]番号リスト 2[/list]'|bbcode }}</td>
+       </tr>
+       <tr>
+         <td class="status">[list=a][*]アルファベットリスト 1[*]アルファベットリスト 2[/list]</td>
+         <td>{{ '[list=a][*]アルファベットリスト 1[*]アルファベットリスト 2[/list]'|bbcode }}</td>
+       </tr>
+     </table>
+</section>

@@ -1,0 +1,53 @@
+{% extends 'base/regist_base.html' %}
+{% load breadcrumbs humanize %}
+
+{% block title %}バザーキャンセル完了 | Grand Blaze{% endblock %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/regist.css?{{publish_date}}" rel="stylesheet" type="text/css">
+<link href="{{ MEDIA_URL }}/css/form.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "各種登録" regist_index %}
+{% breadcrumb_url "バザー" bazzer_list %}
+{% breadcrumb "バザーキャンセル完了" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>バザーキャンセル完了</h1>
+
+<section>
+    <h2>
+        出品物詳細
+    </h2>
+    <table class="regist-list">
+        <tr>
+            <th style="width: 40px;">ID</th>
+            <th>アイテム名</th>
+            <th>販売額</th>
+        </tr>   
+        <tr>
+            <td rowspan="2" style="width: 40px;">{{ item_data.id }}</td>
+            <td>
+                {{ item_data.get_item.name }}
+            </td>
+            <td>{{ item_data.price|intcomma }}</td>
+        </tr>
+        <tr>
+            <td colspan="3">{{ item_data.get_item.it_comment|safe }}</td>
+        </tr>
+    </table>
+</section>
+
+<section>
+	<p class="center">以上のアイテムをキャンセルしました。<br />
+		<a href="{% url bazzer_list %}" data-role="button">バザーリストへ</a>
+	</p>
+</section>
+
+{% endblock %}

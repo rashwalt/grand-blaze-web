@@ -1,0 +1,30 @@
+{% extends 'base/root_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}サイト内検索 | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb "サイト内検索" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>サイト内検索</h1>
+
+<section>
+	<h2>検索結果</h2>
+ 	<div id="cse-search-results"></div>
+    <script type="text/javascript">
+      var googleSearchIframeName = "cse-search-results";
+      var googleSearchFormName = "cse-search-box";
+      var googleSearchFrameWidth = 780;
+      var googleSearchDomain = "www.google.com";
+      var googleSearchPath = "/cse";
+    </script>
+    <script type="text/javascript" src="http://www.google.com/afsonline/show_afs_search.js"></script>
+</section>
+
+{% endblock %}

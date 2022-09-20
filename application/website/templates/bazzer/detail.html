@@ -1,0 +1,82 @@
+{% extends 'base/regist_base.html' %}
+{% load breadcrumbs humanize %}
+
+{% block title %}バザー詳細 | Grand Blaze{% endblock %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/regist.css?{{publish_date}}" rel="stylesheet" type="text/css">
+<link href="{{ MEDIA_URL }}/css/form.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "各種登録" regist_index %}
+{% breadcrumb_url "バザー" bazzer_list %}
+{% breadcrumb "バザー詳細" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>バザー詳細</h1>
+
+<section>
+    <h2>
+        出品物詳細
+    </h2>
+    <table class="regist-list">
+        <tr>
+            <th style="width: 40px;">ID</th>
+            <th>アイテム名</th>
+            <th>販売額</th>
+        </tr>   
+        <tr>
+            <td rowspan="2" style="width: 40px;">{{ item_data.id }}</td>
+            <td>
+                {{ item_data.get_item.name }}
+            </td>
+            <td>{{ item_data.price|intcomma }}</td>
+        </tr>
+        <tr>
+            <td colspan="3">{{ item_data.get_item.it_comment|safe }}</td>
+        </tr>
+    </table>
+</section>
+
+{% if item_data.status == 0 %}
+<section>
+	<p class="center">以上のアイテムを落札しますか？</p>
+    <form action="{% url bazzer_buy bazzer_id %}" method="POST">
+        {% csrf_token %}
+    <div class="form-widget">
+        <div>
+            <div class="value value-only">
+                <input type="submit" value="購入する" />
+                <a href="{% url bazzer_list %}" data-role="button">購入をやめる</a>
+                {% if item_data.seller_id == request.user.id %}
+                <a href="{% url bazzer_cancel bazzer_id %}" data-role="button">この出品をキャンセル</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    </form>
+</section>
+{% endif %}
+
+<section>
+	<table class="history-list">
+        <tr>
+            <th>取引成立日</th>
+            <th>販売額</th>
+        </tr>
+        {% for history_data in baz_history %}   
+        <tr>
+            <td>{{ history_data.buyer_date|date:"Y/m/d H:i" }}</td>
+            <td>{{ history_data.price|intcomma }}</td>
+        </tr>
+        {% endfor %}
+	</table>
+</section>
+
+{% endblock %}

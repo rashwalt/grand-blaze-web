@@ -1,0 +1,133 @@
+{% extends 'base/playguide_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}戦術 | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "プレイガイド" playguide_index %}
+{% breadcrumb "戦術" %}
+
+{% endblock %}
+
+{% block maincontents %}
+<h1>戦術</h1>
+
+<section>
+    <h2>概要</h2>
+    <p>バトルにおいてキャラクターの行動内容を決定するのが戦術です。戦術で設定されたターゲットとアクションに応じて、キャラクターの戦闘中の行動が決定します。戦術には、優先順位が設定されており、優先順位の高いものから順に使用していきます。</p>
+    <p class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 登録はどこで行う？</strong><br />
+        戦術の設定は、<strong>戦術登録</strong>で行います。
+    </p>
+</section>
+
+<section>
+    <h2>戦術の設定方法</h2>
+    <p>戦術の設定を行うためには、まず最初にターゲットを選択します。ターゲットには、「目の前の敵」、「最もレベルの高い敵」、「炎属性に弱い敵」、「「毒」の味方」などが存在します。<br />
+    次に、行動する内容を選択します。通常攻撃の他、アーツを発動など様々なアクションが存在します。アーツを使う場合、同時に「スキル」として指定します。</p>
+    <form>
+	    <p>戦術を設定する場合、豊富に用意されたターゲットやアクションを直接、番号で記入するか、
+	    <input name="situation_select2" type="button" value="選択" />
+	    ボタンをクリックし、選択画面を表示して、設定したいものをクリックしてください。<br />
+	    こうすることで、自動で設定できます。</p>
+    </form>
+    <div class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 戦闘設定の内容と実際の行動</strong><br />
+        次のような設定が行われている場合、キャラクターはこんな行動を行います。
+        <form>
+            <table width="100%" border="0">
+                <tr>
+                    <th>&nbsp;</th>
+                    <th>ターゲット</th>
+                    <th>アクション</th>
+                </tr>
+                <tr>
+                    <th>Act 1</th>
+                    <td>
+                    <input name="act_target" type="text" class="no_box" size="10" maxlength="5" value="46" />
+                    <input name="target_select" type="button" value="選択" />
+                    <br />
+                    炎属性に弱い敵</td>
+                    <td>
+                    <input name="act_action" type="text" class="no_box" size="10" maxlength="5" value="6" />
+                    <input name="action_select" type="button" value="選択" />
+                    <br />
+                    アーツを発動
+                    <br />
+                    スキル：
+                    <select name="skill_id">
+                        <option value="0">ファイアーボール</option>
+                    </select></td>
+                </tr>
+
+                <tr>
+                    <th>Act 2</th>
+                    <td>
+                    <input name="act_target2" type="text" class="no_box" size="10" maxlength="5" value="165" />
+                    <input name="target_select2" type="button" value="選択" />
+                    <br />
+                    「麻痺」の味方</td>
+                    <td>
+                    <input name="act_action2" type="text" class="no_box" size="10" maxlength="5" value="7" />
+                    <input name="action_select2" type="button" value="選択" />
+                    <br />
+                    アーツを発動
+                    <br />
+                    スキル：
+                    <select name="skill_id">
+                        <option value="0">ディスパラード</option>
+                    </select></td>
+                </tr>
+
+                <tr>
+                    <th>Act 3</th>
+                    <td>
+                    <input name="act_target3" type="text" class="no_box" size="10" maxlength="5" value="194" />
+                    <input name="target_select3" type="button" value="選択" />
+                    <br />
+                    自分自身</td>
+                    <td>
+                    <input name="act_action3" type="text" class="no_box" size="10" maxlength="5" value="8" />
+                    <input name="action_select3" type="button" value="選択" />
+                    <br />
+                    アーツを発動
+                    <br />
+                    スキル：
+                    <select name="skill_id">
+                        <option value="0">プロテクト</option>
+                    </select></td>
+                </tr>
+
+                <tr>
+                    <th>Act 4</th>
+                    <td>
+                    <input name="act_target4" type="text" class="no_box" size="10" maxlength="5" value="1" />
+                    <input name="target_select4" type="button" value="選択" />
+                    <br />
+                    目の前の敵</td>
+                    <td>
+                    <input name="act_action4" type="text" class="no_box" size="10" maxlength="5" value="1" />
+                    <input name="action_select4" type="button" value="選択" />
+                    <br />
+                    物理攻撃</td>
+                </tr>
+            </table>
+        </form>
+        この場合、まず最初に炎属性の弱い敵がいないか判定し、炎属性に弱い敵がいればファイアボールを使用します。<br />
+        もし、炎属性に弱い敵がいなかったら、次に、麻痺にかかっている味方がいないか判定します。麻痺にかかっている味方がいれば、ディスパラードを使用します。<br />
+        麻痺にかかっている味方がいなければ、自分自身にプロテクトを実行しますが、すでに自分がプロテクト状態になっている場合、この行動は無駄になりますので、この行動は行いません。つまり、自分がプロテクト状態以外の場合にのみ、プロテクトを自分に使用します。<br />
+        最後に、目の前にいる敵に対して近接攻撃を実行します。戦闘が終わらない限り、敵が存在することになりますので、無条件にこのアクションは実行されます。<br />
+        もし、この最後のターゲットが「氷属性に弱い敵」などの場合、氷属性に弱い敵がいないと行動するアクションが存在しないため、何も実行せず、ただ突っ立っているだけになってしまいます。
+    </div>
+</section>
+
+<section>
+    <h2>項目の並び替え</h2>
+    <p>戦術の内容を並び替えるには、「戦術」をマウスクリックで“掴んで”、上下に入れ替えることができます。</p>
+</section>
+
+{% endblock %}

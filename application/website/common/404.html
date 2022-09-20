@@ -1,0 +1,23 @@
+{% extends 'base/root_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}File Not Found | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb "File Not Found" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>File Not Found</h1>
+
+<section>
+	<h2>指定されたファイルが見つかりません。</h2>
+     <p>指定されたURL:{{ request_path }}は見つかりませんでした。<br />
+     	目的のページを右上の検索ボックスから探してみてください。</p>
+</section>
+
+{% endblock %}

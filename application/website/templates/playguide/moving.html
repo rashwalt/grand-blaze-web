@@ -1,0 +1,63 @@
+{% extends 'base/playguide_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}移動先の決定 | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "プレイガイド" playguide_index %}
+{% breadcrumb "移動先の決定" %}
+
+{% endblock %}
+
+{% block maincontents %}
+<h1>移動先の決定</h1>
+
+<section>
+    <h2>概要</h2>
+    <p>Grand Blazeでは冒険を行う場所を選択するのに、冒険者ギルドから提示されている「クエスト」と、クエストの進行度合いを示す「マーク」を選択する、という形で冒険を進めていきます<br />
+     何かしらのクエストを実行するには、継続登録にてクエストとマークを選択しなくてはなりません。</p>
+    <p class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 登録はどこで行う？</strong><br />
+        移動先の決定は、<strong>継続登録</strong>で行います。
+    </p>
+</section>
+
+<section>
+    <h2>移動先を決定する</h2>
+    <p>移動先を決定するとき、重要なのは「クエスト」と「マーク」です。<br />
+    クエストは継続登録時に自動で表示されます。選択可能なクエストは各クエスト毎に設定されている様々な条件をクリアしているもののみです。<br />
+    対して、マークはクエストの進行度合いによって徐々に解放されていきます。<br />
+    <br />
+    パーティで他のメンバーの行き先に従う場合、クエスト名を「メンバーの決定に従う」として登録します。</p>
+    <div class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 移動先を決定する場合の例</strong><br />
+        あるクエストに挑戦する場合、次のように記入します。 <br />
+       以下の例では、「クエスト：ゴブリンの神殿」の「マーク：開闢の平原」にパーティ全員で移動します。<br />
+         <form>
+             クエスト名
+               <select name="area_name_no">
+               <option>ゴブリンの神殿</option>
+             </select>
+             <br />
+             <br />
+             <label>マーク
+               <select name="mark" id="mark">
+                 <option>開闢の平原</option>
+               </select>
+             </label>
+         </form>
+    </div>
+    <p class="ui-state-highlight ui-corner-all ui-inline-icon" style="margin-top: 10px;">
+        <span class="ui-icon ui-icon-help"></span>
+        <strong>FAQ? パーティで複数の行き先が選択された場合はどうなるの？</strong><br />
+        パーティ内で複数の行き先が選択された場合、多数決で決定します。<br />
+	    条件を満たしている行き先の中でもっとも多数の投票があった行き先へ、パーティは移動します。<br />
+	    ※同数であった場合はランダムで決定します。
+    </p>
+</section>
+
+{% endblock %}

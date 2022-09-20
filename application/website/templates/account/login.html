@@ -1,0 +1,77 @@
+{% extends 'base/root_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}ログイン | Grand Blaze{% endblock %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/root.css?{{publish_date}}" rel="stylesheet" type="text/css">
+<link href="{{ MEDIA_URL }}/css/form.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb "ログイン" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>ログイン</h1>
+
+<section>
+	{% if message %}
+	<p class="ui-state-error ui-corner-all ui-inline-icon ui-wiget-p">
+		<span class="ui-icon ui-icon-alert"></span>
+		<strong>エラー:</strong>
+		{{message}}
+	</p>
+	{% endif %}
+	<form action="{% url account_login %}{% if redirect_to %}?next={{redirect_to}}{% endif %}" method="POST">
+		{% csrf_token %}
+	<div class="form-widget">
+	    <div>
+    		<div class="key">
+    			<label for="id_email">
+    				メールアドレス
+    			</label>
+    		</div>
+    		<div class="value">
+    			{{ form.email }}
+    			{{ form.email.errors }}
+    		</div>
+        </div>
+        <div>
+    		<div class="key">
+    			<label for="id_password">
+    				パスワード
+    			</label>
+    		</div>
+    		<div class="value">
+    			{{ form.password }}
+    			{{ form.password.errors }}
+    		</div>
+        </div>
+        <div>
+    		<div class="value value-only">
+    			{{ form.remember_me }}
+    			<label for="id_remember_me">
+    				ログイン状態を保持する
+    			</label>
+    		</div>
+        </div>
+        <div>
+    		<div class="value value-only">
+    			<input type="submit" value="ログイン" />
+    		</div>
+        </div>
+	</div>
+	</form>
+</section>
+
+<section>
+	<h4>パスワードを忘れたら</h4>
+	<p>ログインのパスワードを忘れてしまった場合は、<a href="{% url account_pass_reset %}">こちら</a>からパスワードの再設定を行ってください。</p>
+</section>
+
+{% endblock %}

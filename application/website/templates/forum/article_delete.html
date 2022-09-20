@@ -1,0 +1,58 @@
+{% extends 'base/forum_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}記事削除 | Grand Blaze{% endblock %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/forum.css?{{publish_date}}" rel="stylesheet" type="text/css">
+<link href="{{ MEDIA_URL }}/css/form.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "フォーラム" forum_index %}
+{% breadcrumb_url forum.name forum_list forum.id %}
+{% breadcrumb_url thread.title forum_thread_detail forum.id thread.id %}
+{% breadcrumb "記事削除" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>記事削除</h1>
+
+<section>
+    <h2>
+        削除対象の記事内容
+    </h2>
+    <ol class="post-list">
+        <li>
+            {% include 'forum/parts/article_detail.html' %}
+        </li>
+    </ol>
+</section>
+
+<section>
+    <form action="{% url forum_article_delete forum.id thread.id article.id %}" method="POST">
+        {% csrf_token %}
+    <div class="form-widget">
+        <div>
+    		<div class="value full-text">
+    			<label for="id_delete_mean">
+    				削除理由（この記事の削除理由をお書きください）
+    			</label>
+    			{{ form.delete_mean }}
+    			{{ form.delete_mean.errors }}
+    		</div>
+		</div>
+		<div>
+            <div class="value value-only">
+                <input type="submit" value="記事削除" />
+            </div>
+        </div>
+    </div>
+    </form>
+</section>
+
+{% endblock %}

@@ -1,0 +1,10 @@
+{% load register_extras %}
+
+■戦術登録{% if datas %} (登録日時:{{datas.0.updated_at|date:"Y/m/d H:i:s"}}){% endif %}
+
+◇戦術設定{% for data in datas %}
+	・Act {{data.action_no}}
+	　ターゲット：{% partymember_user data.target.name user data.target.target_no as target_name %}{{target_name}} に
+	　	アクション：{{data.action_data.name|safe}} を実行{% if data.perks_id > 0 %}
+	　	使用スキル：{{data.skill.name}} を発動{% endif %}
+{% endfor %}

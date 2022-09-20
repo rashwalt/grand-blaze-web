@@ -1,0 +1,67 @@
+{% extends 'base/worldguide_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}種族と相互関係 | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "世界背景" worldguide_index %}
+{% breadcrumb "種族と相互関係" %}
+
+{% endblock %}
+
+{% block maincontents %}
+<h1>種族と相互関係</h1>
+
+<section class="image_illust">
+    <h2>種族</h2>
+    <h3>ヒューム<img src="{{ MEDIA_URL }}/images/worldguide/wordlguide_hume.gif" alt="ヒューム：イメージイラスト" /></h3>
+    <p>ファーネルド連邦を初めとした世界中の様々な地域に生活している最も人口の多い種族。他の種族のように目立った特徴はないが、その分、技術力の革新は早く、飛空船を開発したのもヒュームの力によるところが大きい。<br />
+    その分、中には他の種族を見下している人物もいる。</p>
+</section>
+
+<section class="image_illust">
+    <h3>エルヴ<img src="{{ MEDIA_URL }}/images/worldguide/wordlguide_elve.gif" alt="エルヴ：イメージイラスト" /></h3>
+    <p>狩猟技術に長け、長身痩躯、とがった耳を持った種族。元々は森に住んでいたが、度重なる森林の減少と他種族との交流の増加により、次第に森から離れていった。<br />
+    外見は美しい者が多いが、特にヒュームを毛嫌いしている者もいる。</p>
+</section>
+
+<section class="image_illust">
+    <h3>ファルート<img src="{{ MEDIA_URL }}/images/worldguide/wordlguide_falurt.gif" alt="ファルート：イメージイラスト" /></h3>
+    <p>魔法に長けた種族で、他の種族に比べ、身長が低く、丸い耳を持っている。<br />
+    成人男性でもヒュームの子供くらいしかないため、弱く見られがちだが、意外とファルート族には歴戦の勇者が多い。</p>
+</section>
+
+<section class="image_illust">
+    <h3>ライカンス<img src="{{ MEDIA_URL }}/images/worldguide/wordlguide_rycanth.gif" alt="ライカンス：イメージイラスト" /></h3>
+    <p>獣へと姿を変えることが出来る力を持っている種族。<br />
+    平時はヒュームとなんらかわらないが、中には独特のタトゥーをいれている者もいる。変身する形態や部位などは個人差があり、一部だけしか変わらぬ者もいれば、全身が獣そのものとなる者もいる。</p>
+</section>
+
+<section class="image_illust">
+    <h3>バルタン<img src="{{ MEDIA_URL }}/images/worldguide/wordlguide_vultan.gif" alt="バルタン：イメージイラスト" /></h3>
+    <p>背中に翼が生えている有翼人種。長時間飛ぶことは不可能ではないが、体力の消費がかなり激しいため、もっぱら地上を出歩く事が多い。<br />
+    誇り高い性格が現れているのか端整な顔立ちをしている者が多く、武勇を重んじる種族。</p>
+</section>
+
+<section class="image_illust">
+    <h3>ドラクォ<img src="{{ MEDIA_URL }}/images/worldguide/wordlguide_draqoh.gif" alt="ドラクォ：イメージイラスト" /></h3>
+    <p>ドラゴンのような鱗をところどころに持ち、ドラゴンの尾を持つ種族。顔や手足に鱗がかいま見えるのが特徴。<br />
+    ドラゴンそのもののように全身鱗には覆われていないが、頑強である。</p>
+</section>
+
+<section>
+    <h2>相互関係</h2>
+    <h3>ヒューム×エルヴ</h3>
+    <p>あまり良好とは言い難い関係と言えます。特に森を切り開くヒューム族と森を守ろうとするエルヴ族の溝は深く、互いに互いを敵視している節があります。しかし、それも現在では大分緩和されており、一部の老人などが敵視しているようです。</p>
+    <h3>エルヴ×バルタン</h3>
+    <p>互いに戦士としては尊敬し合っているのですが、いかんせん、交流に関しては若干控えめな態度を取ります。それには、昔の力関係があったようで、双方がなるべく深く立ち入らないようにと生活しているようです。</p>
+    <h3>ライカンス×ファルート</h3>
+    <p>互いにそれぞれの存在を認識しあい、良好な関係を続けてきました。特にどちらから攻撃をしかけるでもなく、古くからの交流を育み、現在に至っています。</p>
+    <h3>ヒューム×ライカンス</h3>
+    <p>一時期、ライカンス族はヒューム族を自らの種族に組み入れようとしているというウワサが広がり、一時、両者は争い始めます。しかし、それが誤解であったと知ると、控えめながら、ヒューム族の商人が行商を営むようになりました。</p>
+    <p class="illustration">Illustration : Idumi Ueno</p>
+</section>
+
+{% endblock %}

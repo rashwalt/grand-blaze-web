@@ -1,0 +1,112 @@
+{% extends 'base/regist_base.html' %}
+{% load breadcrumbs register_extras %}
+
+{% block title %}アイコン設定 | Grand Blaze{% endblock %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/regist.css?{{publish_date}}" rel="stylesheet" type="text/css">
+<link href="{{ MEDIA_URL }}/css/form.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "各種登録" regist_index %}
+{% breadcrumb "アイコン設定" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>アイコン設定</h1>
+
+<section>
+    <h2>登録上の注意</h2>
+    <p>入力内容にHTMLタグは使用できません。<br />
+        登録前にプレイガイドを良くお読みください。<br />
+        半角カナや機種依存文字（例：①など）は使用しないでください。<br />
+        対象エントリーナンバーの間違いには十分ご注意ください。<br />
+        登録できるアイコンは最大50個です。<br />
+        <span class="required-guide">*</span>印は必須項目です。
+    </p>
+</section>
+
+{% if messages %}
+<section>
+	<p class="ui-state-highlight ui-corner-all ui-inline-icon ui-wiget-p">
+		{% for message in messages %}
+		<span class="ui-icon ui-icon-info"></span>
+		<strong>アイコン設定:</strong>
+		{{message}}
+		{% endfor %}
+	</p>
+</section>
+{% endif %}
+
+<section>
+    <form action="{% url continue_icon_index %}" method="POST" id="action_index">
+        {% csrf_token %}
+        <h2>アイコン設定</h2>
+        {{ formset.management_form }}
+        <div id="iconlist">
+    	<div id="iclist">
+        {% for form in formset.forms %}
+        <div class="form-widget">
+        	{{ form.id }}
+        	{{ form.DELETE }}
+        	<h3>
+        		No.<span class="icon_no">{{ forloop.counter }}</span>
+        	</h3>
+            <div>
+            	<div class="key">
+	                <label for="id_form-{{ forloop.counter0 }}-icon_url">
+	                    アイコンURL<span class="required-guide">*</span>
+	                </label>
+	                <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="form-{{ forloop.counter0 }}-icon_url">
+	                	<span class="ui-icon ui-icon-help"></span>
+	                </a>
+            	</div>
+            	<div class="value">
+            		{{ form.icon_url }}
+                    {{ form.icon_url.errors }}
+            	</div>
+            	<div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-form-{{ forloop.counter0 }}-icon_url">
+            		<span class="ui-icon ui-icon-info"></span><strong>アイコンURL</strong>
+            		キャラクターのアイコン画像イメージが置かれている場所（URL）を入力してください。
+            	</div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_form-{{ forloop.counter0 }}-icon_copyright">
+                        アイコン著作者<span class="required-guide">*</span>
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="form-{{ forloop.counter0 }}-icon_copyright">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value">
+                    {{ form.icon_copyright }}
+                    {{ form.icon_copyright.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-form-{{ forloop.counter0 }}-icon_copyright">
+                    <span class="ui-icon ui-icon-info"></span><strong>アイコン著作者</strong>
+            		キャラクターのアイコン画像イメージの権利表記を入力してください。
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        </div>
+        </div>
+        
+        <div class="form-widget">
+	        <div>
+	            <div class="value value-only">
+	                <input type="submit" value="登録する" />
+	            </div>
+	        </div>
+	    </div>
+    </form>
+</section>
+
+{% endblock %}
+

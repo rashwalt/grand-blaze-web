@@ -1,0 +1,224 @@
+{% extends 'base/playguide_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}パーティの編成 | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "プレイガイド" playguide_index %}
+{% breadcrumb "パーティの編成" %}
+
+{% endblock %}
+
+{% block maincontents %}
+<h1>パーティの編成</h1>
+
+<section>
+    <h2>概要</h2>
+    <p>冒険を進める際に、１人の状態を「ソロ」、複数の仲間と協力して冒険する状態を「パーティ」と呼びます。１人では勝てないような敵も、仲間と一緒に戦えば勝てるかもしれません。他のプレイヤーとの協力は、ネットワークゲームの楽しさの中でも、最も大きなものの一つです。初心者の方は恥ずかしがらずに、パーティを組んだり、希望を「<a href="{% url forum_list 2 %}">仲間募集</a>」で出してみましょう。中級者以上の方は積極的に、初心者の方を誘ってあげてください。<br />
+    パーティは最大６名までで、共に冒険を進めていく大事な仲間です。事情で抜ける場合にも、黙って抜けたりせずに、「マナー」を守って同意を得てから抜けるようにしましょう。</p>
+    <p class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 登録はどこで行う？</strong><br />
+        パーティの編成は、<strong>継続登録</strong>で行います。
+    </p>
+</section>
+
+<section>
+    <h2>パーティメンバーの募集</h2>
+    <p>多くのパーティメンバー募集は、「<a href="{% url forum_index %}">フォーラム</a>」の仲間募集で行われています。様々な条件で募集されていますので、自分にあった募集記事に勇気を持って返信してみましょう。募集しているプレイヤーから返事が来たら、あとは交渉してみましょう。募集しているパーティの募集内容とあなたが求める条件が合致すればきっと、パーティを結成できるでしょう。<br />
+    自分にあった募集記事がない場合、自分が記事を立ててみるのもいいでしょう。その際には、パーティの目的などの条件を書いておくと、ぴったりな仲間が見つかるかもしれません。</p>
+    <p>なお、仲間を見つける方法は、これだけではなく、後述のランダムパーティといった方法もあります。</p>
+</section>
+
+<section>
+    <h2>パーティからの離脱</h2>
+    <p>現在所属しているパーティから離脱する場合、継続登録画面において「離脱設定」で「現在のパーティから離脱する」のラジオボタンを選択します。<br />
+    ただし、離脱する時点でソロになっている場合（パーティメンバーが自分以外全員離脱した場合も含みます）には、離脱は行いません（すでにソロになっているため、自動的に離脱設定は無視されます）。<br />
+    離脱しない場合（現在のパーティで冒険を続ける場合）は、「現在のパーティで冒険を続ける」が選択された状態であることを確認します。</p>
+    <div class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 現在のパーティから離脱する場合の例</strong><br />
+        現在所属しているパーティから離脱したい場合、次のように記入します。 <br />
+        <form>
+            <label>
+            <input name="party_secession" type="radio" value="0" />
+            現在のパーティで冒険を続ける</label>
+            <br />
+            <label>
+            <input name="party_secession" type="radio" value="1" checked="checked" />
+            現在のパーティから離脱する</label>
+        </form>
+    </div>
+</section>
+
+<section>
+    <h2>パーティに新たなメンバーを誘う</h2>
+    <p> パーティに新たなメンバーを誘う場合、継続登録画面において「パーティ勧誘」に誘う相手のエントリー番号を記入します。<br />
+    一つのテキストボックスには一つのエントリー番号しか記入できません。<br />
+    一人で最大5人（パーティ人数は最大6名です）まで誘うことができますので、誰か一人が全員に呼びかければパーティを作ることができます。<br />
+    このとき、呼びかける順番は問いません。</p>
+    <div class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! パーティへ新たなメンバーを誘う場合の例</strong><br />
+        エントリー番号の 2番、6番、18番の人を誘う場合は、次のように記入します。 <br />
+        <form>
+            E-No.
+            <input name="pcm_add_1" type="text" class="no_box" id="pcm_add_1" value="2" size="5" maxlength="5" />
+            <input name="pcm_add_2" type="text" class="no_box" id="pcm_add_2" value="6" size="5" maxlength="5" />
+            <input name="pcm_add_3" type="text" class="no_box" id="pcm_add_3" value="18" size="5" maxlength="5" />
+            <input name="pcm_add_4" type="text" class="no_box" id="pcm_add_4" value="" size="5" maxlength="5" />
+            <input name="pcm_add_5" type="text" class="no_box" id="pcm_add_5" value="" size="5" maxlength="5" />
+            を誘う。
+        </form>
+    </div>
+    <p class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 新規登録者を誘うには？</strong><br />
+        新規にゲームをプレイするキャラクターを誘う場合（及び誘われる場合）、自分も新規登録者である必要があります。<br />
+        もし異なる場合、次の更新時にパーティを編成しましょう！
+    </p>
+</section>
+
+<section>
+    <h2>通常のパーティへ参加する</h2>
+    <p> すでにあるパーティへ参加する場合や誰かと一緒にパーティを編成する場合、継続登録画面において、呼びかけられる方は「パーティ参加希望」で「パーティへの参加希望を出す」のラジオボタンを選択します。<br />
+    このとき、オプションの「逆指定」でエントリー番号を記入すると、記入したエントリー番号の相手以外からのパーティ勧誘はすべてお断りします。<br />
+    特定の相手とだけパーティを組みたい場合に活用しましょう。<br />
+    ※特にパーティへの参加を行わずに現在のパーティ（またはソロ）で冒険を続ける場合は「現状を維持する」を選択します。<br />
+    ※特に誘ってもらう相手を限定しない場合、オプション：逆指定への記入は必要ありません。</p>
+    <div class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 通常のパーティへ参加する場合の例</strong><br />
+        エントリー番号の 1番の人からの誘いのみを受ける場合は、次のように記入します。<br />
+        <form>
+            <label>
+            <input name="party_hope" type="radio" id="party_hope" value="0" />
+            現状を維持する</label>
+            <br />
+            <label>
+            <input name="party_hope" type="radio" id="party_hope" value="1" checked="checked" />
+            パーティへの参加希望を出す</label>
+            <br />
+            <label>
+            <input name="party_hope" type="radio" id="party_hope" value="2" />
+            ランダムパーティに参加する</label>
+            <br />
+            <label>
+            <input name="party_hope" type="radio" id="party_hope" value="3" />
+            ランダムパーティから参加者を募る</label>
+            <br />
+            オプション：逆指定<br />
+            E-No.
+            <input name="option_comes_no" type="text" class="no_box validate-digits" id="option_comes_no" value="1" size="5" maxlength="5" />
+            からの誘いのみ受け付ける。
+        </form>
+    </div>
+</section>
+
+<section>
+    <h2>ランダムパーティへ参加する</h2>
+    <p>ランダムパーティ作成機能を活用し、システム側でランダムにパーティを編成してもらう場合、継続登録画面において、「パーティ参加希望」で「ランダムパーティへ参加する」のラジオボタンを選択します。<br />
+    このとき、オプションの「逆指定」は無視されます。<br />
+    また、すでにどこかのパーティに所属し、ソロ状態ではない場合、ランダムパーティへ参加するには離脱設定で離脱するように設定する必要があります。<br />
+    不特定の相手とパーティを組みたい場合に活用しましょう。<br />
+    <strong>ランダムパーティでは行き先を指定した場合、自動的に同じ行き先を選んでいる人とパーティを編成します。<br />
+    	逆に、行き先を指定していないと、イベントのフラグなどに関係なくどこかのパーティへ参加します。<br />
+    </strong>
+    ※特にパーティへの参加を行わずに現在のパーティ（またはソロ）で冒険を続ける場合は「現状を維持する」を選択します。</p>
+    <div class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! ランダムパーティへ参加する場合の例</strong><br />
+        ランダムパーティへ参加したい場合は、次のように記入します。<br />
+        <form>
+            <label>
+            <input name="party_hope" type="radio" id="party_hope" value="0" />
+            現状を維持する</label>
+            <br />
+            <label>
+            <input name="party_hope" type="radio" id="party_hope" value="1" />
+            パーティへの参加希望を出す</label>
+            <br />
+            <label>
+            <input name="party_hope" type="radio" id="party_hope" value="2" checked="checked" />
+            ランダムパーティに参加する</label>
+            <br />
+            <label>
+            <input name="party_hope" type="radio" id="party_hope" value="3" />
+            ランダムパーティから参加者を募る</label>
+            <br />
+            オプション：逆指定<br />
+            E-No.
+            <input name="option_comes_no" type="text" class="no_box validate-digits" id="option_comes_no" value="1" size="5" maxlength="5" />
+            からの誘いのみ受け付ける。
+        </form>
+    </div>
+    <p class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 新規登録者とのランダムパーティ</strong><br />
+        ランダムパーティにおいても、新規登録者とそれ以外の登録者では区別されて処理されます。<br />
+        一番最初のイベントを見た後であれば、このような制限はありません。
+    </p>
+</section>
+
+<section>
+    <h2>ランダムパーティからメンバーを補充する</h2>
+    <p>ランダムパーティ作成機能を活用し、システム側でランダムにメンバーを補充してもらう場合、継続登録画面において、「パーティ参加希望」で「ランダムパーティから参加者を募る」のラジオボタンを選択します。<br />
+    このとき、オプションの「逆指定」は無視されます。<br />
+    また、実際に動くためには、パーティメンバーの過半数がこの選択を行っている必要があります。<br />
+    不特定の相手とパーティを組みたい場合に活用しましょう。<br />
+    <strong>ランダムパーティでは行き先を指定した場合、自動的に同じ行き先を選んでいる人とパーティを編成します。<br />
+    	逆に、行き先を指定していないと、イベントのフラグなどに関係なくどこかのパーティへ参加します。<br />
+    </strong>
+    ※特にパーティへの参加を行わずに現在のパーティ（またはソロ）で冒険を続ける場合は「現状を維持する」を選択します。</p>
+    <div class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! ランダムパーティからメンバーを補充する場合の例</strong><br />
+        ランダムパーティから補充したい場合は、次のように記入します。<br />
+        <form>
+            <label>
+            <input name="party_hope" type="radio" id="party_hope" value="0" />
+            現状を維持する</label>
+            <br />
+            <label>
+            <input name="party_hope" type="radio" id="party_hope" value="1" />
+            パーティへの参加希望を出す</label>
+            <br />
+            <label>
+            <input name="party_hope" type="radio" id="party_hope" value="2" />
+            ランダムパーティに参加する</label>
+            <br />
+            <label>
+            <input name="party_hope" type="radio" id="party_hope" value="3" checked="checked" />
+            ランダムパーティから参加者を募る</label>
+            <br />
+            オプション：逆指定<br />
+            E-No.
+            <input name="option_comes_no" type="text" class="no_box validate-digits" id="option_comes_no" value="1" size="5" maxlength="5" />
+            からの誘いのみ受け付ける。
+        </form>
+    </div>
+    <p class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 新規登録者とのランダムパーティ</strong><br />
+        メンバー補充機能では、新規登録者は補充されません
+    </p>
+</section>
+
+<section>
+    <h2>パーティ名の変更</h2>
+    <p>パーティ名を変更する場合、継続登録画面において、「パーティ名称設定」に自由にパーティ名を記述します。パーティ内で複数のメンバーがパーティ名を変更した場合、その中からランダムでパーティ名が決定されます。</p>
+    <div class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! パーティ名を変更する場合の例</strong><br />
+        パーティ名を「旅の仲間」に設定する場合は、次のように記入します。<br />
+        <form>
+            <label>
+                <input name="party_name" type="text" class="name_box" id="party_name" value="旅の仲間" size="50" maxlength="60" />
+            </label>
+        </form>
+    </div>
+</section>
+
+{% endblock %}

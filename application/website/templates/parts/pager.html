@@ -1,0 +1,30 @@
+
+{% if pager.previous_page or pager.next_page %}
+
+<ul class="paginator">
+	{% if pager.previous_page %}
+		<li class="previous">
+			<a href="{{ prev_url }}">前へ</a>
+		</li>
+	{% endif %}
+	{% for page in page_urls %}
+		{% if page.num == pager.current_page %}
+			<li class="current">
+				{{ page.num }}
+			</li>
+		{% else %}
+			<li>
+				<a href="{{ page.url }}">{{ page.num }}</a>
+			</li>
+		{% endif %}
+    {% endfor %}
+	{% if pager.next_page %}
+		<li class="next">
+			<a href="{{ next_url }}">次へ</a>
+		</li>
+	{% endif %}
+</ul>
+
+{% endif %}
+
+

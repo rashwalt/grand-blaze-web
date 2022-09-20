@@ -1,0 +1,271 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>冒険の結果 | Grand Blaze</title>
+<link href="../static/css/common.css" rel="stylesheet" type="text/css">
+<link href="../static/css/dark-hive/jquery-ui-1.9.0.custom.min.css" rel="stylesheet" type="text/css">
+<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+<script src="../static/js/jquery-ui-1.9.0.custom.min.js"></script>
+<script src="../static/js/jquery.formset.min.js"></script>
+<script src="../static/js/main.min.js"></script>
+<link href="../static/css/result.css" rel="stylesheet" type="text/css">
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+<![endif]-->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30449583-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+
+<body class="adventure-result">
+
+<div id="container">
+  <header>
+    <a id="site-logo" href="http://www.grand-blaze.com/"><img src="../static/images/common/site_logo.png" alt="Grand Blaze" /></a>
+    <div id="header-right">
+        <!--{% include 'account/login_parts.html' %}-->
+		<div id="searchcontrol">
+			<form action="/search/" id="cse-search-box">
+			  <div>
+			    <input type="hidden" name="cx" value="018114392011501256481:1jv92qvio2i" />
+			    <input type="hidden" name="cof" value="FORID:11" />
+			    <input type="hidden" name="ie" value="UTF-8" />
+			    <input type="text" name="q" id="q" autocomplete="off" size="31" />
+			    <button type="submit" id="search-submit" name="sa" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" role="button" aria-disabled="false" title="検索"><span class="ui-button-icon-primary ui-icon ui-icon-search"></span><span class="ui-button-text">検索</span></button>
+			  </div>
+			</form>
+			<script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=ja"></script>
+	   </div>
+    </div>
+  </header>
+  <nav>
+      <ul id="global-navi">
+        <li id="page-top"><a href="http://www.grand-blaze.com/">トップ</a></li>
+        <li id="registration"><a href="/continue/">各種登録</a></li>
+        <li id="play-guide"><a href="/playguide/">プレイガイド</a></li>
+        <li id="adventure-result"><a href="/result/">冒険の結果</a></li>
+        <li id="forum"><a href="/forum/">フォーラム</a></li>
+        <li id="world-guide"><a href="/worldguide/">世界背景</a></li>
+      </ul>
+  </nav>
+  <div id="main-view">
+	  <div id="sidebar1">
+	  	<!--sidebar start-->
+	    <nav>
+	    	<h4>
+	    		冒険者一覧
+	    	</h4>
+	    	<dl id="side-menu" class="ui-right-icon">
+		        <dt>
+		        	<a href="list0001.html">
+		        		1 ～ 100<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="list0002.html">
+		        		101 ～ 200<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="list0003.html">
+		        		201 ～ 300<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="list0004.html">
+		        		301 ～ 400<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="list0005.html">
+		        		401 ～ 500<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="list0006.html">
+		        		501 ～ 600<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="list0007.html">
+		        		601 ～ 700<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="list0008.html">
+		        		701 ～ 800<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+			</dl>
+	    	<h4>
+	    		リストメッセージ
+	    	</h4>
+	    	<dl id="side-menu" class="ui-right-icon">
+		        <dt>
+		        	<a href="lcom0001.html">
+		        		1 ～ 100<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="lcom0002.html">
+		        		101 ～ 200<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="lcom0003.html">
+		        		201 ～ 300<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="lcom0004.html">
+		        		301 ～ 400<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="lcom0005.html">
+		        		401 ～ 500<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="lcom0006.html">
+		        		501 ～ 600<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="lcom0007.html">
+		        		601 ～ 700<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="lcom0008.html">
+		        		701 ～ 800<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+			</dl>
+	    	<h4>
+	    		リザルトツール
+	    	</h4>
+	    	<dl id="side-menu" class="ui-right-icon">
+		        <dt>
+		        	<a href="newplayer.html">
+		        		新規登録者一覧<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+		        <dt>
+		        	<a href="/result/search/">
+		        		キャラクター検索<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+			</dl>
+	    	<h4>
+	    		ダウンロード
+	    	</h4>
+	    	<dl id="side-menu" class="ui-right-icon">
+		        <dt>
+		        	<a href="/result/download/">
+		        		ダウンロード<span class="ui-icon ui-icon-carat-1-e"></span>
+		        	</a>
+		        </dt>
+			</dl>
+	    </nav>
+	    <!--sidebar end-->
+	  </div>
+	  <div id="view-container">
+        <div id="breadcrumbs">
+            <!--bread start-->
+            <a href="/">トップ</a> &gt; <a href="./">冒険の結果</a> &gt; 冒険者一覧(1 ～ 100)
+            <!--bread end-->
+        </div>
+        <article id="wcontent">
+      <!--content start-->
+      
+<h1>冒険の結果</h1>
+<section>
+<h2>冒険者一覧(1 ～ 100)</h2>
+<div id="player-comment" class="ui-tabs"><ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix">
+<li class="ui-state-default ui-corner-top"><a href="list0001.html">キャラクター一覧</a></li><li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="javascript:void(0);">リストメッセージ</a></li>
+</ul></div>
+<table class="player-list" summary="冒険者の一覧です。">
+  <tr>
+    <th scope="col">E-No.</th>
+    <th scope="col">名前</th>
+    <th scope="col">メッセージ</th>
+  </tr>
+  <tr>
+    <td>30</td>
+    <td><a href="status/character0030.html">天</a></td>
+    <td>
+<div class="list_message">この前襲ってきたエルヴをミンチにしたが、なに、気にすることはない。摩り替えておいたのさ！<br /><br />さて、此度の旅路は短い物だったね。願わくば、いつか新しい道が拓ける事を。</div>
+    </td>
+  </tr>
+  <tr>
+    <td>40</td>
+    <td><a href="status/character0040.html">ジェイル＝ルクセンドゥ</a></td>
+    <td>
+<div class="list_message">一息、だ。<br /><br />＞「自分実は○○だったんです」<br />…素性とかの話じゃねぇが、話しかけなかったが気になるやつが多くいた、とかか？<br />持てるなら短剣もメイン武器にしたかったな、とか。</div>
+    </td>
+  </tr>
+  <tr>
+    <td>54</td>
+    <td><a href="status/character0054.html">ルトラシア・レーテパップ</a></td>
+    <td>
+<div class="list_message">お別れは寂しいの。<br />さよならも寂しいの。<br />でも、また会えるって思ってるから、笑ってバイバイするの！<br />（「私はいつまでも一緒なのよー！」と後ろで人形が騒いでいる。）<br /><br />PL:<br />お別れのあいさつの前に、質問の回答を。<br /><br />＞突発「自分実は○○だったんです」暴露企画ー。<br /><br />ユーティはルトの魔力が上がったら、人間大に変身できる設定でした。<br />ルトくんに「顕現せしめよ。赤の女王！」とか叫ばせて。<br /><br />後はこっそり隠れてソロプレイしてました。<br /><br />と、回答はこのあたりにして、ご挨拶を。<br /><br />ＧＭ様お疲れ様です。<br />皆さん、これまでお付き合いありがとうございます。<br />あっという間の半年間でしたけれど、とても楽しかったです。<br />また、何かの機会、ご縁でお会いすることがありましたら、<br />よろしくお願いしますね。</div>
+    </td>
+  </tr>
+  <tr>
+    <td>56</td>
+    <td><a href="status/character0056.html">セルシアーナ＝グランウォル</a></td>
+    <td>
+<div class="list_message">あっという間でしたねー…もっともっと遊びたかった！今期お世話になった皆様方には最大級の感謝を。そしてGM様、お疲れ様でした。楽しい時間をありがとうございました！</div>
+    </td>
+  </tr>
+  <tr>
+    <td>69</td>
+    <td><a href="status/character0069.html">ザイフリート・T・マリオン</a></td>
+    <td>
+<div class="list_message">参加した冒険者全員で敵に立ち向かう。何とも燃えるシチュエーションじゃあないか……！<br />いつもと違う感じで終わりを迎える。悲しいけど、わくわくしてしまうのは何故だろう？<br /><br /><span class="serif_yellow">＞「自分実は○○だったんです」暴露企画</span><br />実は！　僕！　<strong>女でした！！！</strong><span class="serif_low">　え、予想通りだって？</span><br />どういう理由で性別を隠していたのかは、まあ色々あるんだけど……<br />それと同時に素顔を出した写真（イラスト）も出しておくね。<strike>間に合ったらだけど。</strike></div>
+    </td>
+  </tr>
+  <tr>
+    <td>74</td>
+    <td><a href="status/character0074.html">シルベルヴィーヌ・フォン・ローゼスシュタインベルク</a></td>
+    <td>
+<div class="list_message">皆様、今晩は。<br />貴方の心のナイスミドル執事、セバスチャンに御座います。<br /><br />FMファーネル 74.0MHz、<br />ここファーネル西地区第3スタジオからお送りしている<br />「セバスチャンの明日はまっすぐ行って左」、<br />真に残念ながら、最後の放送終了時間まで<br />残すところあと僅かとなってしまいました。<br /><br />では、時間のある限りお便りを読み上げて参りましょう。<br />ラジオネーム「シエル・レイリア」様からのお便り。<br />15歳、男性、エルヴの方ですな。<br /><br /><span class="serif_lime">&gt; 「自分実は○○だったんです」</span><br /><br />ふむ。最後の暴露話、というわけですな。<br />では、とっておきの秘密を。<br /><br />実は…<br /><br /><br /><br /><span class="serif_shout">私目はメインキャラではない</span>ので御座います。＼ババーン！／<br /><br /><br /><br />とまあ、これだけではあまりにもなんで御座いますので、<br />御嬢様の秘密を一つ。<br /><br />御嬢様は英雄譚が大のお気に入りなので御座いますが、<br />その中でも一番のお気に入り（というかキャラ作成時のモチーフ）は<br />かの「愛ってなんだ」が有名なフレーズの英雄様に御座います。<br /><br /><br /><br />さて、これが最後のお便りになりますな。<br />ラジオネーム「ピーエル」様から。<br />うしろの饅頭の中の方ですな。<br /><br />「<span class="serif_aqua">GM様、毎週の更新、バージョンアップ、<br /> フォーラム記事への対応など、お忙しい中でお疲れ様でした。<br /> もしもまた機会があるのならば、その時は是非また<br /> GM様が作られたゲームで遊ばせていただきたいなと思います。<br /> 半年間という短い間でしたが、楽しい時間の提供を<br /> ありがとうございました。<br /><br /><br /> また、リストメッセにて反応を返してくださいました皆さん、<br /> ありがとうございました。この場を借りてお礼申し上げます。<br /><br /> またどこかで関わるような事がありましたら、<br /> どうぞよろしくお願いいたします。</span>」<br /><br />思えば、こちらのギルドにお世話になり、<br />私目にもいろいろな事が御座いました。<br />お嬢様に<span class="serif_red">お仕置き</span>されたり<span class="serif_red">お仕置き</span>されたり<span class="serif_fuchsia">盾にされた</span>り…<br />そのどれもが良い思い出に御座います。<br /><br /><br /><br /><span class="serif_teal">～♪</span><br /><br />…おっと、どうやら時間になってしまったように御座いますな。<br /><br />それでは、大変お名残惜しゅう御座いますが、<br />「セバスチャンの明日はまっすぐ行って左」最終回は<br />これにて放送終了でございます。<br /><br />来週からは「ワイルドトマコのドキドキ人生相談」が始まりますので、<br />是非お聞きください。<br /><br />それでは、また。<br />皆様の今後のご健勝をお祈り致しつつ。<br /><br /><br /><br /><span class="serif_teal">～♪<br />そして流れるエンディングテーマ「<span class="serif_red">悲しみの向こうへ</span>」(ぇ</span></div>
+    </td>
+  </tr>
+  <tr>
+    <td>92</td>
+    <td><a href="status/character0092.html">ユーリィ・Ｇ・Ｃ・シャルレ</a></td>
+    <td>
+<div class="list_message">おっつかーれーさまーっ</div>
+    </td>
+  </tr>
+</table>
+</section>
+
+	  <!--content end-->
+      </article>
+	  </div>
+  </div>
+  <footer>
+  	<ul>
+  		<li><a href="/about/">このサイトについて</a></li>
+  		<li><a href="/support/">お問い合わせ</a></li>
+  	</ul>
+    <small>
+		&copy;2003-2012 Grand Blaze Game Master All Rights Reserved.
+    </small>
+  </footer>
+  <!-- end .container --></div>
+</body>
+</html>

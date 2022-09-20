@@ -1,0 +1,140 @@
+{% extends 'base/forum_base.html' %}
+{% load breadcrumbs bbcodes %}
+
+{% block title %}スレッド作成 | Grand Blaze{% endblock %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/forum.css?{{publish_date}}" rel="stylesheet" type="text/css">
+<link href="{{ MEDIA_URL }}/css/form.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "フォーラム" forum_index %}
+{% breadcrumb_url forum.name forum_list forum.id %}
+{% breadcrumb "スレッド作成" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>スレッド作成</h1>
+
+<section>
+     <h2>注意</h2>
+     <p>ログインせずに作成したスレッドは編集、削除ができませんのでご注意下さい。</p>
+</section>
+
+{% if is_preview %}
+<section>
+    <h2>
+        スレッド：{{ preview_data.title }}
+    </h2>
+    <ol class="post-list">
+            <li>
+                <div class="post-header ui-inline-icon">
+                    <span class="ui-icon ui-icon-document"></span>
+                    プレビュー
+                </div>
+                <div class="post-detail">
+                    <div class="post-user">
+                        <span class="user-name">{{ preview_data.create_user_name }}</span>
+                    </div>
+                    <div class="post-article">
+                        {{ preview_data.body|bbcode|linebreaksbr }}
+                    </div>
+                </div>
+            </li>
+    </ol>
+</section>
+{% endif %}
+
+<section>
+    <form action="{% url forum_thread_create_notauth forum.id %}" method="POST">
+        {% csrf_token %}
+    <div class="form-widget">
+        <div>
+            <div class="key">
+                <label for="id_title">
+                    件名
+                </label>
+            </div>
+            <div class="value">
+                {{ form.title }}
+                {{ form.title.errors }}
+            </div>
+        </div>
+        <div>
+            <div class="key">
+                <label for="id_create_user_name">
+                    作成者名
+                </label>
+            </div>
+            <div class="value">
+                {{ form.create_user_name }}
+                {{ form.create_user_name.errors }}
+            </div>
+        </div>
+        <div>
+    		<div class="value full-text">
+    			<label for="id_body">
+    				本文
+    			</label>
+    			{{ form.body }}
+    			{{ form.body.errors }}
+    		</div>
+        </div>
+        <div>
+            <div class="key">
+                <label for="id_forum_status">
+                    状態
+                </label>
+            </div>
+            <div class="value">
+                {{ form.forum_status }}
+                {{ form.forum_status.errors }}
+            </div>
+        </div>
+        <div>
+            <div class="key">
+                <label for="id_status_change_pass">
+                    状態変更パスワード
+                </label>
+            </div>
+            <div class="value integer">
+                {{ form.status_change_pass }}
+                {{ form.status_change_pass.errors }}
+            </div>
+        </div>
+        <div>
+            <div class="key">
+                <label for="id_captcha">
+                    画像認証
+                </label>
+            </div>
+            <div class="value">
+                {{ form.captcha }}
+                {{ form.captcha.errors }}
+            </div>
+        </div>
+        <div>
+    		<div class="value value-only">
+    			{{ form.preview }}
+    			<label for="id_preview">
+    				この投稿をプレビューで表示
+    			</label>
+    		</div>
+        </div>
+        <div>
+            <div class="value value-only">
+                <input type="submit" value="スレッド作成" />
+            </div>
+        </div>
+    </div>
+    </form>
+</section>
+
+{% include 'forum/parts/bbcodes.html' %}
+
+{% endblock %}

@@ -1,0 +1,46 @@
+
+
+■新規登録 (登録日時:{{data.updated_at|date:"Y/m/d H:i:s"}})
+
+◇アカウント情報
+    ※アカウント情報は省略されています。詳細の内容は「設定」からご確認ください。        
+
+◇キャラクター設定
+    ・キャラクター名
+        {{data.character_name}}
+	・愛称
+		{{data.nick_name}}
+    ・性別
+        {{data.get_sex_display}}
+	・年齢
+		{{data.age}}歳
+	・身長
+		{{data.height}}cm
+	・体重
+		{{data.weight}}kg
+	・所属国
+	   {{data.get_nation_id_display}}
+	・大切なもの
+		{{data.unique_name}}
+
+◇キャラクターの画像
+	・イメージURL
+		{{data.image_url}}
+	・横幅
+		{{data.image_width|default:''}}px
+	・縦幅
+		{{data.image_height|default:''}}px
+	・著作権者
+		{{data.image_copyright}}
+	・画像リンクURL
+		{{data.image_link_url}}
+
+◇キャラクターの能力
+	・クラス
+		{{data.install_class.name}}
+    ・種族
+        {{data.race.name}}
+    ・守護者
+        {{data.get_guardian_id_display}}
+    ・初期装備武器
+        {{data.get_weapon_id_display}}

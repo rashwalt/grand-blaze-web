@@ -1,0 +1,34 @@
+
+
+■個人設定 (登録日時:{{data.updated_at|date:"Y/m/d H:i:s"}})
+
+{% if data.nick_name or data.age or data.height or data.weight or data.profile or data.unique_name %}
+◇キャラクター設定{% if data.nick_name %}
+	・愛称
+		{{data.nick_name}}{% endif %}{% if data.age %}
+	・年齢
+		{{data.age|default:''}}歳{% endif %}{% if data.height %}
+	・身長
+		{{data.height|default:''}}cm{% endif %}{% if data.weight %}
+	・体重
+		{{data.weight|default:''}}kg{% endif %}{% if data.profile %}
+	・プロフィール
+		{{data.profile}}{% endif %}{% if data.unique_name %}
+	・大切なもの
+		{{data.unique_name}}{% endif %}{% endif %}{% if data.image_url %}
+
+◇キャラクター画像{% if data.image_url %}
+	・画像URL
+		{{data.image_url}}{% endif %}{% if data.image_width %}
+	・横幅
+		{{data.image_width|default:''}}px{% endif %}{% if data.image_height %}
+	・縦幅
+		{{data.image_height|default:''}}px{% endif %}{% if data.image_copyright %}
+	・著作権者
+		{{data.image_copyright}}{% endif %}{% if data.image_link_url %}
+	・画像リンクURL
+		{{data.image_link_url}}{% endif %}{% endif %}
+
+◇アカウント状態
+	・アカウント状態
+		{{data.get_account_status_display}}

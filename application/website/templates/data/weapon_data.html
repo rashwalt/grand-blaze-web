@@ -1,0 +1,66 @@
+{% extends 'base/playguide_base.html' %}
+{% load breadcrumbs register_extras %}
+
+{% block title %}{{ item_type.name }} | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "プレイガイド" playguide_index %}
+{% breadcrumb_url "装備" playguide_item_equipment %}
+{% breadcrumb item_type.name %}
+
+{% endblock %}
+
+{% block maincontents %}
+<h1>{{ item_type.name }}</h1>
+
+<section>
+    <h2>{{ item_type.name }}のスキル</h2>
+    <table class="guide-list" summary="クラスの習得スキルリストです。" style="width:95%;">
+        <tr>
+            <th>スキル名</th>
+            <th>MP</th>
+            <th>TP</th>
+            <th>種別</th>
+        </tr>
+        {% for skill_data in weapon_skills %}
+        <tr>
+            <td>
+                {{ skill_data.name }}
+            </td>
+            <td>{{ skill_data.sk_mp }}</td>
+            <td>{{ skill_data.sk_tp }}</td>
+            <td>{{ skill_data.get_sk_type_display }}</td>
+        </tr>
+        <tr>
+            <td colspan="4">{{ skill_data.sk_comment|safe }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</section>
+
+<section>
+    <h2>{{ item_type.name }}を使えるアイテム(一部の販売品)</h2>
+    <table class="guide-list" summary="クラスの習得スキルリストです。" style="width:95%;">
+        <tr>
+            <th>No.</th>
+            <th>アイテム名</th>
+            <th>価格</th>
+        </tr>
+        {% for item_data in item_datas %}
+        <tr>
+            <td rowspan="2" class="center">{{ item_data.id }}</td>
+            <td>
+                {{ item_data.name }}
+            </td>
+            <td>{{ item_data.it_price|sub_money }}</td>
+        </tr>
+        <tr>
+            <td colspan="2">{{ item_data.it_comment|safe }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</section>
+
+{% endblock %}

@@ -1,0 +1,106 @@
+{% extends 'base/playguide_base.html' %}
+{% load breadcrumbs register_extras %}
+
+{% block title %}{{ item_d.name }} | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "プレイガイド" playguide_index %}
+{% breadcrumb_url "販売アイテム一覧" sell_data %}
+{% breadcrumb item_d.name %}
+
+{% endblock %}
+
+{% block maincontents %}
+<h1>{{ item_d.name }}</h1>
+
+<section>
+	<div class="ui-tabs">
+  <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix">
+  <li class="ui-state-default ui-corner-top{% if type_id == 1 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 2 %}">片手武器</a></li>
+  <li class="ui-state-default ui-corner-top{% if type_id == 2 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 1 %}">両手武器</a></li>
+  <li class="ui-state-default ui-corner-top{% if type_id == 3 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 15 %}">遠隔武器</a></li>
+  <li class="ui-state-default ui-corner-top{% if type_id == 4 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 33 %}">防具</a></li>
+  <li class="ui-state-default ui-corner-top{% if type_id == 5 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 53 %}">素材</a></li>
+  <li class="ui-state-default ui-corner-top{% if type_id == 6 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 49 %}">道具</a></li>
+  </ul>
+  {% if type_id == 1 %}
+  <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix">
+  <li class="ui-state-default ui-corner-top{% if category_id == 2 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 2 %}">短剣</a></li>
+  <li class="ui-state-default ui-corner-top{% if category_id == 3 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 3 %}">片手剣</a></li>
+  <li class="ui-state-default ui-corner-top{% if category_id == 4 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 4 %}">片手斧</a></li>
+  <li class="ui-state-default ui-corner-top{% if category_id == 5 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 5 %}">片手刀</a></li>
+  <li class="ui-state-default ui-corner-top{% if category_id == 6 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 6 %}">片手鞭</a></li>
+  <li class="ui-state-default ui-corner-top{% if category_id == 7 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 7 %}">書物</a></li>
+  <li class="ui-state-default ui-corner-top{% if category_id == 8 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 8 %}">魔導器</a></li>
+  </ul>
+  {% elif type_id == 2 %}
+  <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix">
+  <li class="ui-state-default ui-corner-top{% if category_id == 1 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 1 %}">格闘</a></li>
+  <li class="ui-state-default ui-corner-top{% if category_id == 9 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 9 %}">両手剣</a></li>
+  <li class="ui-state-default ui-corner-top{% if category_id == 10 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 10 %}">両手刀</a></li>
+  <li class="ui-state-default ui-corner-top{% if category_id == 11 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 11 %}">両手杖</a></li>
+  <li class="ui-state-default ui-corner-top{% if category_id == 12 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 12 %}">両手槍</a></li>
+  <li class="ui-state-default ui-corner-top{% if category_id == 13 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 13 %}">両手棒</a></li>
+  <li class="ui-state-default ui-corner-top{% if category_id == 14 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 14 %}">楽器</a></li>
+  </ul>
+  {% elif type_id == 3 %}
+  <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix">
+  <li class="ui-state-default ui-corner-top{% if category_id == 15 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 15 %}">投擲</a></li>
+  <li class="ui-state-default ui-corner-top{% if category_id == 16 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 16 %}">弓</a></li>
+  <li class="ui-state-default ui-corner-top{% if category_id == 17 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 17 %}">弩</a></li>
+  <li class="ui-state-default ui-corner-top{% if category_id == 18 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 18 %}">銃</a></li>
+  </ul>
+  {% elif type_id == 4 %}
+  <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix">
+  <li class="ui-state-default ui-corner-top{% if category_id == 33 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 33 %}">盾</a></li>
+  <li class="ui-state-default ui-corner-top{% if category_id == 35 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 35 %}">兜</a></li>
+  <li class="ui-state-default ui-corner-top{% if category_id == 36 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 36 %}">帽子</a></li>
+  <li class="ui-state-default ui-corner-top{% if category_id == 37 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 37 %}">魔帽</a></li>
+  <li class="ui-state-default ui-corner-top{% if category_id == 38 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 38 %}">鎧</a></li>
+  <li class="ui-state-default ui-corner-top{% if category_id == 39 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 39 %}">服</a></li>
+  <li class="ui-state-default ui-corner-top{% if category_id == 40 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 40 %}">魔服</a></li>
+  <li class="ui-state-default ui-corner-top{% if category_id == 41 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 41 %}">アクセサリ</a></li>
+  </ul>
+  {% elif type_id == 5 %}
+  <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix">
+  <li class="ui-state-default ui-corner-top{% if category_id == 53 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 53 %}">聖水</a></li>
+  <li class="ui-state-default ui-corner-top{% if category_id == 54 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 54 %}">調剤</a></li>
+  <li class="ui-state-default ui-corner-top{% if category_id == 55 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 55 %}">薬剤</a></li>
+  <li class="ui-state-default ui-corner-top{% if category_id == 56 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 56 %}">爆薬</a></li>
+  {#<li class="ui-state-default ui-corner-top{% if category_id == 57 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 57 %}">魔塊</a></li>#}
+  {#<li class="ui-state-default ui-corner-top{% if category_id == 58 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 58 %}">罠材</a></li>#}
+  <li class="ui-state-default ui-corner-top{% if category_id == 64 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 64 %}">特殊弾</a></li>
+  {#<li class="ui-state-default ui-corner-top{% if category_id == 65 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 65 %}">忍具</a></li>#}
+  {#<li class="ui-state-default ui-corner-top{% if category_id == 66 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 66 %}">餌</a></li>#}
+  </ul>
+  {% elif type_id == 6 %}
+  <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix">
+  <li class="ui-state-default ui-corner-top{% if category_id == 49 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 49 %}">食品</a></li>
+  <li class="ui-state-default ui-corner-top{% if category_id == 63 %} ui-tabs-selected ui-state-active{% endif %}"><a href="{% url sell_data 63 %}">道具</a></li>
+  </ul>
+  {% endif %}
+    <h2>{{ item_d.name }}(販売品)</h2>
+    <table class="guide-list" style="width:95%;">
+        <tr>
+            <th>No.</th>
+            <th>アイテム名</th>
+            <th>価格</th>
+        </tr>
+        {% for item_data in item_list %}
+        <tr>
+            <td rowspan="2" class="center">{{ item_data.id }}</td>
+            <td>
+                {{ item_data.name }}
+            </td>
+            <td>{{ item_data.it_price|sub_money }}</td>
+        </tr>
+        <tr>
+            <td colspan="2">{{ item_data.it_comment|safe }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</section>
+
+{% endblock %}

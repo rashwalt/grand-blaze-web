@@ -1,0 +1,349 @@
+{% extends 'base/playguide_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}テキストコマンド | Grand Blaze{% endblock %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/playguide.css?{{publish_date}}" rel="stylesheet" type="text/css">
+<link href="{{ MEDIA_URL }}/css/result.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "プレイガイド" playguide_index %}
+{% breadcrumb "テキストコマンド" %}
+
+{% endblock %}
+
+{% block maincontents %}
+<h1>テキストコマンド</h1>
+
+<section>
+    <h2>概要</h2>
+    <p>バトルセリフや一部のメッセージではテキストコマンドと代名詞と呼ばれる特殊な文を使うことで様々な表示上の効果を得られます。ここでは、それらをご紹介します。</p>
+</section>
+
+<section>
+    <h2>テキストコマンド</h2>
+    <p>セリフやメッセージ入力時に、特定の文字列+半角スペース+セリフ本文と記入することで、実際の表示を変更することができます。<br />
+	テキストコマンドには次のものがあります。<br />
+	※()で囲まれたものは短縮形であり、()の中の表記で記入しても効果が発揮されます。</p>
+    <dl class="subtext">
+        <dt>/say(/s) 文字列</dt>
+        <dd>通常のメッセージやセリフを表示します。/say、または/sは省略しても通常の文字列として表示されます（通常、入力する必要はありません）。<br />
+        例： ライアン「こんにちは」</dd>
+        <dt>/shout(/sh) 文字列</dt>
+        <dd>通常より大きめの文字で表示されており、叫んでいる様子を表します。</dd>
+        <dt>/low(/lo) 文字列</dt>
+        <dd>通常より小さめの文字で表示されており、ささやき声を表します。</dd>
+        <dt>/emotion(/em) 文字列</dt>
+        <dd>文字列そのものを素の状態で表示します。キャラクターの行動描写などに使用できます。</dd>
+        <dt>/other(/o) 表示名前 文字列</dt>
+        <dd>他の誰かが喋っているかのように表示できます。ペットが喋っているなどの場合に使用します。</dd>
+        <dt>/othershout(/os) 表示名前 文字列</dt>
+        <dd>通常より大きめの文字で表示されており、他の誰かが叫んでいるかのように表示できます。ペットが喋っているなどの場合に使用します。</dd>
+        <dt>/otherlow(/ol) 表示名前 文字列</dt>
+        <dd>通常より小さめの文字で表示されており、他の誰かが囁いているかのように表示できます。ペットが喋っているなどの場合に使用します。</dd>
+    </dl>
+</section>
+
+<section>
+    <h2>テキストコマンド ～ サブコマンド</h2>
+    <p>さらに、テキストコマンド+特定の文字列+半角スペース+セリフ本文と記入することで、アイコンを表示するなどの特殊な効果を得ることができます。サブコマンドは以下の通りです。<br />
+      また、これらのサブコマンドとして、以下のものがあります。</p>
+    <dl class="subtext">
+        <dt>icon(icon+数字)</dt>
+        <dd>48px×48pxの<a href="{% url playguide_chara_icon %}">アイコン</a>をセリフの先頭に表示します。iconとだけ記入すると、アイコン設定で設定した一番最初のアイコンが表示されます。icon22のように記入すると、アイコン設定で設定したアイコンの22番目が表示されます。</dd>
+        <dt>licon(licon+数字)</dt>
+        <dd>64px×64pxの<a href="{% url playguide_chara_icon %}">アイコン</a>をセリフの先頭に表示します。サイズが異なるだけで、仕組みは「icon」と同じです。</dd>
+        <dt>sicon(sicon+数字)</dt>
+        <dd>32px×32pxの<a href="{% url playguide_chara_icon %}">アイコン</a>をセリフの先頭に表示します。サイズが異なるだけで、仕組みは「icon」と同じです。</dd>
+    </dl>
+    <div class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! テキストコマンドとサブコマンドの実例</strong><br />
+        例えば、プライベートメッセージでアイコンを使用したい場合、次のように記入します。<br />
+        <form>
+            送信先：
+            <select name="target_form" id="target_form">
+                <option value="0" selected="selected">個人宛て</option>
+                <option value="1">パーティメンバーに</option>
+                <option value="2">リストに表示</option>
+            </select>
+            <br />
+            ターゲットE-No.
+            <input name="target_entry" type="text" class="no_box" id="target_entry" value="34" size="5" maxlength="5" />
+            にメッセージを送信する。<br />
+            <br />
+            メッセージ内容：<br />
+            <textarea name="message" cols="35" rows="10" class="standard_box" id="message">/shout icon15 諸君！我が弟が倒れたのはなぜか！{nl}/other 不明 icon42 ボウヤだからさ…</textarea>
+        </form>
+    </div>
+</section>
+
+
+<section>
+    <h2>特殊なテキストコマンド</h2>
+    <p>テキストコマンドの中でも代名詞のような形で表記する特殊なコマンドがあります。</p>
+    <table class="guide-list" summary="メッセージやバトルセリフで使用できる代名詞の一覧です。">
+        <tr>
+            <th>コマンド</th>
+            <th>効果</th>
+        </tr>
+        <tr>
+            <th>{br}</th>
+            <td>指定された場所で改行します。</td>
+        </tr>
+        <tr>
+            <th>{nl}</th>
+            <td>指定された場所でテキストコマンドを区切ります。</td>
+        </tr>
+    </table>
+    <p>{br}はその位置で文章を改行します。<br />
+    	たとえば、<br />
+    	「こんにちは。{br}今日はよいお日柄ですね」<br />
+    	と入力した場合、<br />
+    	「こんにちは。<br />今日はよいお日柄ですね」<br />
+    	といった表記になります。<br />
+    	対して、{nl}は指定された場所から別のテキストコマンド（/shや/sなど）を実行させるのに使用します。<br />
+    	「/lo だんだん、声が大きく……{nl}/s だんだん、声が大きく……！{nl}/sh なるんだよ！！！」<br />
+    	と入力した場合、<br />
+    	「<span class="serif_low">だんだん、声が大きく……</span><br />
+    	だんだん、声が大きく……！<br />
+    	<span class="serif_shout">なるんだよ！！！</span>」<br />
+    	といった表記になります。
+    </p>
+</section>
+
+<section>
+    <h2>代名詞</h2>
+    <p>代名詞は、セリフやメッセージ上で、特定の文字列に自動的に変換されるものです。例えば、{me}と記入すると、実際の結果上では自分の愛称が表示されます。<br />
+    代名詞は次の通りです。</p>
+    <table class="guide-list" summary="メッセージやバトルセリフで使用できる代名詞の一覧です。">
+        <tr>
+            <th>代名詞</th>
+            <th>効果</th>
+        </tr>
+        <tr>
+            <th>{t}</th>
+            <td>行動の対象（攻撃目標となっている敵など）の名前（愛称）を指す代名詞です。複数が対象の場合は展開されません。</td>
+        </tr>
+        <tr>
+            <th>{me}</th>
+            <td>自分の愛称を指す代名詞です。</td>
+        </tr>
+        <tr>
+	        <th>{pos}</th>
+	        <td>現在のクエスト名称を指す代名詞です。</td>
+        </tr>
+        <tr>
+            <th>{hp}</th>
+            <td>自分のHPを 現在値/最大値 で表示します。 </td>
+        </tr>
+        <tr>
+            <th>{hpp}</th>
+            <td>自分のHPを％で表示します。</td>
+        </tr>
+        <tr>
+            <th>{hppr}</th>
+            <td>自分のHPの減少量を％で表示します。</td>
+        </tr>
+        <tr>
+            <th>{mp}</th>
+            <td>自分のMPを 現在値/最大値 で表示します。 </td>
+        </tr>
+        <tr>
+            <th>{mpp}</th>
+            <td>自分のMPを％で表示します。</td>
+        </tr>
+        <tr>
+            <th>{mppr}</th>
+            <td>自分のMPの減少量を％で表示します。</td>
+        </tr>
+        <tr>
+            <th>{tp}</th>
+            <td>自分のTPを 現在値/最大値 で表示します。 </td>
+        </tr>
+        <tr>
+            <th>{tpp}</th>
+            <td>自分のTPを％で表示します。</td>
+        </tr>
+        <tr>
+            <th>{tppr}</th>
+            <td>自分のTPの減少量を％で表示します。</td>
+        </tr>
+        <tr>
+            <th>{random}</th>
+            <td>1～999の数字をランダムで表示します。</td>
+        </tr>
+        <tr>
+            <th>{dc}</th>
+            <td>自分がトドメを刺した数をアラビア数字(0～9)で表示します。</td>
+        </tr>
+        <tr>
+            <th>{dcj}</th>
+            <td>自分がトドメを刺した数を漢数字(〇～九、十など)で表示します。</td>
+        </tr>
+        <tr>
+            <th>{main}</th>
+            <td>現在装備しているメインの装備名称を表示します。</td>
+        </tr>
+        <tr>
+            <th>{sub}</th>
+            <td>現在装備しているサブの装備名称を表示します。</td>
+        </tr>
+        <tr>
+            <th>{head}</th>
+            <td>現在装備している頭部の装備名称を表示します。</td>
+        </tr>
+        <tr>
+            <th>{body}</th>
+            <td>現在装備している身体の装備名称を表示します。</td>
+        </tr>
+        <tr>
+            <th>{acce}</th>
+            <td>現在装備している装飾の装備名称を表示します。</td>
+        </tr>
+        <tr>
+            <th>{arts}</th>
+            <td>バトル中、使ったアーツの名称を表示します(バトル以外では何も表示されません。また自分の行動以外の時も表示されません)。</td>
+        </tr>
+    </table>
+    <p class="ui-state-highlight ui-corner-all ui-inline-icon" style="margin-top: 10px;">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! {br}と{nl}の違い</strong><br />
+        {br}と{nl}は似ているようで、実際の動作が異なります。<br />
+        下記のように記入した場合、実際のメッセージやセリフではこう表示されます。<br />
+        <br />
+        <strong>記入例</strong><br />
+        よろしくおねがいします。{br}/shout これからお世話になります。<br />
+        <br />
+        <strong>実際の表示</strong><br />
+        レイ「よろしくお願いします。<br />
+        /shout これからお世話になります。」<br />
+        <br />
+        <strong>記入例</strong><br />
+		よろしくおねがいします。{nl}/shout これからお世話になります。<br />
+		<br />
+		<strong>実際の表示</strong><br />
+		レイ「よろしくお願いします。」<br />
+		レイ「<span class="serif_shout">これからお世話になります。</span>」
+    </p>
+</section>
+
+<section>
+    <h2>範囲代名詞〜特定範囲だけに効果を与える</h2>
+    <p>代名詞の中には、特定の文字を大きくしたり、色を変えることができる代名詞があります。これらの代名詞ははじまりの代名詞と、閉じるための代名詞で対になっています。例えば、{sh}大きくなる{/sh}と記入すると、実際の結果上では「大きくなる」の部分が少し大きめに表示されます。<br />
+    範囲代名詞は次の通りです。<br />
+    ※各種登録のプレビュー表示ではエラー処理が入っていないため、問題のある表記だった場合、実際の表示と異なることがあります。</p>
+    <table class="guide-list" summary="メッセージやバトルセリフで使用できる代名詞の一覧です。">
+        <tr>
+            <th>代名詞(例)</th>
+            <th>表示結果</th>
+            <th>効果</th>
+        </tr>
+        <tr>
+            <th>{b}太字{/b}</th>
+            <th><strong>太字</strong></th>
+            <td>代名詞で囲まれた中身を太字にします。</td>
+        </tr>
+        <tr>
+            <th>{i}斜体{/i}</th>
+            <th><em>斜体</em></th>
+            <td>代名詞で囲まれた中身を斜体にします。</td>
+        </tr>
+        <tr>
+            <th>{u}アンダーライン{/u}</th>
+            <th><u>アンダーライン</u></th>
+            <td>代名詞で囲まれた中身に下線(アンダーライン)をつけます。</td>
+        </tr>
+        <tr>
+            <th>{s}打消線{/s}</th>
+            <th><strike>打消線</strike></th>
+            <td>代名詞で囲まれた中身に打ち消し線をつけます。</td>
+        </tr>
+        <tr>
+            <th>{sh}大きく{/sh}</th>
+            <th><span class="serif_shout">大きく</span></th>
+            <td>代名詞で囲まれた中身の文字の大きさを大きくします。</td>
+        </tr>
+        <tr>
+            <th>{lo}小さく{/lo}</th>
+            <th><span class="serif_low">小さく</span></th>
+            <td>代名詞で囲まれた中身の文字の大きさを小さくします。</td>
+        </tr>
+        <tr>
+            <th>{gray}灰色{/gray}</th>
+            <th><span class="serif_gray">灰色</span></th>
+            <td>代名詞で囲まれた中身の文字を灰色にします。</td>
+        </tr>
+        <tr>
+            <th>{silver}銀色{/silver}</th>
+            <th><span class="serif_silver">銀色</span></th>
+            <td>代名詞で囲まれた中身の文字を銀色にします。</td>
+        </tr>
+        <tr>
+            <th>{maroon}栗色{/maroon}</th>
+            <th><span class="serif_maroon">栗色</span></th>
+            <td>代名詞で囲まれた中身の文字を栗色にします。</td>
+        </tr>
+        <tr>
+            <th>{red}赤色{/red}</th>
+            <th><span class="serif_red">赤色</span></th>
+            <td>代名詞で囲まれた中身の文字を赤色にします。</td>
+        </tr>
+        <tr>
+            <th>{olive}オリーブ色{/olive}</th>
+            <th><span class="serif_olive">オリーブ色</span></th>
+            <td>代名詞で囲まれた中身の文字をオリーブ色にします。</td>
+        </tr>
+        <tr>
+            <th>{yellow}黄色{/yellow}</th>
+            <th><span class="serif_yellow">黄色</span></th>
+            <td>代名詞で囲まれた中身の文字を黄色にします。</td>
+        </tr>
+        <tr>
+            <th>{green}緑色{/green}</th>
+            <th><span class="serif_green">緑色</span></th>
+            <td>代名詞で囲まれた中身の文字を緑色にします。</td>
+        </tr>
+        <tr>
+            <th>{lime}ライム色{/lime}</th>
+            <th><span class="serif_lime">ライム色</span></th>
+            <td>代名詞で囲まれた中身の文字をライム色にします。</td>
+        </tr>
+        <tr>
+            <th>{teal}ティール色{/teal}</th>
+            <th><span class="serif_teal">ティール色</span></th>
+            <td>代名詞で囲まれた中身の文字をティール色にします。</td>
+        </tr>
+        <tr>
+            <th>{aqua}水色{/aqua}</th>
+            <th><span class="serif_aqua">水色</span></th>
+            <td>代名詞で囲まれた中身の文字を水色にします。</td>
+        </tr>
+        <tr>
+            <th>{navy}濃紺色{/navy}</th>
+            <th><span class="serif_navy">濃紺色</span></th>
+            <td>代名詞で囲まれた中身の文字を濃紺色にします。</td>
+        </tr>
+        <tr>
+            <th>{blue}青色{/blue}</th>
+            <th><span class="serif_blue">青色</span></th>
+            <td>代名詞で囲まれた中身の文字を青色にします。</td>
+        </tr>
+        <tr>
+            <th>{purple}紫色{/purple}</th>
+            <th><span class="serif_purple">紫色</span></th>
+            <td>代名詞で囲まれた中身の文字を紫色にします。</td>
+        </tr>
+        <tr>
+            <th>{fuchsia}フクシャ色{/fuchsia}</th>
+            <th><span class="serif_fuchsia">フクシャ色</span></th>
+            <td>代名詞で囲まれた中身の文字をフクシャ色にします。</td>
+        </tr>
+    </table>
+</section>
+
+{% endblock %}

@@ -1,0 +1,132 @@
+{% extends 'base/regist_base.html' %}
+{% load breadcrumbs register_extras %}
+
+{% block title %}戦闘準備登録 確認 | Grand Blaze{% endblock %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/regist.css?{{publish_date}}" rel="stylesheet" type="text/css">
+<link href="{{ MEDIA_URL }}/css/form.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "各種登録" regist_index %}
+{% breadcrumb "戦闘準備登録 確認" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>戦闘準備登録 確認</h1>
+
+<section>
+    <form action="{% url continue_equip_execute %}" method="POST">
+        {% csrf_token %}        
+        <h2>クラス</h2>
+        <div class="form-widget">
+            <div>
+            	<div class="key">
+	                <label for="id_install">
+	                    メイン
+	                </label>
+            	</div>
+            	<div class="value">
+            		{% if data.install > 0 %}{{data.main_install.name}}{% else %}変更しない{% endif %}
+            	</div>
+            </div>
+            
+            {% if is_subset %}
+            <div>
+                <div class="key">
+                    <label for="id_secondary_install">
+                        サブ
+                    </label>
+                </div>
+                <div class="value">
+                	{% if data.secondary_install > 0 %}{{data.sub_install.name}}{% else %}変更しない{% endif %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        <h2>アイテム装備</h2>
+        <div class="form-widget">
+            <div>
+                <div class="key">
+                    <label for="id_equip_main">
+                        メイン
+                    </label>
+                </div>
+                <div class="value integer">
+                    No.{{data.equip_main|default:''}} {{data.equip_main_it.item.name}}
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_equip_sub">
+                        サブ
+                    </label>
+                </div>
+                <div class="value integer">
+                    No.{{data.equip_sub|default:''}} {{data.equip_sub_it.item.name}}
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_equip_head">
+                        頭部
+                    </label>
+                </div>
+                <div class="value integer">
+                    No.{{data.equip_head|default:''}} {{data.equip_head_it.item.name}}
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_equip_body">
+                        身体
+                    </label>
+                </div>
+                <div class="value integer">
+                    No.{{data.equip_body|default:''}} {{data.equip_body_it.item.name}}
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_equip_acce1">
+                        装飾
+                    </label>
+                </div>
+                <div class="value integer">
+                    No.{{data.equip_acce1|default:''}} {{data.equip_acce1_it.item.name}}
+                </div>
+            </div>
+        </div>
+        
+        <h2>隊列</h2>
+        <div class="form-widget">
+            <div>
+                <div class="key">
+                    <label for="id_formation">
+                        隊列変更
+                    </label>
+                </div>
+                <div class="value">
+                    {{data.get_formation_display}}
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-widget">
+	        <div>
+	            <div class="value value-only">
+	            	<a data-role="button" href="{% url continue_equip_index %}">修正する</a>
+	                <input type="submit" value="登録する" />
+	            </div>
+	        </div>
+	    </div>
+    </form>
+</section>
+
+{% endblock %}
+

@@ -1,0 +1,58 @@
+{% extends 'base/root_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}パスワードリセット | Grand Blaze{% endblock %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/root.css?{{publish_date}}" rel="stylesheet" type="text/css">
+<link href="{{ MEDIA_URL }}/css/form.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb "パスワードリセット" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>パスワードリセット</h1>
+
+{% if messages %}
+<section>
+	<p class="ui-state-highlight ui-corner-all ui-inline-icon ui-wiget-p">
+		{% for message in messages %}
+		<span class="ui-icon ui-icon-info"></span>
+		<strong>パスワードリセット:</strong>
+		{{message}}
+		{% endfor %}
+	</p>
+</section>
+{% endif %}
+
+<section>
+	<form action="{% url account_pass_reset %}" method="POST">
+		{% csrf_token %}
+	<div class="form-widget">
+	    <div>
+    		<div class="key">
+    			<label for="id_email">
+    				メールアドレス
+    			</label>
+    		</div>
+    		<div class="value">
+    			{{ form.email }}
+    			{{ form.email.errors }}
+    		</div>
+        </div>
+        <div>
+    		<div class="value value-only">
+    			<input type="submit" value="リセット申請" />
+    		</div>
+        </div>
+	</div>
+	</form>
+</section>
+
+{% endblock %}

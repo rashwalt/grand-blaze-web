@@ -1,0 +1,63 @@
+{% extends 'base/playguide_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}アカウントの管理 | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "プレイガイド" playguide_index %}
+{% breadcrumb "アカウントの管理" %}
+
+{% endblock %}
+
+{% block maincontents %}
+<h1>アカウントの管理</h1>
+
+<section>
+    <h2>概要</h2>
+    <p>キャラクターは「アカウント」という単位で管理されています。アカウントの管理では、アカウント状態の変更を行うことができます。</p>
+    <p class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 登録はどこで行う？</strong><br />
+        アカウントの管理は、<strong>個人設定</strong>で行います。
+    </p>
+    <p class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! メールアドレスやパスワードを変更する場合</strong><br />
+        メールアドレスやパスワードの変更は、ログインした後、サイト右上にある「設定」から行います。
+    </p>
+</section>
+
+<section>
+    <h2>アカウント状態</h2>
+    <p>アカウント状態を変更すると、アカウントを一時凍結状態にして、キャラクターが自動削除されるのを防止したりキャラクターを任意で削除することができます。<br />
+    <br />
+    凍結状態にされたキャラクターは、次に継続登録を行うまで未継続カウントが進行しません（つまり、自動的に削除されません）。ただし、凍結状態のキャラクターは、継続登録を行っていないと、その他各種登録が無効となります。</p>
+    <div class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 凍結状態に設定する場合の例</strong><br />
+        アカウント状態を「凍結」に設定する場合、次のように選択します。<br />
+        <form>
+            <select name="account_status" id="account_status">
+            	<option value="0">アクティブ(初期状態)</option>
+                <option value="1" selected="selected">フリーズ(凍結する)</option>
+                <option value="2">削除</option>
+            </select>
+        </form>
+    </div>
+    <div class="ui-state-highlight ui-corner-all ui-inline-icon" style="margin-top: 10px;">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! キャラクターを削除する場合の例</strong><br />
+        キャラクターを削除したい場合、次のように選択します。<br />
+        <form>
+            <select name="select" id="select">
+                <option value="0">アクティブ(初期状態)</option>
+                <option value="1">フリーズ(凍結する)</option>
+                <option value="2" selected="selected">削除</option>
+            </select>
+        </form>
+    </div>
+</section>
+
+{% endblock %}

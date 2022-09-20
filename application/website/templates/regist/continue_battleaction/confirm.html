@@ -1,0 +1,72 @@
+{% extends 'base/regist_base.html' %}
+{% load breadcrumbs register_extras %}
+
+{% block title %}戦術登録 確認 | Grand Blaze{% endblock %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/regist.css?{{publish_date}}" rel="stylesheet" type="text/css">
+<link href="{{ MEDIA_URL }}/css/form.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "各種登録" regist_index %}
+{% breadcrumb "戦術登録 確認" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>戦術登録 確認</h1>
+
+<section>
+    <form action="{% url continue_battleaction_execute %}" method="POST" id="action_index">
+        {% csrf_token %}
+        <h2>戦術設定</h2>
+        {% for data in datas %}
+        <div class="form-widget">
+        	<h3>
+        		優先度:{{ forloop.counter }}
+        	</h3>
+            <div>
+            	<div class="key">
+	                <label for="id_form-{{ forloop.counter0 }}-action_target">
+	                    ターゲット<span class="required-guide">*</span>
+	                </label>
+            	</div>
+            	<div class="value integer">
+            		{% partymember data.target.name request data.target.target_no as target_name %}
+            		{{ target_name }}
+            	</div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_form-{{ forloop.counter0 }}-action">
+                        アクション<span class="required-guide">*</span>
+                    </label>
+                </div>
+                <div class="value">
+                    {{data.action_data.name|safe}} を実行
+                    <div class="ui-state-highlight ui-corner-all sub-content">
+                    	<strong>オプション:使用スキル</strong>
+                    	{{data.skill.name}} を発動
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        
+        <div class="form-widget">
+	        <div>
+	            <div class="value value-only">
+	            	<a data-role="button" href="{% url continue_battleaction_index %}">修正する</a>
+	                <input type="submit" value="登録する" />
+	            </div>
+	        </div>
+	    </div>
+    </form>
+</section>
+
+{% endblock %}
+

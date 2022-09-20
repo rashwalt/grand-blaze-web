@@ -1,0 +1,89 @@
+@charset "utf-8";
+@import "compass";
+
+dl.regist-index {
+  margin-left: 15px;
+  margin-right: 15px;
+  padding: 0;
+  
+  >dt {
+    font-weight: bold;
+    margin: 3px 10px;
+    padding: 0;
+  }
+  
+  >dd {
+    margin: 2px 25px;
+    padding: 0;
+  }
+}
+
+div.term {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 5px;
+  margin-left: 5px;
+  border: 1px solid #000000;
+  line-height: 1.2em;
+  height: 250px;
+  overflow: auto;
+  padding: 5px;
+  width: 750px;
+}
+
+section.dialog-base {
+	table.regist-list {
+	  margin-left: 0;
+	  margin-right: 0;
+	}
+}
+
+table.regist-list {
+  width: 100%;
+  margin-left: 15px;
+  margin-right: 15px;
+  
+  tr:nth-child(2n) {
+    background-color: #202020;
+    
+    td.status {
+      background-color: #606060;
+      text-align: center;
+      font-weight: bold;
+    }
+  }
+  tr:nth-child(2n+1) {
+    background-color: #161616;
+    
+    td.status {
+      background-color: #5a5a5a;
+      text-align: center;
+      font-weight: bold;
+    }
+  }
+  th {
+    background-color: #c0c0c0;
+    color: #000000;
+  }
+  
+  .status {
+    width: 100px;
+  }
+}
+
+table.history-list {
+  width: 100%;
+  margin-left: 15px;
+  margin-right: 15px;
+  
+  tr:nth-child(2n) {
+    background-color: #202020;
+  }
+  tr:nth-child(2n+1) {
+    background-color: #161616;
+  }
+  th {
+    background-color: #c0c0c0;
+    color: #000000;
+  }
+}

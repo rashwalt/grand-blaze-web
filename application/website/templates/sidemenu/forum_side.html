@@ -1,0 +1,68 @@
+
+<nav>
+	<h4>
+		ご利用の前に
+	</h4>
+	<dl id="side-menu" class="ui-right-icon">
+        <dt>
+        	<a href="{% url forum_guideline %}">
+        		ご利用の前に<span class="ui-icon ui-icon-carat-1-e"></span>
+        	</a>
+        </dt>
+        <dt>
+        	<a href="{% url forum_search %}">
+        		フォーラム検索<span class="ui-icon ui-icon-carat-1-e"></span>
+        	</a>
+        </dt>
+	</dl>
+	<h4>
+		プレイヤーズ
+	</h4>
+	<dl id="side-menu" class="ui-right-icon">
+        <dt>
+        	<a href="{% url forum_list 1 %}">
+        		取引<span class="ui-icon ui-icon-carat-1-e"></span>
+        	</a>
+        </dt>
+        <dt>
+        	<a href="{% url forum_list 2 %}">
+        		仲間募集<span class="ui-icon ui-icon-carat-1-e"></span>
+        	</a>
+        </dt>
+        <dt>
+            <a href="{% url forum_list 3 %}">
+                質問<span class="ui-icon ui-icon-carat-1-e"></span>
+            </a>
+        </dt>
+        <dt>
+            <a href="{% url forum_list 4 %}">
+                ディスカッション<span class="ui-icon ui-icon-carat-1-e"></span>
+            </a>
+        </dt>
+	</dl>
+	<h4>
+		サポート
+	</h4>
+	<dl id="side-menu" class="ui-right-icon">
+        <dt>
+        	<a href="{% url forum_list 5 %}">
+        		フィードバック<span class="ui-icon ui-icon-carat-1-e"></span>
+        	</a>
+        </dt>
+	</dl>
+	<h4>
+		コミュニティ
+	</h4>
+	<dl id="side-menu" class="ui-right-icon">
+        <dt>
+        	<a href="{% url link_index %}">
+        		関連サイトリンク<span class="ui-icon ui-icon-carat-1-e"></span>
+        	</a>
+        </dt>
+        <dt>
+        	<a href="{% url link_register %}">
+        		関連サイト申請<span class="ui-icon ui-icon-carat-1-e"></span>
+        	</a>
+        </dt>
+	</dl>
+</nav>

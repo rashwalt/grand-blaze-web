@@ -1,0 +1,133 @@
+{% extends 'base/regist_base.html' %}
+{% load breadcrumbs humanize %}
+
+{% block title %}バザー | Grand Blaze{% endblock %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/regist.css?{{publish_date}}" rel="stylesheet" type="text/css">
+<link href="{{ MEDIA_URL }}/css/form.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "各種登録" regist_index %}
+{% breadcrumb "バザー" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>バザー</h1>
+
+<section>
+    <p>
+    	<a href="{% url bazzer_sell_register %}" id="message-create" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button" aria-disabled="false"><span class="ui-button-icon-primary ui-icon ui-icon-suitcase"></span><span class="ui-button-text">バザーへの出品</span></a>
+    </p>
+    
+    <form action="{% url bazzer_list %}" method="POST">
+        {% csrf_token %}
+    <div class="form-widget">
+        <div>
+            <div class="key">
+                <label for="id_type">
+                    種別
+                </label>
+            </div>
+            <div class="value">
+                {{ form.type }}
+                {{ form.type.errors }}
+            </div>
+        </div>
+        <div>
+            <div class="key">
+                <label for="id_level">
+                    装備可能レベル
+                </label>
+            </div>
+            <div class="value integer">
+                {{ form.level }}
+                {{ form.level.errors }}
+            </div>
+        </div>
+        <div>
+            <div class="key">
+                <label for="id_min_price">
+                    出品額
+                </label>
+            </div>
+            <div class="value integer">
+                {{ form.min_price }}
+                ～
+                {{ form.max_price }}
+                {{ form.min_price.errors }}
+                {{ form.max_price.errors }}
+            </div>
+        </div>
+        <div>
+            <div class="key">
+                <label for="id_sort">
+                    表示順
+                </label>
+            </div>
+            <div class="value">
+                {{ form.sort }}
+                {{ form.sort.errors }}
+            </div>
+        </div>
+        <div>
+            <div class="value value-only">
+                {{ form.is_mine }}
+                <label for="id_is_mine">
+                    自分の<strong>出品物</strong>だけ表示
+                </label>
+                {{ form.is_mine.errors }}
+            </div>
+        </div>
+        <div>
+            <div class="value value-only">
+                {{ form.is_buy }}
+                <label for="id_is_buy">
+                    自分の<strong>落札物</strong>だけ表示
+                </label>
+                {{ form.is_buy.errors }}
+            </div>
+        </div>
+        <div>
+            <div class="value value-only">
+                <input type="submit" value="検索" />
+                <input type="reset" value="リセット" />
+            </div>
+        </div>
+    </div>
+    </form>
+</section>
+
+{% if is_result %}
+<section>
+    <h2>
+        検索結果(最大10件)
+    </h2>
+    <table class="regist-list">
+        <tr>
+            <th style="width: 40px;">ID</th>
+            <th>アイテム名</th>
+            <th>販売額</th>
+        </tr>
+        {% for item_data in bazzer_list %}      
+        <tr>
+            <td rowspan="2" style="width: 40px;">{{ item_data.id }}</td>
+            <td>
+                <a href="{% url bazzer_detail item_data.id %}">{{ item_data.get_item.name }}</a>
+            </td>
+            <td>{{ item_data.price|intcomma }}</td>
+        </tr>
+        <tr>
+            <td colspan="3">{{ item_data.get_item.it_comment|safe }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</section>
+{% endif %}
+
+{% endblock %}

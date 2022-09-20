@@ -1,0 +1,73 @@
+{% extends 'base/playguide_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}{{ install_data.name }} | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "プレイガイド" playguide_index %}
+{% breadcrumb_url "クラス" playguide_installclass %}
+{% breadcrumb install_data.name %}
+
+{% endblock %}
+
+{% block maincontents %}
+<h1>{{ install_data.name }}</h1>
+
+<section>
+    <h2>クラスの特徴</h2>
+    <p>{{ install_data.comment|linebreaksbr }}</p>
+</section>
+
+<section>
+    <h2>クラスの能力値（アビリティ）</h2>
+    <table class="guide-list" summary="クラスの能力値です。" style="width: 70%">
+        <tr>
+            <th style="width: 16%;">HP</th>
+            <th style="width: 16%;">MP</th>
+            <th style="width: 16%;">力</th>
+            <th style="width: 16%;">魔力</th>
+            <th style="width: 16%;">敏捷</th>
+            <th style="width: 16%;">ユニーク</th>
+        </tr>
+        <tr>
+            <td class="center">{{ install_data.get_up_hp_display }}</td>
+            <td class="center">{{ install_data.get_up_mp_display }}</td>
+            <td class="center">{{ install_data.get_up_str_display }}</td>
+            <td class="center">{{ install_data.get_up_mag_display }}</td>
+            <td class="center">{{ install_data.get_up_agi_display }}</td>
+            <td class="center">{{ install_data.get_up_unq_display }}</td>
+        </tr>
+    </table>
+    <p>※各能力値の高低。Aが一番高く、Gが一番低い能力です。これとクラスのレベルで最終的な能力値の数値が決定します。</p>
+</section>
+
+<section>
+    <h2>クラスの習得スキル</h2>
+    <table class="guide-list" summary="クラスの習得スキルリストです。" style="width:95%;">
+        <tr>
+            <th>習得Lv</th>
+            <th>スキル名</th>
+            <th>MP</th>
+            <th>TP</th>
+            <th>種別</th>
+        </tr>
+        {% for skill_data in install_skills %}
+        <tr>
+            <td rowspan="2" class="center">{% if skill_data.level %}{{ skill_data.level }}{% else %}★{% endif %}</td>
+            <td>
+                {{ skill_data.skill_d.name }}
+            </td>
+            <td>{{ skill_data.skill_d.sk_mp }}</td>
+            <td>{{ skill_data.skill_d.sk_tp }}</td>
+            <td>{{ skill_data.skill_d.get_sk_type_display }}</td>
+        </tr>
+        <tr>
+            <td colspan="4">{{ skill_data.skill_d.sk_comment|safe }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</section>
+
+{% endblock %}

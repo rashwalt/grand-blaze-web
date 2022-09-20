@@ -1,0 +1,125 @@
+{% extends 'base/two_base.html' %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/root.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{%block page_type%}page-top{%endblock%}
+
+{% block sidemenu %}
+
+{# --------- メニュー --------- #}
+
+{% include 'sidemenu/root_side.html' %}
+
+
+{% endblock %}
+
+{% block breadcrumbs %}
+{# --------- 各種結果 --------- #}
+
+{% include 'root/parts/result_date.html' %}
+
+{% endblock %}
+
+{% block maincontents %}
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<h1>トピックス</h1>
+
+{% comment %}
+{% if not site_manager.is_regist_stop %}
+	<section>
+		<h2>現在更新作業中</h2>
+		<p>現在更新作業を実施中です。更新作業完了までしばらくお待ち下さい。</p>
+	</section>
+{% endif %}
+{% endcomment %}
+
+{% if topics_list %}
+	<section>
+		{% for topics in topics_list %}
+			<h2>{{topics.title}}</h2>
+			<p>{{topics.body|safe|linebreaksbr}}</p>
+		{% endfor %}
+	</section>
+{% endif %}
+
+
+<h1>最新のお知らせ</h1>
+
+{% if notice_list %}
+	<section>
+		<ul class="notice-list">
+		{% for notice in notice_list %}
+			<li>
+				{{notice.view_date|date:"Y/m/d"}}
+				<a href="{% url root_notice_detail notice.id %}">{{notice.title}}</a>
+			</li>
+		{% endfor %}
+		</ul>
+		<div class="more">
+			<a href="{% url root_information %}">インフォメーション一覧へ&nbsp;&gt;&gt;</a>
+		</div>
+	</section>
+{% endif %}
+
+<section>
+    <ul id="share">
+    	<li style="width:110px;">
+    	<a href="https://twitter.com/share" class="twitter-share-button" data-lang="ja">ツイート</a>
+    	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    	</li>
+        <li style="width:70px;">
+<!-- Place this tag where you want the +1 button to render. -->
+<div class="g-plusone" data-size="medium"></div>
+
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'ja'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+        </li>
+        <li style="width:62px;">
+<a href="http://b.hatena.ne.jp/entry/http://www.grand-blaze.com/" class="hatena-bookmark-button" data-hatena-bookmark-title="Grand Blaze" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+        </li>
+        <li style="width:130px;">
+        <div class="fb-like" data-send="false" data-layout="button_count" data-width="320" data-show-faces="true" style="display:inline-block;"></div>
+        </li>
+    </ul>
+</section>
+
+{% endblock %}
+
+{% block sidecontents %}
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-0645731893075985";
+/* B4newTOP */
+google_ad_slot = "3566523719";
+google_ad_width = 180;
+google_ad_height = 150;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<a class="twitter-timeline" data-dnt=true href="https://twitter.com/GB_GM" data-widget-id="250946197278310400">@GB_GM からのツイート</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+
+{% endblock %}

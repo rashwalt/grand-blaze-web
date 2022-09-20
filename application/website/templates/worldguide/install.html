@@ -1,0 +1,28 @@
+{% extends 'base/worldguide_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}クラス | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "世界背景" worldguide_index %}
+{% breadcrumb "クラス" %}
+
+{% endblock %}
+
+{% block maincontents %}
+<h1>クラス</h1>
+
+<section>
+    <h2>概要</h2>
+    <p>冒険者がインストールして利用する「クラス」は、戦士たちの記憶とでもいうべき、実態のないものである。これらの「記憶」を冒険者に発行されるライセンスにインストールすることで、戦士達の能力を引き出し、己の力とすることが可能になる。</p>
+</section>
+
+<section>
+    <h2>馴染むという感覚</h2>
+    <p>長時間、特定の「記憶」をインストールしていると、馴染むような感覚を覚える。これが、クラスのレベルアップである。<br />
+    この馴染みを感じる事に、かつて、戦士達が使っていたスキルを習得し、自らのものとすることが可能になるのだ。</p>
+</section>
+
+{% endblock %}

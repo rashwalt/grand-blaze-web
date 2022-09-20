@@ -1,0 +1,272 @@
+{% extends 'base/regist_base.html' %}
+{% load breadcrumbs register_extras %}
+
+{% block title %}戦闘準備登録 | Grand Blaze{% endblock %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/regist.css?{{publish_date}}" rel="stylesheet" type="text/css">
+<link href="{{ MEDIA_URL }}/css/form.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "各種登録" regist_index %}
+{% breadcrumb "戦闘準備登録" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>戦闘準備登録</h1>
+
+<section>
+    <h2>登録上の注意</h2>
+    <p>入力内容にHTMLタグは使用できません。<br />
+        登録前にプレイガイドを良くお読みください。<br />
+        半角カナや機種依存文字（例：①など）は使用しないでください。<br />
+        対象エントリーナンバーの間違いには十分ご注意ください。<br />
+        <span class="required-guide">*</span>印は必須項目です。
+    </p>
+</section>
+
+{% if messages %}
+<section>
+	<p class="ui-state-highlight ui-corner-all ui-inline-icon ui-wiget-p">
+		{% for message in messages %}
+		<span class="ui-icon ui-icon-info"></span>
+		<strong>戦闘準備登録:</strong>
+		{{message}}
+		{% endfor %}
+	</p>
+</section>
+{% endif %}
+
+<section>
+    <form action="{% url continue_equip_index %}" method="POST">
+        {% csrf_token %}        
+        <h2>クラス</h2>
+        <div class="form-widget">
+            <div>
+            	<div class="key">
+	                <label for="id_install">
+	                    メイン
+	                </label>
+	                <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="install">
+	                	<span class="ui-icon ui-icon-help"></span>
+	                </a>
+            	</div>
+            	<div class="value">
+            		{{ form.install }}
+                    {{ form.install.errors }}
+            	</div>
+            	<div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-install">
+            		<span class="ui-icon ui-icon-info"></span><strong>メイン</strong>
+            		メインとしてインストールするクラスを選択します。<br />
+            		現在インストールしているクラスによって、能力値が変化します。
+            	</div>
+            </div>
+            
+            {% if is_subset %}
+            <div>
+                <div class="key">
+                    <label for="id_secondary_install">
+                        サブ
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="secondary_install">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value">
+                    {{ form.secondary_install }}
+                    {{ form.secondary_install.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-secondary_install">
+                    <span class="ui-icon ui-icon-info"></span><strong>サブ</strong>
+                    サブとしてインストールするクラスを選択します。<br />
+            		現在インストールしているクラスによって、能力値が変化します。
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        <h2>アイテム装備</h2>
+        <div class="form-widget">
+            <div>
+                <div class="key">
+                    <label for="id_equip_main">
+                        メイン
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="equip_main">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value integer">
+                    {{ form.equip_main }}
+                    <input type="button" class="dialog-open" data-dialog="having_item" data-return_id="id_equip_main" data-return_value="id_equip_main-name" value="選択" />
+                    <span id="id_equip_main-name">{% if form.instance.equip_main_it %}{{ form.instance.equip_main_it.name }}{% endif %}</span>
+                    {{ form.equip_main.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-equip_main">
+                    <span class="ui-icon ui-icon-info"></span><strong>メイン</strong>
+                    メインに装備するアイテムを選択して下さい。<br />
+                    各部位に装備しているアイテムは自動的に一端、装備解除されます。装備解除のみを行いたい場合は「-1」を指定してください。<br />
+                    メインには各種武器を装備できます。
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_equip_sub">
+                        サブ
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="equip_sub">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value integer">
+                    {{ form.equip_sub }}
+                    <input type="button" class="dialog-open" data-dialog="having_item" data-return_id="id_equip_sub" data-return_value="id_equip_sub-name" value="選択" />
+                    <span id="id_equip_sub-name">{% if form.instance.equip_sub_it %}{{ form.instance.equip_sub_it.name }}{% endif %}</span>
+                    {{ form.equip_sub.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-equip_sub">
+                    <span class="ui-icon ui-icon-info"></span><strong>サブ</strong>
+                    サブに装備するアイテムを選択して下さい。<br />
+                    各部位に装備しているアイテムは自動的に一端、装備解除されます。装備解除のみを行いたい場合は「-1」を指定してください。<br />
+                    サブには盾のほか、特定のスキルを習得することで各種武器も装備できます。
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_equip_head">
+                        頭部
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="equip_head">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value integer">
+                    {{ form.equip_head }}
+                    <input type="button" class="dialog-open" data-dialog="having_item" data-return_id="id_equip_head" data-return_value="id_equip_head-name" value="選択" />
+                    <span id="id_equip_head-name">{% if form.instance.equip_head_it %}{{ form.instance.equip_head_it.name }}{% endif %}</span>
+                    {{ form.equip_head.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-equip_head">
+                    <span class="ui-icon ui-icon-info"></span><strong>頭部</strong>
+                    頭部に装備するアイテムを選択して下さい。<br />
+                    各部位に装備しているアイテムは自動的に一端、装備解除されます。装備解除のみを行いたい場合は「-1」を指定してください。<br />
+                    頭部には各種頭部防具を装備できます。
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_equip_body">
+                        身体
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="equip_body">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value integer">
+                    {{ form.equip_body }}
+                    <input type="button" class="dialog-open" data-dialog="having_item" data-return_id="id_equip_body" data-return_value="id_equip_body-name" value="選択" />
+                    <span id="id_equip_body-name">{% if form.instance.equip_body_it %}{{ form.instance.equip_body_it.name }}{% endif %}</span>
+                    {{ form.equip_body.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-equip_body">
+                    <span class="ui-icon ui-icon-info"></span><strong>身体</strong>
+                    身体に装備するアイテムを選択して下さい。<br />
+                    各部位に装備しているアイテムは自動的に一端、装備解除されます。装備解除のみを行いたい場合は「-1」を指定してください。<br />
+                    身体には各種身体防具を装備できます。
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_equip_acce1">
+                        装飾
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="equip_acce1">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value integer">
+                    {{ form.equip_acce1 }}
+                    <input type="button" class="dialog-open" data-dialog="having_item" data-return_id="id_equip_acce1" data-return_value="id_equip_acce1-name" value="選択" />
+                    <span id="id_equip_acce1-name">{% if form.instance.equip_acce1_it %}{{ form.instance.equip_acce1_it.name }}{% endif %}</span>
+                    {{ form.equip_acce1.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-equip_acce1">
+                    <span class="ui-icon ui-icon-info"></span><strong>装飾</strong>
+                    装飾に装備するアイテムを選択して下さい。<br />
+                    各部位に装備しているアイテムは自動的に一端、装備解除されます。装備解除のみを行いたい場合は「-1」を指定してください。<br />
+                    装飾には各種装飾を装備できます。
+                </div>
+            </div>
+        </div>
+        
+        <h2>隊列</h2>
+        <div class="form-widget">
+            <div>
+                <div class="key">
+                    <label for="id_formation">
+                        隊列変更
+                    </label>
+                    <a tabindex="-1" href="javascript:void(0);" class="ui-inline-icon help" data-help="formation">
+                        <span class="ui-icon ui-icon-help"></span>
+                    </a>
+                </div>
+                <div class="value">
+                    {{ form.formation }}
+                    {{ form.formation.errors }}
+                </div>
+                <div class="ui-state-highlight ui-corner-all ui-inline-icon help" id="help-formation">
+                    <span class="ui-icon ui-icon-info"></span><strong>隊列変更</strong>
+                    バトル時の隊列を変更する場合、どの位置で戦うかを設定します。<br />
+					設定された隊列はバトルの状況により変化することがあります。<br />
+					隊列は武器の射程によるダメージ補正などに影響するほか、ヘイトの上昇にも影響します。
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-widget">
+	        <div>
+	            <div class="value value-only">
+	                <input type="submit" value="登録する" />
+	            </div>
+	        </div>
+	    </div>
+    </form>
+</section>
+
+<section class="dialog-base" id="dialog-having_item" title="所持しているアイテム" style="display: none;">
+	<form>
+		<input type="hidden" name="ret_id" class="ret_id" value="" />
+		<input type="hidden" name="ret_value" class="ret_value" value="" />
+	</form>
+    <div id="pagination">
+        
+    </div>
+    <table class="regist-list">
+            <tr>
+                <th>所持No.</th>
+                <th>アイテム名</th>
+                <th>価値</th>
+                <th>所持数</th>
+            </tr>
+        {% for item_data in having_item_list %}      
+        <tr>
+            <td rowspan="2">{{ item_data.have_no }}</td>
+            <td>
+                <a href="javascript:void(0);" class="apply-link" data-dialog="having_item" data-id_value="{{ item_data.have_no }}" data-name_value="{{ item_data.item.name }}">{{ item_data.item.name }}</a>
+            </td>
+            <td>{{ item_data.item.it_seller|sub_money }}</td>
+            <td>{{ item_data.it_box_count }}</td>
+        </tr>
+        <tr>
+            <td colspan="3">{{ item_data.item.it_comment|safe }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</section>
+
+{% endblock %}
+

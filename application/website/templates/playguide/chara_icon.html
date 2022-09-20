@@ -1,0 +1,65 @@
+{% extends 'base/playguide_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}アイコンの設定 | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "プレイガイド" playguide_index %}
+{% breadcrumb "アイコンの設定" %}
+
+{% endblock %}
+
+{% block maincontents %}
+<h1>アイコンの設定</h1>
+
+<section>
+    <h2>概要</h2>
+    <p>セリフやメッセージなどで表示するアイコンを設定することができます。アイコンの表示は<a href="{% url playguide_textcommand %}">テキストコマンド</a>で行いますが、結果画面上でアイコンを表示するためには、まずアイコンを登録しなければなりません。</p>
+    <p class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 登録はどこで行う？</strong><br />
+        アイコンの設定は、<strong>アイコン設定</strong>で行います。
+    </p>
+</section>
+
+<section>
+    <h2>アイコンの登録（共通事項）</h2>
+    <form>
+        <p>アイコン登録画面では、複数のアイコンを同時に登録します。登録したいアイコンを追加したい時は
+        <input type="button" name="add_row" value="行を追加" />
+        をクリックし、登録するアイコンの数を減らしたい場合は
+        <input type="button" name="delete_is" value="この行を削除" />
+        をクリックします。<br />
+        <br />
+        アイコンは、最大50個まで設定することができます。</p>
+    </form>
+</section>
+
+<section>
+    <h2>アイコンの設定</h2>
+    <p>アイコンを設定するには、アイコンがおかれている場所（URL、アドレス）とアイコンの著作者を記入します。</p>
+    <p class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! アイコンのサイズについて</strong><br />
+        アイコンのサイズは、<a href="{% url playguide_textcommand %}">テキストコマンド</a>で記入するサブコマンドの種類に依存します。<br />
+        もっとも大きいサイズは、横：64px 縦：64pxです。<br />
+        標準のサイズは横：48px　縦：48pxです。<br />
+        一番小さいサイズは横：32px 縦：32pxです。
+    </p>
+    <div class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! アイコンを設定する場合の例</strong><br />
+        アイコンを設定する場合、次のように記入します。<br />
+        <form>
+            アイコンURL<br />
+            <input name="icon_url" type="text" class="standard_box validate-url" value="http://www.grand-blaze.com/image/chara_icon01.gif" size="50" maxlength="255" /><br />
+            <br />
+			アイコン著作者<br />
+			<input name="icon_copy" type="text" class="name_box" value="GameMasters" size="50" maxlength="60" />
+        </form>
+    </div>
+</section>
+
+{% endblock %}

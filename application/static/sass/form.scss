@@ -1,0 +1,224 @@
+@charset "utf-8";
+@import "compass";
+
+span.required-guide {
+  color: #e32;
+}
+
+#id_entry_no {
+  width: 60px;
+}
+
+div.form-widget {
+  >div {
+    padding: 5px;
+    vertical-align: middle;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 5px;
+    position: relative;
+    min-width: 700px;
+    
+    @include display-box;
+    @include box-orient(horizontal);
+    @include box-align(stretch);
+
+    &:hover {
+      background-color: #102026;
+    }
+
+    div.key {
+      width: 170px;
+      color: #ffffff;
+    }
+    div.value {
+      margin-left: 0;
+
+      input[type="text"], input[type="password"] {
+        width: 300px;
+        
+        &.integer {
+          width: 50px;
+        }
+      }
+      
+      &.integer {
+        input[type="text"], input[type="password"] {
+          width: 50px;
+        }
+        
+        div.string {
+          input[type="text"], input[type="password"] {
+            width: 300px;
+          }
+        }
+      }
+
+      >ul {
+        padding: 0 !important;
+
+        >li {
+          list-style-type: none;
+          display: inline-block;
+        }
+      }
+
+      &.value-only {
+        width: 530px;
+        margin-left: 170px;
+      }
+
+      &.full-text {
+        width: 730px;
+
+        label {
+          display: block;
+        }
+
+        textarea {
+          width: 530px;
+        }
+      }
+      
+      &.list-liner {
+      	>ul {
+      		padding: 0 !important;
+	      >li {
+	        display: list-item;
+	        list-style-type: none;
+	      }
+      	}
+      }
+      
+      >div.sub-content {
+        padding: 0.7em;
+        margin-top: 10px;
+      
+        input[type="text"], input[type="password"] {
+          width: 50px;
+        }
+      
+        >strong {
+          font-weight: bold;
+      	  display: block;      	
+        }
+      }
+    }
+    div.help {
+      display: none;
+      position: absolute;
+      padding: 0.7em;
+      margin-top: 10px;
+      top: -6px;
+      left: 500px;
+      z-index: 1;
+      width: 240px;
+      
+      >strong {
+      	font-weight: bold;
+      	
+      	&:after {
+      	  content: ':';
+      	  font-weight: bold;
+      	  margin-right: 0.5em;
+      	}
+      }
+    }
+  }
+}
+@media only screen and (max-width: 480px) {
+    div.form-widget {
+      >div {
+        padding: 3px;
+        margin-left: 5px;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        display: block;
+        min-width: 300px;
+    
+        div.key {
+          width: 100%;
+        }
+        div.value {
+          display: block;
+    
+          input[type="text"], input[type="password"] {
+            width: 80%;
+            font-size: 18px;
+            display: block;
+            
+            &.integer {
+              width: 50%;
+            }
+          }
+          
+          &.integer {
+            input[type="text"], input[type="password"] {
+              width: 50%;
+              font-size: 18px;
+              display: block;
+            }
+            div.string {
+              input[type="text"], input[type="password"] {
+                width: 80%;
+                font-size: 18px;
+                display: block;
+              }
+            }
+          }
+
+    
+          &.value-only {
+            width: 320px;
+            margin-top: 3px;
+            margin-left: 0;
+            text-align: center;
+          }
+    
+          &.full-text {
+            width: 320px;
+    
+            textarea {
+              width: 320px;
+            }
+          }
+          
+          >div.sub-content {
+            padding: 0.4em;
+            margin-top: 5px;
+          
+            input[type="text"], input[type="password"] {
+              width: 50%;
+            }
+          }
+        }
+        div.help {;
+          padding: 0.4em;
+          margin-top: 5px;
+          top: -6px;
+          
+          >strong {
+            
+            &:after {
+              margin-right: 0.3em;
+            }
+          }
+        }
+      }
+    }
+}
+
+ul.errorlist {
+  li {
+  	color: #ff0000;
+  	font-size: 80%;
+  	display: block;
+  }
+}
+
+a.addbtlist, a.deletebtlist {
+	margin:10px 15px;
+	margin-left: 185px;
+	
+}
+

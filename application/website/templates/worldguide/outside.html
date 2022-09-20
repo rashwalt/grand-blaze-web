@@ -1,0 +1,22 @@
+{% extends 'base/worldguide_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}輪郭 | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "世界背景" worldguide_index %}
+{% breadcrumb "輪郭" %}
+
+{% endblock %}
+
+{% block maincontents %}
+<h1>輪郭</h1>
+
+<section>
+    <h2>世界地図</h2>
+    <p><img src="{{ MEDIA_URL }}/images/worldguide/world_map.jpg" id="world-map" /></p>
+</section>
+
+{% endblock %}

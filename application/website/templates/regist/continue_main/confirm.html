@@ -1,0 +1,178 @@
+{% extends 'base/regist_base.html' %}
+{% load breadcrumbs register_extras %}
+
+{% block title %}継続登録 確認 | Grand Blaze{% endblock %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/regist.css?{{publish_date}}" rel="stylesheet" type="text/css">
+<link href="{{ MEDIA_URL }}/css/form.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "各種登録" regist_index %}
+{% breadcrumb "継続登録 確認" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>継続登録 確認</h1>
+
+<section>
+    <form action="{% url continue_main_execute %}" method="POST">
+        {% csrf_token %}        
+        <h2>クエスト選択</h2>
+        <div class="form-widget">
+            <div>
+            	<div class="key">
+	                <label for="id_quest_id">
+	                    クエスト<span class="required-guide">*</span>
+	                </label>
+            	</div>
+            	<div class="value">
+            		{% if character.new_play %}
+            		{{ data.quest_name }}
+            		{% else %}
+            		【ミッション】ようこそギルドへ！
+            		{% endif %}
+            	</div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_mark_id">
+                        マーク<span class="required-guide">*</span>
+                    </label>
+                </div>
+                <div class="value">
+            		{% if character.new_play %}
+            		{% if data.mark_id == 0 %}メンバーの指定した場所へ向かいます{% else %}{{data.mark_name}}{% endif %}
+            		{% else %}
+            		はじまりの場所
+            		{% endif %}
+                </div>
+            </div>
+        </div>
+        <h2>パーティ編成</h2>
+        <div class="form-widget">
+            <div>
+                <div class="key">
+                    <label for="id_party_secession">
+                        離脱設定<span class="required-guide">*</span>
+                    </label>
+                </div>
+                <div class="value list-liner">
+                    {{ data.get_party_secession_display }}
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_pcm_add_1">
+                        パーティ勧誘
+                    </label>
+                </div>
+                <div class="value integer">
+			        1: E-No. {{data.pcm_add_1|default:''}} {{data.pcmd_add_1_ch.nick_name}}<br />
+			        2: E-No. {{data.pcm_add_2|default:''}} {{data.pcmd_add_2_ch.nick_name}}<br />
+			        3: E-No. {{data.pcm_add_3|default:''}} {{data.pcmd_add_3_ch.nick_name}}<br />
+			        4: E-No. {{data.pcm_add_4|default:''}} {{data.pcmd_add_4_ch.nick_name}}<br />
+			        5: E-No. {{data.pcm_add_5|default:''}} {{data.pcmd_add_5_ch.nick_name}}<br />
+                    を誘う
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_party_hope">
+                        パーティ参加希望<span class="required-guide">*</span>
+                    </label>
+                </div>
+                <div class="value list-liner">
+                    {{data.get_party_hope_display}}
+                    <div class="ui-state-highlight ui-corner-all sub-content">
+                    	<strong>オプション:逆指定</strong>
+                    	Entry No.{{data.option_comes_no|default:''}} {{data.option_comes_no_ch.nick_name}}からの誘いのみ受け付ける。
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="key">
+                    <label for="id_party_name">
+                        パーティ名称設定
+                    </label>
+                </div>
+                <div class="value">
+                    {{data.party_name}}
+                </div>
+            </div>
+        </div>
+        
+        <h2>アイテム使用</h2>
+        <div class="form-widget">
+            <div>
+                <div class="key">
+                    <label for="id_use_item_1">
+                        使用アイテム
+                    </label>
+                </div>
+                <div class="value integer">
+                    1. 所持アイテムNo. {{data.use_item_1|default:''}} {% if data.use_item_1 %}{{data.use_item_1_it.item.name}}{% endif %} を使う。<br />
+                    <div class="ui-state-highlight ui-corner-all sub-content string">
+                    	<strong>オプション:メッセージ</strong>
+                    	{{ data.use_item_1_message }}
+                    </div>
+                    {% if data.use_item_1_message %}
+                    オプションメッセージプレビュー:<br />
+                    {{ data.use_item_1_message|preview:user|safe }}
+                    {% endif %}
+			        2. 所持アイテムNo. {{data.use_item_2|default:''}} {% if data.use_item_2 %}{{data.use_item_2_it.item.name}}{% endif %} を使う。<br />
+                    <div class="ui-state-highlight ui-corner-all sub-content string">
+                    	<strong>オプション:メッセージ</strong>
+                    	{{ data.use_item_2_message }}
+                    </div>
+                    {% if data.use_item_2_message %}
+                    オプションメッセージプレビュー:<br />
+                    {{ data.use_item_2_message|preview:user|safe }}
+                    {% endif %}
+			        3. 所持アイテムNo. {{data.use_item_3|default:''}} {% if data.use_item_3 %}{{data.use_item_3_it.item.name}}{% endif %} を使う。
+                    <div class="ui-state-highlight ui-corner-all sub-content string">
+                    	<strong>オプション:メッセージ</strong>
+                    	{{ data.use_item_3_message }}
+                    </div>
+                    {% if data.use_item_3_message %}
+                    オプションメッセージプレビュー:<br />
+                    {{ data.use_item_3_message|preview:user|safe }}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        {% if is_private_skill %}
+        <h2>プライベートスキル習得</h2>
+        <div class="form-widget">
+            <div>
+                <div class="key">
+                    <label for="id_getting_private_skill">
+                        習得スキル<span class="required-guide">*</span>
+                    </label>
+                </div>
+                <div class="value integer">
+                    {{data.prv_skill.name}} を習得する。
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        
+        <div class="form-widget">
+	        <div>
+	            <div class="value value-only">
+	            	<a data-role="button" href="{% url continue_main_index %}">修正する</a>
+	                <input type="submit" value="登録する" />
+	            </div>
+	        </div>
+	    </div>
+    </form>
+</section>
+
+{% endblock %}
+

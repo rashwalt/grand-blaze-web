@@ -1,0 +1,40 @@
+{% extends 'base/playguide_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}プライベートスキル習得内容 | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "プレイガイド" playguide_index %}
+{% breadcrumb_url "プライベートスキル" playguide_private_skill %}
+{% breadcrumb "プライベートスキル習得内容" %}
+
+{% endblock %}
+
+{% block maincontents %}
+<h1>プライベートスキル習得内容</h1>
+
+<section>
+    <table class="guide-list" summary="プライベートスキルの習得スキルリストです。" style="width:95%;">
+        <tr>
+            <th>習得SP</th>
+            <th>スキル名</th>
+            <th>習得条件</th>
+        </tr>
+        {% for skill_data in private_skills %}
+        <tr>
+            <td rowspan="2">{{ skill_data.tm_level }}</td>
+            <td>
+                {{ skill_data.skill_name }}
+            </td>
+            <td>{{ skill_data.condition_text|safe }}</td>
+        </tr>
+        <tr>
+            <td colspan="2">{{ skill_data.skill_comment|safe }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</section>
+
+{% endblock %}

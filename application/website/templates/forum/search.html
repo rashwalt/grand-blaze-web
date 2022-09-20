@@ -1,0 +1,88 @@
+{% extends 'base/forum_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}記事検索 | Grand Blaze{% endblock %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/forum.css?{{publish_date}}" rel="stylesheet" type="text/css">
+<link href="{{ MEDIA_URL }}/css/form.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "フォーラム" forum_index %}
+{% breadcrumb "記事検索" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>記事検索</h1>
+
+<section>
+    <form action="{% url forum_search %}" method="POST">
+        {% csrf_token %}
+    <div class="form-widget">
+        <div>
+            <div class="key">
+                <label for="id_body">
+                    検索語句
+                </label>
+            </div>
+            <div class="value">
+                {{ form.body }}
+                {{ form.body.errors }}
+            </div>
+        </div>
+        <div>
+            <div class="key">
+                <label for="id_choice_type">
+                    条件指定
+                </label>
+            </div>
+            <div class="value">
+                {{ form.choice_type }}
+                {{ form.choice_type.errors }}
+            </div>
+        </div>
+        <div>
+            <div class="key">
+                <label for="id_forum_id">
+                    検索対象
+                </label>
+            </div>
+            <div class="value">
+                {{ form.forum_id }}
+                {{ form.forum_id.errors }}
+            </div>
+        </div>
+        <div>
+            <div class="value value-only">
+                <input type="submit" value="検索" />
+                <input type="reset" value="リセット" />
+            </div>
+        </div>
+    </div>
+    </form>
+</section>
+
+{% if is_result %}
+<section>
+    <h2>
+        検索結果
+    </h2>
+    <ol class="post-list">
+        {% for article in article_list %}
+            <li>
+                {% include 'forum/parts/article_detail.html' %}
+                <div class="post-footer">
+                    <a class="ui-inline-icon" href="{% url forum_thread_detail article.forum_id article.thread_id %}"><span class="ui-icon ui-icon-arrowthick-1-e"></span>この記事のあるスレッドへ</a>
+                </div>
+            </li>
+        {% endfor %}
+    </ol>
+</section>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% load bbcodes %}
+
+            {% if not article.is_delete %}
+            <div class="post-header ui-inline-icon">
+                <span class="ui-icon ui-icon-document"></span>
+                #{{ article.id }}
+                &nbsp;
+                {{ article.created_at|date:"Y/m/d H:i" }}
+            </div>
+            <div class="post-detail">
+                <div class="post-user">
+                    <span class="user-name">{% if article.user_id > 0 %}{{ article.get_user_name }}{% if not article.user.is_staff %} (<a href="{% url result_private_status article.user_id|stringformat:'04d' %}">{{article.user_id}}</a>)<br />C:{{ article.character_name }}{% endif %}{% else %}{{ article.user_name }}{% endif %}</span>
+                </div>
+                <div class="post-article">
+                    {{ article.body|bbcode|linebreaksbr }}
+                    {% if article.is_edit %}
+                        <div class="edit-mean">
+                            {{ article.edit_at|date:"Y/m/d H:i" }}に編集されました。<br />
+                            編集理由:&nbsp;{{ article.edit_mean|linebreaksbr }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% else %}
+            <div class="post-header ui-inline-icon">
+                <span class="ui-icon ui-icon-document"></span>
+                #{{ article.id }}
+                &nbsp;
+                xxxx/xx/xx xx:xx
+            </div>
+            <div class="post-detail">
+                <div class="post-user">
+                    <span class="user-name">----</span>
+                </div>
+                <div class="post-article">
+                    <div class="edit-mean">
+                        この記事は{{ article.get_delete_user_name }}によって削除されました。<br />
+                        削除理由:&nbsp;{{ article.delete_mean|linebreaksbr }}
+                    </div>
+                </div>
+            </div>
+            {% endif %}

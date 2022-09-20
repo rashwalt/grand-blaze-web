@@ -1,0 +1,23 @@
+{% extends 'base/root_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}Error | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb "Error" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>Error</h1>
+
+<section>
+	<h2>エラーが発生しました。</h2>
+ 	<p>申し訳ありません。</p>
+	<p>{{message}}</p>
+</section>
+
+{% endblock %}

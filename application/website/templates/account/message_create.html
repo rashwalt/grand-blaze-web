@@ -1,0 +1,84 @@
+{% extends 'base/root_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}{{page_title}} | Grand Blaze{% endblock %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/root.css?{{publish_date}}" rel="stylesheet" type="text/css">
+<link href="{{ MEDIA_URL }}/css/form.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "メッセージの確認" account_message_list %}
+{% breadcrumb page_title %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>{{page_title}}</h1>
+
+<section>
+    <form action="{% url account_message_create reply_message_id %}" method="POST">
+        {% csrf_token %}
+    <div class="form-widget">
+        <div>
+            <div class="key">
+                <label for="id_entry_no">
+                    送信先エントリーNo
+                </label>
+            </div>
+            <div class="value">
+                {{ form.entry_no }}
+                {{ form.entry_no.errors }}
+            </div>
+        </div>
+        <div>
+            <div class="key">
+                <label for="id_entry_no2">
+                    オプション:<br />送信先エントリーNo
+                </label>
+            </div>
+            <div class="value integer">
+                {{ form.entry_no2 }}
+                {{ form.entry_no3 }}
+                {{ form.entry_no4 }}
+                {{ form.entry_no5 }}
+                {{ form.entry_no2.errors }}
+                {{ form.entry_no3.errors }}
+                {{ form.entry_no4.errors }}
+                {{ form.entry_no5.errors }}
+            </div>
+        </div>
+        <div>
+            <div class="key">
+                <label for="id_title">
+                    件名
+                </label>
+            </div>
+            <div class="value">
+                {{ form.title }}
+                {{ form.title.errors }}
+            </div>
+        </div>
+        <div>
+    		<div class="value full-text">
+    			<label for="id_body">
+    				本文
+    			</label>
+    			{{ form.body }}
+    			{{ form.body.errors }}
+    		</div>
+        </div>
+        <div>
+            <div class="value value-only">
+                <input type="submit" value="メッセージ送信" />
+            </div>
+        </div>
+    </div>
+    </form>
+</section>
+
+{% endblock %}

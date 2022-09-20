@@ -1,0 +1,134 @@
+{% extends 'base/root_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}設定 | Grand Blaze{% endblock %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/root.css?{{publish_date}}" rel="stylesheet" type="text/css">
+<link href="{{ MEDIA_URL }}/css/form.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb "設定" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>設定</h1>
+
+{% if messages %}
+<section>
+	<p class="ui-state-highlight ui-corner-all ui-inline-icon ui-wiget-p">
+		{% for message in messages %}
+		<span class="ui-icon ui-icon-info"></span>
+		<strong>設定変更完了:</strong>
+		{{message}}
+		{% endfor %}
+	</p>
+</section>
+{% endif %}
+
+<section>
+	<h2>アカウント設定</h2>
+	<p>変更する内容を更新してください。</p>
+	<form action="{% url account_setting %}" method="POST">
+		{% csrf_token %}
+		<input type="hidden" name="mode" value="normal" />
+	<div class="form-widget">
+	    <div>
+    		<div class="key">
+    			<label for="id_name">
+    				名前
+    			</label>
+    		</div>
+    		<div class="value">
+    			{{ form.name }}
+    			{{ form.name.errors }}
+    		</div>
+    	</div>
+    	<div>
+    		<div class="key">
+    			<label for="id_mod_email">
+    				メールアドレス
+    			</label>
+    		</div>
+    		<div class="value">
+    			{{ form.mod_email }}
+    			{{ form.mod_email.errors }}
+    		</div>
+        </div>
+        <div>
+    		<div class="value value-only">
+    			{{ form.official_news }}
+    			<label for="id_official_news">
+    				公式からのお知らせ配信を受け取る
+    			</label>
+    		</div>
+        </div>
+        <div>
+    		<div class="value value-only">
+    			{{ form.continue_mail }}
+    			<label for="id_continue_mail">
+    				各種登録内容の自動配信を受け取る
+    			</label>
+    		</div>
+        </div>
+        <div>
+    		<div class="value value-only">
+    			{{ form.message_mail }}
+    			<label for="id_message_mail">
+    				未読メッセージの配信を受け取る
+    			</label>
+    		</div>
+        </div>
+        <div>
+    		<div class="value value-only">
+    			<input type="submit" value="設定変更" />
+    		</div>
+		</div>
+	</div>
+	</form>
+</section>
+
+<section>
+	<h2>パスワード変更</h2>
+	<form action="{% url account_setting %}" method="POST">
+		{% csrf_token %}
+		<input type="hidden" name="mode" value="pass" />
+	<div class="form-widget">
+	    <div>
+    		<div class="key">
+    			<label for="id_mod_password">
+    				パスワード
+    			</label>
+    		</div>
+    		<div class="value">
+    			{{ pass_form.mod_password }}
+    			{{ pass_form.mod_password.errors }}
+    		</div>
+        </div>
+        <div>
+    		<div class="key">
+    			<label for="id_mod_password_conf">
+    				パスワード（確認）
+    			</label>
+    		</div>
+    		<div class="value">
+    			{{ pass_form.mod_password_conf }}
+    			{{ pass_form.mod_password_conf.errors }}
+    		</div>
+        </div>
+        <div>
+    		<div class="value value-only">
+    			<input type="submit" value="パスワード変更" />
+    		</div>
+		</div>
+	</div>
+	</form>
+</section>
+
+
+{% endblock %}

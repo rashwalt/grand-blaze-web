@@ -1,0 +1,55 @@
+{% extends 'base/playguide_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}プライベートスキル | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "プレイガイド" playguide_index %}
+{% breadcrumb "プライベートスキル" %}
+
+{% endblock %}
+
+{% block maincontents %}
+<h1>プライベートスキル</h1>
+
+<section>
+    <h2>概要</h2>
+    <p>スキルポイント(以降SP)が2上がるごとに、豊富に用意された「プライベートスキル」から、様々なスキルを1つ選んで習得することができます。<br />
+    習得可能なスキルは、SPが2上がるごと（レベルが偶数の時）に1つずつですので、自分の思い描いたキャラクターに近くなるようなスキルを覚えていきましょう。<br />
+    途中で継続登録を忘れてしまった場合でも、1回の継続登録で1つずつですが、習得していくことができます。</p>
+    <p class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 登録はどこで行う？</strong><br />
+        プライベートスキルの習得は、<strong>継続登録</strong>で行います。レベルアップし、プライベートスキルが習得可能であれば、自動的に継続登録画面に表示されます。
+    </p>
+    <div class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! プライベートスキルを習得する場合の例</strong><br />
+        プライベートスキル「ストロングバック」を習得する場合、「選択」ボタンをクリックし、習得したいものを選びます。 <br />
+        <form>
+	        <input type="button" name="select" value="選択" />
+	        ストロングバック
+        </form>
+    </div>
+</section>
+
+<section>
+    <h2>スキルの習得条件</h2>
+    <p>プライベートスキルには、習得可能な条件が設定されているものがあります。<br />
+    それぞれの習得条件は、現在のSPであったり、前提スキルを習得していることであったりします。その他、特定の能力値（ベーシックアビリティ）、クラスのレベルなどが条件になることがあります。<br />
+    条件を満たすまでスキルを習得できないため、自分が覚えられそうなスキルから最適な、または自分のキャラクターに似合うスキルを習得していきましょう。</p>
+    <p class="ui-state-highlight ui-corner-all ui-inline-icon">
+        <span class="ui-icon ui-icon-notice"></span>
+        <strong>Tips! 一気に習得する</strong><br />
+        ある程度のSPになるまで、プライベートスキルを習得しないでおくこともできます。特定のSPまで貯めておくことで、強力なスキルを習得できますが、1回の継続登録で1つしか習得できないため、時間がかかるのが難点です。
+    </p>
+</section>
+
+<section>
+    <h2>スキルの内容</h2>
+    <p><a href="{% url private_data %}">→詳細はこちらからご確認ください!</a></p>
+</section>
+
+{% endblock %}

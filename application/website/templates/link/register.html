@@ -1,0 +1,101 @@
+{% extends 'base/forum_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}サイト申請・変更 | Grand Blaze{% endblock %}
+
+{%block head%}
+<link href="{{ MEDIA_URL }}/css/forum.css?{{publish_date}}" rel="stylesheet" type="text/css">
+<link href="{{ MEDIA_URL }}/css/form.css?{{publish_date}}" rel="stylesheet" type="text/css">
+{%endblock%}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% breadcrumb_url "フォーラム" forum_index %}
+{% breadcrumb "サイト申請・変更" %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+<h1>サイト申請・変更</h1>
+
+{% if messages %}
+<section>
+	<p class="ui-state-highlight ui-corner-all ui-inline-icon ui-wiget-p">
+		{% for message in messages %}
+		<span class="ui-icon ui-icon-info"></span>
+		<strong>サイト申請・変更:</strong>
+		{{message}}
+		{% endfor %}
+	</p>
+</section>
+{% endif %}
+
+<section>
+	<form action="{% url link_register %}" method="POST">
+		{% csrf_token %}
+	<div class="form-widget">
+	    <div>
+    		<div class="key">
+    			<label for="id_name">
+    				サイト名
+    			</label>
+    		</div>
+    		<div class="value">
+    			{{ form.name }}
+    			{{ form.name.errors }}
+    		</div>
+        </div>
+	    <div>
+    		<div class="key">
+    			<label for="id_url">
+    				URL
+    			</label>
+    		</div>
+    		<div class="value">
+    			{{ form.url }}
+    			{{ form.url.errors }}
+    		</div>
+        </div>
+	    <div>
+    		<div class="key">
+    			<label for="id_owner">
+    				オーナー名
+    			</label>
+    		</div>
+    		<div class="value">
+    			{{ form.owner }}
+    			{{ form.owner.errors }}
+    		</div>
+        </div>
+	    <div>
+    		<div class="key">
+    			<label for="id_category">
+    				カテゴリ
+    			</label>
+    		</div>
+    		<div class="value">
+    			{{ form.category }}
+    			{{ form.category.errors }}
+    		</div>
+        </div>
+        <div>
+    		<div class="value full-text">
+    			<label for="id_comment">
+    				サイト説明
+    			</label>
+    			{{ form.comment }}
+    			{{ form.comment.errors }}
+    		</div>
+        </div>
+        <div>
+    		<div class="value value-only">
+    			<input type="submit" value="サイト申請・変更" />
+    		</div>
+        </div>
+	</div>
+	</form>
+</section>
+
+{% endblock %}

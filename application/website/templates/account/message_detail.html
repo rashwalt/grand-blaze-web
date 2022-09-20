@@ -1,0 +1,39 @@
+{% extends 'base/root_base.html' %}
+{% load breadcrumbs %}
+
+{% block title %}{{message.title}} | Grand Blaze{% endblock %}
+
+{% block breadcrumbs %}
+
+{% breadcrumb_url "トップ" root_index %}
+{% if is_to %}
+{% breadcrumb_url "受信メッセージの確認" account_message_list %}
+{% else %}
+{% breadcrumb_url "送信メッセージの確認" account_send_message_list %}
+{% endif %}
+{% breadcrumb message.title %}
+
+{% endblock %}
+
+
+{% block maincontents %}
+{% if is_to %}
+<h1>{{message.get_from_user_name}} (<a href="{% url result_private_status message.from_user_id|stringformat:'04d' %}">{{message.from_user_id}}</a>) C:{{ message.from_character_name }}からのメッセージ</h1>
+{% else %}
+<h1>{{message.get_to_user_name}} (<a href="{% url result_private_status message.user_id|stringformat:'04d' %}">{{message.user_id}}</a>) C:{{ message.to_character_name }}へのメッセージ</h1>
+{% endif %}
+
+<section>
+	{% if is_to %}
+	<p>
+		<a href="{% url account_message_create message.id %}" id="message-reply" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary" role="button" aria-disabled="false"><span class="ui-button-icon-primary ui-icon ui-icon-arrowreturnthick-1-e"></span><span class="ui-button-text">返信</span></a>
+	</p>
+	{% endif %}
+ <h2>{{message.title}}</h2>
+ <div class="postdate">
+ 	<span>送信日時:&nbsp;{{message.created_at|date:"Y/m/d H:i"}}</span>
+</div>
+  <p>{{message.body|linebreaksbr}}</p>
+</section>
+
+{% endblock %}
